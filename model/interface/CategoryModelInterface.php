@@ -1,8 +1,8 @@
 <?php
 
-interface TopicModelInterface extends BaseModelInterface
+interface CategoryModelInterface extends BaseModelInterface
 {
 	public function getName();
 
 	public function setName($name);
-}
+} 
