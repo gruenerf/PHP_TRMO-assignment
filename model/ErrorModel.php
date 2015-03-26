@@ -47,13 +47,12 @@ class ErrorModel implements ErrorModelInterface
 	 * Constructor
 	 * @param $errormessage
 	 * @param null $id
-	 * @param string $save
 	 */
-	public function __construct($errormessage, $id = null, $save = "true")
+	public function __construct($errormessage, $id = null)
 	{
 		$this->setErrormessage($errormessage);
 
-		if ($save) {
+		if ($id !== null) {
 			$lastId = $this->save();
 			$this->setId($lastId);
 		} else {
@@ -67,7 +66,7 @@ class ErrorModel implements ErrorModelInterface
 	public function save()
 	{
 		// Only save if id = null, means object does not exist so far
-		if ($this->getId() == null) {
+		if ($this->getId() === null) {
 			// Get all parameters of Object
 			$errormessage = $this->getErrormessage();
 

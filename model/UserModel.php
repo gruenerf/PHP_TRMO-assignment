@@ -47,8 +47,8 @@ abstract class UserModel implements UserModelInterface
 	 */
 	public function __construct($name, $password)
 	{
-		$this->name = $name;
-		$this->password = $password;
+		$this->setName($name);
+		$this->setPassword($password);
 	}
 
 	/**

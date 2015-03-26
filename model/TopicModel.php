@@ -35,10 +35,18 @@ class TopicModel implements TopicModelInterface
 	/**
 	 * Constructor
 	 * @param $name
+	 * @param null $id
 	 */
-	public function __construct($name)
+	public function __construct($name, $id = null)
 	{
-		$this->name = $name;
+		$this->setName($name);
+
+		if ($id !== null) {
+			$lastId = $this->save();
+			$this->setId($lastId);
+		} else {
+			$this->setId($id);
+		}
 	}
 
 	/**
@@ -46,14 +54,41 @@ class TopicModel implements TopicModelInterface
 	 */
 	public function save()
 	{
+		// Only save if id = null, means object does not exist so far
+		if ($this->getId() === null) {
+			// Get all parameters of Object
+			$name = $this->getName();
+
+			// Define query
+			$sql = "INSERT INTO topic (name) VALUES (:name)";
+
+			// Prepare database and execute Query
+			$query = Database::getInstance()->prepare($sql);
+			$query->execute(array(':name' => $name));
+
+			// Return id of inserted row
+			return Database::getInstance()->lastInsertId();
+		}
 	}
 
 	/**
 	 * Updates Object in Database
-	 * @param TopicModel $topic
 	 */
-	public function update(Topic $topic)
+	public function update()
 	{
+		// Get all parameters of Object
+		$name = $this->getName();
+		$id = $this->getId();
+
+		// Define query
+		$sql = "UPDATE topic SET name= :name WHERE id= :id";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':name' => $name, ':id' => $id));
+
+		// Return updated Object
+		return $this;
 	}
 
 	/**
@@ -61,5 +96,14 @@ class TopicModel implements TopicModelInterface
 	 */
 	public function delete()
 	{
+		// get id of Object
+		$id = $this->getId();
+
+		// Define query
+		$sql = "DELETE FROM topic WHERE id = :id";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':id' => $id));
 	}
 } 
