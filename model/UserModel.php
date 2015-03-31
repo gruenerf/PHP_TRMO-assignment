@@ -44,22 +44,22 @@ abstract class UserModel implements UserModelInterface
 	 * Constructor
 	 * @param $name
 	 * @param $password
+	 * @param null $id
 	 */
-	public function __construct($name, $password)
+	public function __construct($name, $password, $id = null)
 	{
-		$this->setName($name);
-		$this->setPassword($password);
+		$this->name = $name;
+		$this->password = $password;
+
+		if($id !== null){
+			$this->id = $id;
+		}
 	}
 
 	/**
-	 * Saves Object in Database
+	 * Saves/Updates Object in Database
 	 */
 	public abstract function save();
-
-	/**
-	 * Updates Object in Database
-	 */
-	public abstract function update();
 
 	/**
 	 * Deletes Object in Database

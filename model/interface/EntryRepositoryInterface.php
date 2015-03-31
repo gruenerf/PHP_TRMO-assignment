@@ -2,7 +2,7 @@
 
 use EntryModel as Entry;
 
-interface EntryRepositoryInterface
+interface EntryRepositoryInterface extends BaseRepositoryInterfaces
 {
 	public function create($title, $content);
 

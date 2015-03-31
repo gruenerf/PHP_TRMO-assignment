@@ -38,25 +38,24 @@ class CategoryModel implements CategoryModelInterface
 	 */
 	public function __construct($name, $id = null)
 	{
-		$this->setName($name);
+		$this->name= $name;
 
-		if ($id !== null) {
-			$lastId = $this->save();
-			$this->setId($lastId);
-		} else {
-			$this->setId($id);
+		if($id !== null){
+			$this->id = $id;
 		}
 	}
 
 	/**
-	 * Saves Object in Database
+	 * Saves/Updates Object in Database
 	 */
 	public function save()
 	{
-		// Only save if id = null, means object does not exist so far
-		if ($this->getId() == null) {
-			// Get all parameters of Object
-			$name = $this->getName();
+		// Get all parameters of Object
+		$name = $this->getName();
+		$id = $this->getId();
+
+		// Create object in Database if id = null, else update existing object
+		if ($id === null) {
 
 			// Define query
 			$sql = "INSERT INTO category (name) VALUES (:name)";
@@ -65,30 +64,21 @@ class CategoryModel implements CategoryModelInterface
 			$query = Database::getInstance()->prepare($sql);
 			$query->execute(array(':name' => $name));
 
-			// Return id of inserted row
-			return Database::getInstance()->lastInsertId();
+			// Set Object id to id of inserted row
+			$this->setId(Database::getInstance()->lastInsertId());
+		} else {
+			// Define query
+			$sql = "UPDATE category SET name= :name WHERE id= :id";
+
+			// Prepare database and execute Query
+			$query = Database::getInstance()->prepare($sql);
+			$query->execute(array(':name' => $name, ':id' => $id));
 		}
-	}
 
-	/**
-	 * Updates Object in Database
-	 */
-	public function update()
-	{
-		// Get all parameters of Object
-		$name = $this->getName();
-		$id = $this->getId();
-
-		// Define query
-		$sql = "UPDATE category SET name= :name WHERE id= :id";
-
-		// Prepare database and execute Query
-		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':name' => $name, ':id' => $id));
-
-		// Return updated Object
+		// Return saved/updated Object
 		return $this;
 	}
+
 
 	/**
 	 * Deletes Object in Database

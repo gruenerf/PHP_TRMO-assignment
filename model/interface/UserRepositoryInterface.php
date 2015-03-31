@@ -2,9 +2,9 @@
 
 use UserModel as User;
 
-interface UserRepositoryInterface
+interface UserRepositoryInterface extends BaseRepositoryInterface
 {
-	public function create($name, $password);
+	public function create($name, $password, $role);
 
 	public function update(User $user);
 

@@ -48,27 +48,26 @@ class EntryModel implements EntryModelInterface
 	 */
 	public function __construct($title, $content, $id = null)
 	{
-		$this->setTitle($title);
-		$this->setContent($content);
+		$this->title = $title;
+		$this->content = $content;
 
-		if ($id !== null) {
-			$lastId = $this->save();
-			$this->setId($lastId);
-		} else {
-			$this->setId($id);
+		if($id !== null){
+			$this->id = $id;
 		}
 	}
 
 	/**
-	 * Saves Object in Database
+	 * Saves/Updates Object in Database
 	 */
 	public function save()
 	{
-		// Only save if id = null, means object does not exist so far
-		if ($this->getId() === null) {
-			// Get all parameters of Object
-			$title = $this->getTitle();
-			$content = $this->getContent();
+		// Get all parameters of Object
+		$title = $this->getTitle();
+		$content = $this->getContent();
+		$id = $this->getId();
+
+		// Create object in Database if id = null, else update existing object
+		if ($id === null) {
 
 			// Define query
 			$sql = "INSERT INTO entry (title,content) VALUES (:title,:content)";
@@ -77,29 +76,18 @@ class EntryModel implements EntryModelInterface
 			$query = Database::getInstance()->prepare($sql);
 			$query->execute(array(':title' => $title, ':content' => $content));
 
-			// Return id of inserted row
-			return Database::getInstance()->lastInsertId();
+			// Set Object id to id of inserted row
+			$this->setId(Database::getInstance()->lastInsertId());
+		} else {
+			// Define query
+			$sql = "UPDATE entry SET title= :title, content= :content WHERE id= :id";
+
+			// Prepare database and execute Query
+			$query = Database::getInstance()->prepare($sql);
+			$query->execute(array(':title' => $title, ':content' => $content, ':id' => $id));
 		}
-	}
 
-	/**
-	 * Updates Object in Database
-	 */
-	public function update()
-	{
-		// Get all parameters of Object
-		$title = $this->getTitle();
-		$content = $this->getContent();
-		$id = $this->getId();
-
-		// Define query
-		$sql = "UPDATE entry SET title= :title, content= :content WHERE id= :id";
-
-		// Prepare database and execute Query
-		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':title' => $title, ':content' => $content, ':id' => $id));
-
-		// Return updated Object
+		// Return saved/updated Object
 		return $this;
 	}
 

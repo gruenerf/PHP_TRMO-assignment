@@ -50,25 +50,24 @@ class ErrorModel implements ErrorModelInterface
 	 */
 	public function __construct($errormessage, $id = null)
 	{
-		$this->setErrormessage($errormessage);
+		$this->errormessage = $errormessage;
 
-		if ($id !== null) {
-			$lastId = $this->save();
-			$this->setId($lastId);
-		} else {
-			$this->setId($id);
+		if($id !== null){
+			$this->id = $id;
 		}
 	}
 
 	/**
-	 * Saves Object in Database
+	 * Saves/Updates Object in Database
 	 */
 	public function save()
 	{
-		// Only save if id = null, means object does not exist so far
-		if ($this->getId() === null) {
-			// Get all parameters of Object
-			$errormessage = $this->getErrormessage();
+		// Get all parameters of Object
+		$errormessage = $this->getErrormessage();
+		$id = $this->getId();
+
+		// Create object in Database if id = null, else update existing object
+		if ($id === null) {
 
 			// Define query
 			$sql = "INSERT INTO error (errormessage) VALUES (:errormessage)";
@@ -77,28 +76,18 @@ class ErrorModel implements ErrorModelInterface
 			$query = Database::getInstance()->prepare($sql);
 			$query->execute(array(':errormessage' => $errormessage));
 
-			// Return id of inserted row
-			return Database::getInstance()->lastInsertId();
+			// Set Object id to id of inserted row
+			$this->setId(Database::getInstance()->lastInsertId());
+		} else {
+			// Define query
+			$sql = "UPDATE error SET errormessage= :errormessage WHERE id= :id";
+
+			// Prepare database and execute Query
+			$query = Database::getInstance()->prepare($sql);
+			$query->execute(array(':errormessage' => $errormessage, ':id' => $id));
 		}
-	}
 
-	/**
-	 * Updates Object in Database
-	 */
-	public function update()
-	{
-		// Get all parameters of Object
-		$errormessage = $this->getErrormessage();
-		$id = $this->getId();
-
-		// Define query
-		$sql = "UPDATE error SET errormessage= :errormessage WHERE id= :id";
-
-		// Prepare database and execute Query
-		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':errormessage' => $errormessage, ':id' => $id));
-
-		// Return updated Object
+		// Return saved/updated Object
 		return $this;
 	}
 

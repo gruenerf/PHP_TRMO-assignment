@@ -1,13 +1,6 @@
 <?php
 
-/**
- * Interface ErrorRepositoryInterface
- */
-interface ErrorRepositoryInterface extends RepositoryInterface
+interface ErrorRepositoryInterface extends BaseRepositoryInterfaces
 {
-	/**
-	 * @param $errormessage
-	 * @return mixed
-	 */
 	public function create($errormessage);
 }

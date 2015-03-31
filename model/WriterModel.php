@@ -1,6 +1,6 @@
 <?php
 
-class WriterModel extends UserModel
+class WriterModel extends UserModel implements WriterModelInterface
 {
 	/**
 	 * Private Variables
@@ -28,28 +28,23 @@ class WriterModel extends UserModel
 	 */
 	public function __construct($name, $password, $id = null)
 	{
-		parent::__construct($name, $password);
-		$this->setRole("writer");
-
-		if ($id !== null) {
-			$lastId = $this->save();
-			$this->setId($lastId);
-		} else {
-			$this->setId($id);
-		}
+		parent::__construct($name, $password, $id);
+		$this->role = "writer";
 	}
 
 	/**
-	 * Saves Object in Database
+	 * Saves/Updates Object in Database
 	 */
 	public function save()
 	{
-		// Only save if id = null, means object does not exist so far
-		if ($this->getId() === null) {
-			// Get all parameters of Object
-			$name = $this->getName();
-			$password = $this->getPassword();
-			$role = $this->getRole();
+		// Get all parameters of Object
+		$name = $this->getName();
+		$password = $this->getPassword();
+		$role = $this->getRole();
+		$id = $this->getId();
+
+		// Create object in Database if id = null, else update existing object
+		if ($id === null) {
 
 			// Define query
 			$sql = "INSERT INTO user (name,password,role) VALUES (:name,:password,:role)";
@@ -58,30 +53,20 @@ class WriterModel extends UserModel
 			$query = Database::getInstance()->prepare($sql);
 			$query->execute(array(':name' => $name, ':password' => $password, ':role' => $role));
 
-			// Return id of inserted row
-			return Database::getInstance()->lastInsertId();
+			// Set Object id to id of inserted row
+			$this->setId(Database::getInstance()->lastInsertId());
+		} else {
+
+			// Define query
+			$sql = "UPDATE user SET name= :name, password= :password, role= :role WHERE id= :id";
+
+			// Prepare database and execute Query
+			$query = Database::getInstance()->prepare($sql);
+			$query->execute(array(':name' => $name, ':password' => $password, ':role' => $role, ':id' => $id));
+
 		}
-	}
 
-	/**
-	 * Updates Object in Database
-	 */
-	public function update()
-	{
-		// Get all parameters of Object
-		$name = $this->getName();
-		$password = $this->getPassword();
-		$role = $this->getRole();
-		$id = $this->getId();
-
-		// Define query
-		$sql = "UPDATE user SET name= :name, password= :password, role= :role WHERE id= :id";
-
-		// Prepare database and execute Query
-		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':name' => $name, ':password' => $password, ':role' => $role, ':id' => $id));
-
-		// Return updated Object
+		// Return saved/updated Object
 		return $this;
 	}
 

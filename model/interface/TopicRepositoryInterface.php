@@ -2,7 +2,7 @@
 
 use TopicModel as Topic;
 
-interface TopicRepositorynterface
+interface TopicRepositorynterface extends BaseRepositoryInterfaces
 {
 	public function create($name);
 
