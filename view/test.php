@@ -45,4 +45,8 @@ $writer->save();
 $writer->delete();
 
 $rep = new CategoryRepository();
-$rep->getById(1);
+$obj = $rep->create('hallo');
+
+$array = $rep->getAll();
+
+var_dump($array);

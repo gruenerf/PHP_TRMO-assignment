@@ -2,33 +2,8 @@
 
 use ErrorModel as Error;
 
-class ErrorRepository extends BaseRepository implements ErrorRepositoryInterface
+class ErrorRepository implements ErrorRepositoryInterface
 {
-	/**
-	 * static instance
-	 */
-	private static $errorRepository = null;
-
-
-	/**
-	 * Empty constructor for singleton
-	 */
-	public function __construct()
-	{
-	}
-
-	/**
-	 *  Singleton returns the one instance
-	 */
-	public static function getInstance()
-	{
-		if (self::$errorRepository == null) {
-			self::$errorRepository = new ErrorRepository();
-		}
-
-		return self::$errorRepository;
-	}
-
 	/**
 	 * Creates one or many error objects
 	 * @param $errormessage
@@ -36,83 +11,56 @@ class ErrorRepository extends BaseRepository implements ErrorRepositoryInterface
 	 */
 	public function create($errormessage)
 	{
-		if (is_array($errormessage)) {
-			$error_array = array();
-			foreach ($errormessage as $error) {
-				array_push($error_array, new Error($error));
-			}
-			return ($error_array);
-		} else {
-			return new Error($errormessage);
-		}
+		$error = new Error($errormessage);
+		return $error->save();
 	}
 
 	/**
-	 * Returns the highest id of the csv file
-	 * @return int
-	 */
-	public function getHighestId()
-	{
-		if (file_exists(ROOT_PATH . "/data/errorlog.txt")) {
-			$rows = file(ROOT_PATH . "/data/errorlog.txt");
-		} else {
-			new Error("errorlog.txt does not exist");
-			return 0;
-		}
-
-		$last_row = array_pop($rows);
-		$data = str_getcsv($last_row);
-
-		if($data[0] == 'id'){
-			return 0;
-		}
-
-		return $data[0];
-	}
-
-	/**
-	 * Returns Errorobject with certain id
+	 * Returns an Object by the id
 	 * @param $id
-	 * @return mixed|null
+	 * @return ErrorModel|null
 	 */
 	public function getById($id)
 	{
-		$array = $this->getAll();
+		// Define query
+		$sql = "SELECT * FROM error WHERE id =:id";
 
-		foreach ($array as $object) {
-			if (intval($object->getId()) === intval($id)) {
-				return $object;
-			}
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':id' => $id));
+		$row = $query->fetch();
+
+		if (!empty($row)) {
+			return new Error($row['errormessage'], $row['id']);
+		} else {
+			return null;
 		}
-
-		return null;
 	}
 
 	/**
-	 * Returns all Errorobjects
-	 * @return array|mixed
+	 * Returns an array with all existing objects
+	 * @return array|null
 	 */
 	public function getAll()
 	{
-		$objectArray = array();
+		// Define query
+		$sql = "SELECT * FROM error";
 
-		if (file_exists(ROOT_PATH . "/data/errorlog.txt")) {
-			$fh = fopen(ROOT_PATH . "/data/errorlog.txt", "r") or die ('Failed!');
-		} else {
-			new Error("errorlog.txt does not exist");
-			return $objectArray;
-		}
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute();
+		$rows = $query->fetchAll();
 
-		while (!feof($fh)) {
-			$a = fgetcsv($fh);
+		if (!empty($rows)) {
+			$objectArray = array();
 
-			if ($a[0] !== '' && $a[0] !== 'id' && $a[0] !== null) {
-				array_push($objectArray, new Error($a[1], $a[2], $a[0], false));
+			foreach ($rows as $row) {
+				array_push($objectArray, new Error($row['errormessage'], $row['id']));
 			}
-		};
 
-		fclose($fh);
-
-		return $objectArray;
+			return $objectArray;
+		} else {
+			return null;
+		}
 	}
 }

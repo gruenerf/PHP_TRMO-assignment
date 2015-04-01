@@ -9,4 +9,8 @@ interface UserModelInterface extends BaseModelInterface
 	public function getPassword();
 
 	public function setPassword($password);
+
+	public function getRole();
+
+	public function setRole($role);
 }
