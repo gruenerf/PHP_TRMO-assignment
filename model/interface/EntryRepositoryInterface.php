@@ -4,7 +4,7 @@ use EntryModel as Entry;
 use TopicModel as Topic;
 use UserModel as User;
 
-interface EntryRepositoryInterface extends BaseRepositoryInterfaces
+interface EntryRepositoryInterface extends BaseRepositoryInterface
 {
 	public function create($title, $content, User $user, Topic $topic);
 
@@ -15,4 +15,6 @@ interface EntryRepositoryInterface extends BaseRepositoryInterfaces
 	public function getAllEntryByTopic(Topic $topic);
 
 	public function getAllEntryByUser(User $user);
+
+	public function searchForEntry($string);
 }

@@ -150,7 +150,7 @@ class EntryRepository implements EntryRepositoryInterface
 	public function getAllEntryByTopic(Topic $topic)
 	{
 		// Define query
-		$sql = "SELECT * FROM enty WHERE topic_id= :topic_id";
+		$sql = "SELECT * FROM entry WHERE topic_id= :topic_id";
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
@@ -178,11 +178,38 @@ class EntryRepository implements EntryRepositoryInterface
 	public function getAllEntryByUser(User $user)
 	{
 		// Define query
-		$sql = "SELECT * FROM enty WHERE user_id= :user_id";
+		$sql = "SELECT * FROM entry WHERE user_id= :user_id";
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
 		$query->execute(array(':user_id' => $user->getId()));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			$objectArray = array();
+
+			foreach ($rows as $row) {
+				array_push($objectArray, new Entry($row['title'], $row['content'], $row['user_id'], $row['topic_id'], $row['id']));
+			}
+
+			return $objectArray;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Searches for Entry
+	 * @param $string
+	 * @return array|null
+	 */
+	public function searchForEntry($string){
+		// Define query
+		$sql = "SELECT * FROM entry WHERE title LIKE :string OR content LIKE :string2";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':string' => '%'.$string.'%', ':string2' => '%'.$string.'%'));
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {

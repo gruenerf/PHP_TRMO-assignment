@@ -3,7 +3,7 @@
 use TopicModel as Topic;
 use CategoryModel as Category;
 
-interface TopicRepositorynterface extends BaseRepositoryInterfaces
+interface TopicRepositoryInterface extends BaseRepositoryInterface
 {
 	public function create($name, Category $category);
 
@@ -12,4 +12,12 @@ interface TopicRepositorynterface extends BaseRepositoryInterfaces
 	public function delete(Topic $topic);
 
 	public function getAllTopicByCategory(Category $category);
+
+	public function searchForTopic($topic);
+
+	public function getRandomTopic();
+
+	public function getTopicsChronological($direction);
+
+	public function getTopicsPopularity($direction);
 } 

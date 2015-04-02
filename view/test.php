@@ -8,7 +8,7 @@ use ErrorModel as Error;
 use TopicModel as Topic;
 
 
-$admin = new User('admin1','passwort1','admin');
+/*$admin = new User('admin1','passwort1','admin');
 $admin->save();
 $admin->setName('asdasdd');
 $admin->save();
@@ -36,11 +36,20 @@ $entry = new Entry("entry2211","contasdjaklsdjlkasjdlkasjdkljasdljaskldjaksdjkas
 $entry->save();
 $entry->setTitle('blaaaaa');
 $entry->save();
-$entry->delete();
+$entry->delete();*/
 
-$rep = new CategoryRepository();
-$obj = $rep->create('hallo');
+//$cat = CategoryRepository::getInstance()->getById(58);
+//$top = TopicRepository::getInstance()->getAllTopicByCategory($cat);
+//var_dump($top);
+//$quak = EntryRepository::getInstance()->getAllEntryByTopic($top[0]);
+//var_dump($quak);
+/*ErrorRepository::getInstance()->create('asdasdasdasd');
+$usr = UserRepository::getInstance()->create('adminasdasdasd1232','asdasd','admin');
 
-$array = $rep->getAll();
+EntryRepository::getInstance()->create('tit123el1', 'asdasdsdsdsdasdasdasd', $usr, $top);*/
 
-var_dump($array);
+$top= TopicRepository::getInstance()->searchForTopic('top');
+var_dump($top);
+
+$entry = EntryRepository::getInstance()->searchForEntry('1');
+var_dump($entry);

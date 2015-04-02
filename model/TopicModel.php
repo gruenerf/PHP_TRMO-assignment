@@ -111,4 +111,5 @@ class TopicModel implements TopicModelInterface
 		$query = Database::getInstance()->prepare($sql);
 		$query->execute(array(':id' => $id));
 	}
+
 } 

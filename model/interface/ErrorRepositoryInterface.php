@@ -1,6 +1,6 @@
 <?php
 
-interface ErrorRepositoryInterface extends BaseRepositoryInterfaces
+interface ErrorRepositoryInterface extends BaseRepositoryInterface
 {
 	public function create($errormessage);
 }

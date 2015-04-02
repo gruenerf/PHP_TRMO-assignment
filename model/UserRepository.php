@@ -86,7 +86,6 @@ class UserRepository implements UserRepositoryInterface
 		$query = Database::getInstance()->prepare($sql);
 		$query->execute(array(':name' => $name));
 		$row = $query->fetch();
-
 		if (!empty($row)) {
 			return true;
 		} else {
