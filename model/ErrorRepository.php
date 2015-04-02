@@ -4,6 +4,32 @@ use ErrorModel as Error;
 
 class ErrorRepository implements ErrorRepositoryInterface
 {
+
+	/**
+	 * static instance
+	 */
+	private static $errorRepository = null;
+
+
+	/**
+	 * Empty constructor for singleton
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 *  Singleton returns the one instance
+	 */
+	public static function getInstance()
+	{
+		if (self::$errorRepository == null) {
+			self::$errorRepository = new ErrorRepository();
+		}
+
+		return self::$errorRepository;
+	}
+
 	/**
 	 * Creates one or many error objects
 	 * @param $errormessage

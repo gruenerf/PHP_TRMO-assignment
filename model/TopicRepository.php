@@ -1,24 +1,51 @@
 <?php
 
 use TopicModel as Topic;
+use CategoryModel as Category;
 
-class TopicRepository implements TopicRepositorynterface{
+class TopicRepository implements TopicRepositorynterface
+{
 
 	/**
-	 * Creates a new Object
-	 * @param $name
-	 * @return $this
-	 *
-	 * TODO: add the category
+	 * static instance
 	 */
-	public function create($name)
+	private static $topicRepository = null;
+
+
+	/**
+	 * Empty constructor for singleton
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 *  Singleton returns the one instance
+	 */
+	public static function getInstance()
+	{
+		if (self::$topicRepository == null) {
+			self::$topicRepository = new TopicRepository();
+		}
+
+		return self::$topicRepository;
+	}
+
+	/**
+	 * Creates a new Object and reference to Category
+	 * @param $name
+	 * @param CategoryModel $category
+	 * @return $this|null
+	 */
+	public function create($name, Category $category)
 	{
 		// Check if topic already exists
-		if(!$this->checkIfNameExists($name)){
-			$topic = new Topic($name);
+		if (!$this->checkIfNameExists($name)) {
+			$topic = new Topic($name, $category->getId());
+
+			// Return saved entry
 			return $topic->save();
-		}
-		else{
+		} else {
 			return null;
 		}
 	}
@@ -47,7 +74,8 @@ class TopicRepository implements TopicRepositorynterface{
 	 * @param $name
 	 * @return bool
 	 */
-	public function checkIfNameExists($name){
+	public function checkIfNameExists($name)
+	{
 		// Define query
 		$sql = "SELECT * FROM topic WHERE name =:name";
 
@@ -79,7 +107,7 @@ class TopicRepository implements TopicRepositorynterface{
 		$row = $query->fetch();
 
 		if (!empty($row)) {
-			return new Topic($row['name'], $row['id']);
+			return new Topic($row['name'], $row['category_id'], $row['id']);
 		} else {
 			return null;
 		}
@@ -103,7 +131,35 @@ class TopicRepository implements TopicRepositorynterface{
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['id']));
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+			}
+
+			return $objectArray;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns Array of all Topics of certain Category
+	 * @param CategoryModel $category
+	 * @return array|null
+	 */
+	public function getAllTopicByCategory(Category $category)
+	{
+		// Define query
+		$sql = "SELECT * FROM topic WHERE category_id= :category_id";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':category_id' => $category->getId()));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			$objectArray = array();
+
+			foreach ($rows as $row) {
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
 			}
 
 			return $objectArray;

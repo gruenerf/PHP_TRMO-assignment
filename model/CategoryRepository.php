@@ -7,6 +7,30 @@ use CategoryModel as Category;
  */
 class CategoryRepository implements CategoryRepositoryInterface
 {
+	/**
+	 * static instance
+	 */
+	private static $categoryRepository = null;
+
+
+	/**
+	 * Empty constructor for singleton
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 *  Singleton returns the one instance
+	 */
+	public static function getInstance()
+	{
+		if (self::$categoryRepository == null) {
+			self::$categoryRepository = new CategoryRepository();
+		}
+
+		return self::$categoryRepository;
+	}
 
 	/**
 	 * Creates a new Object

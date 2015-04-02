@@ -7,6 +7,32 @@ use UserModel as User;
  */
 class UserRepository implements UserRepositoryInterface
 {
+
+	/**
+	 * static instance
+	 */
+	private static $userRepository = null;
+
+
+	/**
+	 * Empty constructor for singleton
+	 */
+	public function __construct()
+	{
+	}
+
+	/**
+	 *  Singleton returns the one instance
+	 */
+	public static function getInstance()
+	{
+		if (self::$userRepository == null) {
+			self::$userRepository = new UserRepository();
+		}
+
+		return self::$userRepository;
+	}
+
 	/**
 	 * Creates a new Object
 	 * @param $name

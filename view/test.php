@@ -2,19 +2,13 @@
 
 include "../config.php";
 use EntryModel as Entry;
-use AdminModel as Admin;
+use UserModel as User;
 use CategoryModel as Category;
 use ErrorModel as Error;
 use TopicModel as Topic;
-use WriterModel as Writer;
 
-$entry = new Entry("entry2211","contasdjaklsdjlkasjdlkasjdkljasdljaskldjaksdjkasdj");
-$entry->save();
-$entry->setTitle('blaaaaa');
-$entry->save();
-$entry->delete();
 
-$admin = new Admin('admin1','passwort1');
+$admin = new User('admin1','passwort1','admin');
 $admin->save();
 $admin->setName('asdasdd');
 $admin->save();
@@ -26,23 +20,23 @@ $category->setName('asdasdasd');
 $category->save();
 $category->delete();
 
+$topic = new Topic('top1', $category->getId());
+$topic->save();
+$topic->setName('asdasdasdasd');
+$topic->save();
+$topic->delete();
+
 $error = new Error('message1');
 $error->save();
 $error->setErrormessage('asdasdasdasdas');
 $error->save();
 $error->delete();
 
-$topic = new Topic('top1');
-$topic->save();
-$topic->setName('asdasdasdasd');
-$topic->save();
-$topic->delete();
-
-$writer = new Writer('wrtier1', 'pass2');
-$writer->save();
-$writer->setName('asdasdasd');
-$writer->save();
-$writer->delete();
+$entry = new Entry("entry2211","contasdjaklsdjlkasjdlkasjdkljasdljaskldjaksdjkasdj", $admin->getId(), $topic->getId());
+$entry->save();
+$entry->setTitle('blaaaaa');
+$entry->save();
+$entry->delete();
 
 $rep = new CategoryRepository();
 $obj = $rep->create('hallo');

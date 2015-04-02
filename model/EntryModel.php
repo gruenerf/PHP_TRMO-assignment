@@ -5,7 +5,7 @@ class EntryModel implements EntryModelInterface
 	/**
 	 * Private Variables
 	 */
-	private $id, $title, $content;
+	private $id, $title, $content, $user_id, $topic_id;
 
 	/**
 	 * Getters/Setters
@@ -40,18 +40,41 @@ class EntryModel implements EntryModelInterface
 		$this->title = $title;
 	}
 
+	public function getUserId()
+	{
+		return $this->user_id;
+	}
+
+	public function setUserId($user_id)
+	{
+		$this->user_id = $user_id;
+	}
+
+	public function getTopicId()
+	{
+		return $this->topic_id;
+	}
+
+	public function setTopicId($topic_id)
+	{
+		$this->topic_id = $topic_id;
+	}
+
+
 	/**
 	 * Constructor
 	 * @param $id
 	 * @param $title
 	 * @param $content
 	 */
-	public function __construct($title, $content, $id = null)
+	public function __construct($title, $content, $user_id, $topic_id, $id = null)
 	{
 		$this->title = $title;
 		$this->content = $content;
+		$this->user_id = $user_id;
+		$this->topic_id = $topic_id;
 
-		if($id !== null){
+		if ($id !== null) {
 			$this->id = $id;
 		}
 	}
@@ -64,27 +87,29 @@ class EntryModel implements EntryModelInterface
 		// Get all parameters of Object
 		$title = $this->getTitle();
 		$content = $this->getContent();
+		$user_id = $this->getUserId();
+		$topic_id = $this->getTopicId();
 		$id = $this->getId();
 
 		// Create object in Database if id = null, else update existing object
 		if ($id === null) {
 
 			// Define query
-			$sql = "INSERT INTO entry (title,content) VALUES (:title,:content)";
+			$sql = "INSERT INTO entry (title,content,user_id,topic_id) VALUES (:title,:content,:user_id,:topic_id)";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':title' => $title, ':content' => $content));
+			$query->execute(array(':title' => $title, ':content' => $content, ':user_id' => $user_id, ':topic_id' => $topic_id));
 
 			// Set Object id to id of inserted row
 			$this->setId(Database::getInstance()->lastInsertId());
 		} else {
 			// Define query
-			$sql = "UPDATE entry SET title= :title, content= :content WHERE id= :id";
+			$sql = "UPDATE entry SET title= :title, content= :content, user_id= :user_id,topic_id= :topic_id WHERE id= :id";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':title' => $title, ':content' => $content, ':id' => $id));
+			$query->execute(array(':title' => $title, ':content' => $content, ':id' => $id, ':user_id' => $user_id, ':topic_id' => $topic_id));
 		}
 
 		// Return saved/updated Object
