@@ -12,7 +12,6 @@ class CategoryRepository implements CategoryRepositoryInterface
 	 */
 	private static $categoryRepository = null;
 
-
 	/**
 	 * Empty constructor for singleton
 	 */
@@ -73,7 +72,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 	 * @param $name
 	 * @return bool
 	 */
-	public function checkIfNameExists($name){
+	private function checkIfNameExists($name){
 		// Define query
 		$sql = "SELECT * FROM category WHERE name =:name";
 

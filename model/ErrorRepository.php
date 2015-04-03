@@ -4,12 +4,10 @@ use ErrorModel as Error;
 
 class ErrorRepository implements ErrorRepositoryInterface
 {
-
 	/**
 	 * static instance
 	 */
 	private static $errorRepository = null;
-
 
 	/**
 	 * Empty constructor for singleton

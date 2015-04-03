@@ -11,7 +11,6 @@ class EntryRepository implements EntryRepositoryInterface
 	 */
 	private static $entryRepository = null;
 
-
 	/**
 	 * Empty constructor for singleton
 	 */
@@ -76,7 +75,7 @@ class EntryRepository implements EntryRepositoryInterface
 	 * @param $title
 	 * @return bool
 	 */
-	public function checkIfTitleExists($title)
+	private function checkIfTitleExists($title)
 	{
 		// Define query
 		$sql = "SELECT * FROM entry WHERE title =:title";

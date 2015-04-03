@@ -7,12 +7,10 @@ use UserModel as User;
  */
 class UserRepository implements UserRepositoryInterface
 {
-
 	/**
 	 * static instance
 	 */
 	private static $userRepository = null;
-
 
 	/**
 	 * Empty constructor for singleton
@@ -77,7 +75,7 @@ class UserRepository implements UserRepositoryInterface
 	 * @param $name
 	 * @return bool
 	 */
-	public function checkIfNameExists($name)
+	private function checkIfNameExists($name)
 	{
 		// Define query
 		$sql = "SELECT * FROM user WHERE name =:name";

@@ -5,12 +5,10 @@ use CategoryModel as Category;
 
 class TopicRepository implements TopicRepositoryInterface
 {
-
 	/**
 	 * static instance
 	 */
 	private static $topicRepository = null;
-
 
 	/**
 	 * Empty constructor for singleton
@@ -74,7 +72,7 @@ class TopicRepository implements TopicRepositoryInterface
 	 * @param $name
 	 * @return bool
 	 */
-	public function checkIfNameExists($name)
+	private function checkIfNameExists($name)
 	{
 		// Define query
 		$sql = "SELECT * FROM topic WHERE name =:name";
