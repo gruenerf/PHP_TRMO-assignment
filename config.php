@@ -2,6 +2,10 @@
 
 // Define Root Path
 define('ROOT_PATH', realpath(__DIR__));
+define('IMG_PATH', ROOT_PATH . '/assets/img/');
+define('CSS_PATH', ROOT_PATH . '/assets/css/');
+define('JS_PATH', ROOT_PATH . '/assets/js/');
+define('FONTS_PATH', ROOT_PATH . '/assets/fonts/');
 
 // Autoloader function
 function autoload($interface)
@@ -29,3 +33,6 @@ function autoload($interface)
 
 // Register autoload functions
 spl_autoload_register('autoload');
+
+// Initialize routing
+$routeController = new RouteController();

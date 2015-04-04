@@ -3,7 +3,7 @@
 class BaseController{
 
 	/**
-	 * To santisize User import
+	 * To sanitize User import
 	 * @param $string
 	 * @return string
 	 */

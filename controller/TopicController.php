@@ -97,6 +97,17 @@ class TopicController implements TopicControllerInterface
 	}
 
 	/**
+	 * Returns topic with specific name
+	 * @param $name
+	 * @return null|TopicModel
+	 */
+	public function getByName($name)
+	{
+		return TopicRepository::getInstance()->getByName($name);
+	}
+
+
+	/**
 	 * Returns all objects
 	 * @return array|null
 	 */

@@ -11,6 +11,8 @@ interface TopicRepositoryInterface extends BaseRepositoryInterface
 
 	public function delete(Topic $topic);
 
+	public function getByName($name);
+
 	public function getAllTopicByCategory(Category $category);
 
 	public function searchForTopic($topic);

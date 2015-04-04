@@ -112,6 +112,27 @@ class TopicRepository implements TopicRepositoryInterface
 	}
 
 	/**
+	 * Returns Topic with certain name
+	 * @param $name
+	 * @return null|TopicModel
+	 */
+	public function getByName($name){
+		// Define query
+		$sql = "SELECT * FROM topic WHERE name =:name";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':name' => $name));
+		$row = $query->fetch();
+
+		if (!empty($row)) {
+			return new Topic($row['name'], $row['category_id'], $row['id']);
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Returns an array with all existing objects
 	 * @return array|null
 	 */
