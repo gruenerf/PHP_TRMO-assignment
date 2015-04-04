@@ -62,6 +62,7 @@ class RouteController extends BaseController
 		// Possible data for routing
 		$possibleRoutes = array(
 			'category',
+			'topic',
 			'entry',
 			'settings',
 			'posts',
@@ -77,11 +78,11 @@ class RouteController extends BaseController
 					// Check if url parameter are valid
 					if (!in_array($url_parts[2], $possibleRoutes)) {
 						$title .= " | 404";
-						$template = "404";
+						$template = "404.php";
 						break;
 					}
 					$title .= " | " . ucfirst($url_parts[2]);
-					$template .= $url_parts[2];
+					$template .= $url_parts[2].".php";
 				}
 
 				// second part is the first parameter
@@ -95,6 +96,10 @@ class RouteController extends BaseController
 					$title .= " | " . $url_parts[$i];
 					array_push($parameter, $url_parts[$i]);
 				}
+			}
+			else{
+				$title .= " | Home";
+				$template .= "home.php";
 			}
 		}
 

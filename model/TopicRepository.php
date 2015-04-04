@@ -116,7 +116,8 @@ class TopicRepository implements TopicRepositoryInterface
 	 * @param $name
 	 * @return null|TopicModel
 	 */
-	public function getByName($name){
+	public function getByName($name)
+	{
 		// Define query
 		$sql = "SELECT * FROM topic WHERE name =:name";
 
@@ -192,13 +193,14 @@ class TopicRepository implements TopicRepositoryInterface
 	 * @param $topic
 	 * @return array|null
 	 */
-	public function searchForTopic($topic){
+	public function searchForTopic($topic)
+	{
 		// Define query
 		$sql = "SELECT * FROM topic WHERE name LIKE :name";
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':name' => '%'.$topic.'%'));
+		$query->execute(array(':name' => '%' . $topic . '%'));
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {
@@ -214,7 +216,8 @@ class TopicRepository implements TopicRepositoryInterface
 		}
 	}
 
-	public function getRandomTopic(){
+	public function getRandomTopic()
+	{
 		// Define query
 		$sql = "SELECT * FROM topic ORDER BY RAND() LIMIT 1";
 
@@ -224,13 +227,9 @@ class TopicRepository implements TopicRepositoryInterface
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {
-			$objectArray = array();
-
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+				return new Topic($row['name'], $row['category_id'], $row['id']);
 			}
-
-			return $objectArray;
 		} else {
 			return null;
 		}
@@ -241,16 +240,17 @@ class TopicRepository implements TopicRepositoryInterface
 	 * @param $direction
 	 * @return array|null
 	 */
-	public function getTopicsChronological($direction){
+	public function getTopicsChronological($direction)
+	{
 
-		$dir = "DESC";
+		$dir = "desc";
 
-		if($direction === "ASC" && $direction === "DESC"){
+		if ($direction === "asc" && $direction === "desc") {
 			$dir = $direction;
 		}
 
 		// Define query
-		$sql = "SELECT * FROM topic ORDER BY timestamp ".$dir;
+		$sql = "SELECT * FROM topic ORDER BY timestamp " . $dir;
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
@@ -275,7 +275,8 @@ class TopicRepository implements TopicRepositoryInterface
 	 * Orders Topic By Popularity
 	 * @param $direction
 	 */
-	public function getTopicsPopularity($direction){
+	public function getTopicsPopularity($direction)
+	{
 
 	}
 } 

@@ -2,10 +2,10 @@
 
 // Define Root Path
 define('ROOT_PATH', realpath(__DIR__));
-define('IMG_PATH', ROOT_PATH . '/assets/img/');
-define('CSS_PATH', ROOT_PATH . '/assets/css/');
-define('JS_PATH', ROOT_PATH . '/assets/js/');
-define('FONTS_PATH', ROOT_PATH . '/assets/fonts/');
+define('IMG_PATH', 'assets/img/');
+define('CSS_PATH', 'assets/css/');
+define('JS_PATH', 'assets/js/');
+define('FONTS_PATH', 'assets/fonts/');
 
 // Autoloader function
 function autoload($interface)
@@ -36,3 +36,11 @@ spl_autoload_register('autoload');
 
 // Initialize routing
 $routeController = new RouteController();
+
+// Initialize the rest of the controller
+$categoryController = new CategoryController();
+$entryController = new EntryController();
+$loginController = new LoginController();
+$topicController = new TopicController();
+$userController = new UserController();
+$validatorController = new ValidatorController();
