@@ -17,4 +17,6 @@ interface EntryRepositoryInterface extends BaseRepositoryInterface
 	public function getAllEntryByUser(User $user);
 
 	public function searchForEntry($string);
+
+	public function getByTitle($title);
 }

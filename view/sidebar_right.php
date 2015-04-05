@@ -11,7 +11,7 @@
 	foreach ($entryArray as $entry) {
 		?>
 		<li id="entry">
-			<a href="<?php echo "entry/" . $entry->getTitle(); ?>">
+			<a href="<?php echo "entry/" . $entry->getId(); ?>">
 				<?php echo $entry->getTitle(); ?>
 			</a>
 		</li>

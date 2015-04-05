@@ -248,4 +248,26 @@ class EntryRepository implements EntryRepositoryInterface
 			return 0;
 		}
 	}
+
+	/**
+	 * Returns Entry with certain title
+	 * @param $title
+	 * @return EntryModel|null
+	 */
+	public function getByTitle($title)
+	{
+		// Define query
+		$sql = "SELECT * FROM entry WHERE title =:title";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':title' => $title));
+		$row = $query->fetch();
+
+		if (!empty($row)) {
+			return new Entry($row['title'], $row['content'], $row['user_id'], $row['topic_id'], $row['id']);
+		} else {
+			return null;
+		}
+	}
 } 

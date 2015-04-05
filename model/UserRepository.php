@@ -139,4 +139,44 @@ class UserRepository implements UserRepositoryInterface
 			return null;
 		}
 	}
+
+	/**
+	 * Validate a user
+	 * @param $password
+	 * @param $username
+	 * @return bool
+	 */
+	public function validateUser($password, $username)
+	{
+		// Define query
+		$sql = "SELECT * FROM user WHERE name =:name LIMIT 1";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':name' => $username));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			// Get user data
+			$row = $rows[0];
+			$user = new User($row['name'], $row['password'], $row['role'], $row['id']);
+
+			if(password_verify($password,$user->getPassword())){
+
+				// Store user in session
+				$_SESSION['logged_in'] = true;
+				$_SESSION['user_name'] = $user->getName();
+				$_SESSION['user_role'] = $user->getRole();
+				$_SESSION['user_id'] = $user->getId();
+
+				return true;
+			}
+			else{
+				return false;
+			}
+
+		} else {
+			return false;
+		}
+	}
 } 

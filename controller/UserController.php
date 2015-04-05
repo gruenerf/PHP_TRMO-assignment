@@ -56,4 +56,14 @@ class UserController implements UserControllerInterface
 	{
 		return UserRepository::getInstance()->getAll();
 	}
+
+	/**
+	 * Validates a user
+	 * @param $password
+	 * @param $username
+	 * @return bool
+	 */
+	public function validateUser($password, $username){
+		return UserRepository::getInstance()->validateUser($password, $username);
+	}
 } 

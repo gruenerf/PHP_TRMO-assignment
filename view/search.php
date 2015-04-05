@@ -23,16 +23,16 @@ if (!empty($term)) {
 ?>
 
 <div class="search">
-	<h1 class="search-headline"></h1>
+	<h1 class="search-headline">Search Results</h1>
 
 	<?php if (!empty($topicArray)) { ?>
 
 		<div class="search_results-topics">
 			<h2 class="search_results-headline">Topics</h2>
 			<?php foreach ($topicArray as $topic) { ?>
-				<a href="topic/<?php echo $topic->getName(); ?>">
-					<div>
-						<p>
+				<a href="topic/<?php echo $topic->getId(); ?>">
+					<div class="topic">
+						<p class="topic_name">
 							<?php echo $topic->getName(); ?>
 						</p>
 					</div>
@@ -48,9 +48,9 @@ if (!empty($term)) {
 		<div class="search_results-entries">
 			<h2 class="search_results-headline">Entries</h2>
 			<?php foreach ($entryArray as $entry) { ?>
-				<a href="entry/<?php echo $entry->getTitle(); ?>">
-					<div>
-						<p>
+				<a href="entry/<?php echo $entry->getId(); ?>">
+					<div class="entry">
+						<p class="entry_name">
 							<?php echo $entry->getTitle(); ?>
 						</p>
 					</div>

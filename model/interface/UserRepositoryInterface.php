@@ -9,4 +9,6 @@ interface UserRepositoryInterface extends BaseRepositoryInterface
 	public function update(User $user);
 
 	public function delete(User $user);
+
+	public function validateUser($password, $username);
 } 

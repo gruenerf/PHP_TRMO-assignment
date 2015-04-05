@@ -1,5 +1,10 @@
 <?php
 
+// Start session
+if (session_status() == PHP_SESSION_NONE) {
+	session_start();
+}
+
 // Define Root Path
 define('ROOT_PATH', realpath(__DIR__));
 define('IMG_PATH', 'assets/img/');
@@ -40,7 +45,7 @@ $routeController = new RouteController();
 // Initialize the rest of the controller
 $categoryController = new CategoryController();
 $entryController = new EntryController();
-$loginController = new LoginController();
 $topicController = new TopicController();
 $userController = new UserController();
-$validatorController = new ValidatorController();
+$loginController = new LoginController($userController);
+$validatorController = new ValidatorController($userController);

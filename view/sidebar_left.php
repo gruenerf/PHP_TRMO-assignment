@@ -7,7 +7,7 @@
 		foreach ($catArray as $cat) {
 			?>
 			<li id="category">
-				<a href="<?php echo "category/" . $cat->getName(); ?>">
+				<a href="<?php echo "category/" . $cat->getId(); ?>">
 					<?php echo $cat->getName(); ?>
 				</a>
 			</li>

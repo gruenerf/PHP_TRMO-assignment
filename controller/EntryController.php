@@ -89,4 +89,14 @@ class EntryController implements EntryControllerInterface
 	{
 		return EntryRepository::getInstance()->getAll();
 	}
+
+	/**
+	 * Returns topic by title
+	 * @param $title
+	 * @return EntryModel|null
+	 */
+	public function getByTitle($title)
+	{
+		return EntryRepository::getInstance()->getByTitle($title);
+	}
 } 
