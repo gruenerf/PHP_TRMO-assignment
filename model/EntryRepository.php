@@ -202,13 +202,14 @@ class EntryRepository implements EntryRepositoryInterface
 	 * @param $string
 	 * @return array|null
 	 */
-	public function searchForEntry($string){
+	public function searchForEntry($string)
+	{
 		// Define query
 		$sql = "SELECT * FROM entry WHERE title LIKE :string OR content LIKE :string2";
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':string' => '%'.$string.'%', ':string2' => '%'.$string.'%'));
+		$query->execute(array(':string' => '%' . $string . '%', ':string2' => '%' . $string . '%'));
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {
@@ -221,6 +222,30 @@ class EntryRepository implements EntryRepositoryInterface
 			return $objectArray;
 		} else {
 			return null;
+		}
+	}
+
+	/**
+	 * Counts entries in of a certain topic within the last month
+	 * @param TopicModel $topic
+	 * @return int
+	 */
+	public function countEntriesByTopicLastMonth(Topic $topic)
+	{
+		// Define query
+		$sql = "SELECT COUNT('title') FROM entry WHERE topic_id= :topic_id AND timestamp BETWEEN (CURRENT_DATE() - INTERVAL 1 MONTH) AND CURRENT_DATE();";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':topic_id' => $topic->getId()));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			foreach ($rows as $row) {
+				return $row["COUNT('title')"];
+			}
+		} else {
+			return 0;
 		}
 	}
 } 

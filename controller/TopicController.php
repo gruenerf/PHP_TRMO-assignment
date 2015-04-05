@@ -78,8 +78,9 @@ class TopicController implements TopicControllerInterface
 	}
 
 	/**
-	 * Returns topics sorted by popularity
+	 * Orders Topic By Popularity
 	 * @param $direction
+	 * @return array|null
 	 */
 	public function getTopicsPopularity($direction)
 	{

@@ -60,6 +60,7 @@ class RouteController extends BaseController
 		$parameter = array();
 
 		// Possible data for routing
+		//TODO: delete test
 		$possibleRoutes = array(
 			'category',
 			'topic',
@@ -68,7 +69,8 @@ class RouteController extends BaseController
 			'posts',
 			'search',
 			'login',
-			'register'
+			'register',
+			'test'
 		);
 
 		for ($i = 2; $i < sizeof($url_parts); $i++) {

@@ -1,6 +1,4 @@
 <?php
-
-include "../config.php";
 use EntryModel as Entry;
 use UserModel as User;
 use CategoryModel as Category;
@@ -48,8 +46,5 @@ $usr = UserRepository::getInstance()->create('adminasdasdasd1232','asdasd','admi
 
 EntryRepository::getInstance()->create('tit123el1', 'asdasdsdsdsdasdasdasd', $usr, $top);*/
 
-$top= TopicRepository::getInstance()->searchForTopic('top');
-var_dump($top);
 
-$entry = EntryRepository::getInstance()->searchForEntry('1');
-var_dump($entry);
+$topic = TopicRepository::getInstance()->getTopicsPopularity('asc');

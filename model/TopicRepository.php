@@ -243,14 +243,15 @@ class TopicRepository implements TopicRepositoryInterface
 	public function getTopicsChronological($direction)
 	{
 
-		$dir = "desc";
+		// standard direction is descending
+		$dir = "DESC";
 
-		if ($direction === "asc" && $direction === "desc") {
-			$dir = $direction;
+		if ($direction === "asc" | $direction === "desc") {
+			$dir = ucwords($direction);
 		}
 
 		// Define query
-		$sql = "SELECT * FROM topic ORDER BY timestamp " . $dir;
+		$sql = "SELECT * FROM topic ORDER BY timestamp ".$dir;
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
@@ -271,12 +272,64 @@ class TopicRepository implements TopicRepositoryInterface
 	}
 
 	/**
-	 * TODO:make a popularity indicator
 	 * Orders Topic By Popularity
 	 * @param $direction
+	 * @return array|null
 	 */
 	public function getTopicsPopularity($direction)
 	{
+		// standard direction is descending
+		$dir = "desc";
 
+		if ($direction === "asc" | $direction === "desc") {
+			$dir = $direction;
+		}
+
+		// Define query
+		$sql = "SELECT * FROM topic";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute();
+		$rows = $query->fetchAll();
+
+		$topicArray = array();
+
+		// Get all topics and the current posts as array
+		if (!empty($rows)) {
+			foreach ($rows as $row) {
+				$topic = new Topic($row['name'], $row['category_id'], $row['id']);
+				array_push($topicArray,
+					array(
+						$topic,
+						EntryRepository::getInstance()->countEntriesByTopicLastMonth($topic)
+					)
+				);
+			}
+		} else {
+			return null;
+		}
+
+		// Sort array ascending
+		if ($dir === 'asc') {
+			usort($topicArray, function ($a, $b) {
+				return $b[1]-$a[1];
+			});
+		}
+		// sort array descending
+		elseif ($dir === 'desc') {
+			usort($topicArray, function ($a, $b) {
+				return $a[1]-$b[1];
+			});
+		}
+
+		$arrayBuffer = array();
+
+		// Reorganize as one dimensional array again.
+		foreach($topicArray as $topic){
+			array_push($arrayBuffer, $topic[0]);
+		}
+
+		return $arrayBuffer;
 	}
 } 

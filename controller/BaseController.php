@@ -7,7 +7,7 @@ class BaseController{
 	 * @param $string
 	 * @return string
 	 */
-	public function fixString($string){
+	public static function fixString($string){
 		$str = mysql_real_escape_string($string);
 		$str = htmlentities($str);
 		return $str;
