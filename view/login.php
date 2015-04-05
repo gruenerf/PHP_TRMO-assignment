@@ -1,18 +1,19 @@
 <?php
+if (!$loginController->isLoggedIn()) {
 // Get url patameter
-$parameter = $routeController->getParameter();
+	$parameter = $routeController->getParameter();
 
-if (!empty($parameter)) {
-	// Get Searchterm
-	if ($parameter[0] === "newUser") {
-		?>
-		<div class="newUser">
-			Registration successful. You're almost there :) Now login!
-		</div>
-	<?php
+	if (!empty($parameter)) {
+		// Get Searchterm
+		if ($parameter[0] === "newUser") {
+			?>
+			<div class="newUser">
+				Registration successful. You're almost there :) Now login!
+			</div>
+		<?php
+		}
 	}
-}
-?>
+	?>
 
 	<div class="login">
 		<form class="login_form" action="">
@@ -28,19 +29,23 @@ if (!empty($parameter)) {
 <?php
 
 // Sanitize userinput
-if (isset($_POST['username']) && isset($_POST['password'])) {
-	$username = BaseController::fixString($_POST['username']);
-	$password = BaseController::fixString($_POST['password']);
+	if (isset($_POST['username']) && isset($_POST['password'])) {
+		$username = BaseController::fixString($_POST['username']);
+		$password = BaseController::fixString($_POST['password']);
 
-	if ($validatorController->validateUser($username, $password)) {
-		// Redirect to login page
-		header('Location: ' . "settings");
+		if ($validatorController->validateUser($username, $password)) {
+			// Redirect to sttings page
+			header('Location: ' . "settings");
+		} else {
+			echo "Username and/or password are wrong. Try again!";
+		}
+
 	} else {
-		echo "Username and/or password are wrong. Try again!";
+		if (empty($parameter) || !$parameter[0] === "newUser") {
+			echo "Fill out both fields";
+		}
 	}
-
 } else {
-	if (empty($parameter) || !$parameter[0] === "newUser") {
-		echo "Fill out both fields";
-	}
+	// Redirect to settings page
+	header('Location: ' . "settings");
 }
