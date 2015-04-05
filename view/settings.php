@@ -5,7 +5,7 @@ if($loginController->isLoggedIn()){
 
 	if (!empty($parameter)) {
 		// Get Searchterm
-		if ($parameter[0] == "newUser") {
+		if ($parameter[0] === "updated") {
 			?>
 			<div class="newUser">
 				Account updated successfully!
@@ -15,11 +15,13 @@ if($loginController->isLoggedIn()){
 	}
 	?>
 
+	<h1 class="headline">Settings</h1>
+	<h2 class="headline_2">Update Username/Password</h2>
 	<div class="settings_update">
 		<form class="update_form" action="">
 			<input class="text" type="text" name="username" placeholder="Username">
 			<input class="password" type="password" name="password" placeholder="Password">
-			<input class="submit" type="submit" formmethod="post" value="Update data">
+			<input class="submit" type="submit" formmethod="post" value="Update">
 		</form>
 	</div>
 
@@ -47,9 +49,10 @@ if($loginController->isLoggedIn()){
 				if(empty($userBuffer)){
 					echo "The username is already taken.";
 				}else{
-					$loginController->logout();
 					// Redirect to login page
-					header('Location: ' . "login/newUser");
+
+					$_SESSION["user_name"] = $username;
+					header('Location: ' . "settings/updated");
 				}
 			} else {
 				// Verify if username and password are valid
@@ -63,18 +66,6 @@ if($loginController->isLoggedIn()){
 		} else {
 			echo "Fill out both fields";
 		}
-
-
-		}
-		else{
-			echo "Username and/or password are wrong. Try again!";
-		}
-
-	} else {
-		if (!$parameter[0] === "newUser") {
-			echo "Fill out both fields";
-		}
-	}
 }
 else{
 	header('Location: ' . "login");

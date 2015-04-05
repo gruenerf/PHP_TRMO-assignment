@@ -4,7 +4,7 @@ $parameter = $routeController->getParameter();
 
 if (!empty($parameter)) {
 	// Get Searchterm
-	if ($parameter[0] == "newUser") {
+	if ($parameter[0] === "newUser") {
 		?>
 		<div class="newUser">
 			Registration successful. You're almost there :) Now login!
@@ -33,14 +33,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 	$password = BaseController::fixString($_POST['password']);
 
 	if ($validatorController->validateUser($username, $password)) {
-// Redirect to login page
+		// Redirect to login page
 		header('Location: ' . "settings");
 	} else {
 		echo "Username and/or password are wrong. Try again!";
 	}
 
 } else {
-	if (!$parameter[0] === "newUser") {
+	if (empty($parameter) || !$parameter[0] === "newUser") {
 		echo "Fill out both fields";
 	}
 }

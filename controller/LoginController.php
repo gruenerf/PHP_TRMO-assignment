@@ -37,7 +37,7 @@ class LoginController implements LoginControllerInterface{
 
 	/**
 	 * Returns logged in user
-	 * @return bool
+	 * @return null
 	 */
 	public function getLoggedInUser(){
 		if(self::isLoggedIn()){
@@ -46,7 +46,7 @@ class LoginController implements LoginControllerInterface{
 			}
 		}
 		else{
-			return false;
+			return null;
 		}
 	}
 

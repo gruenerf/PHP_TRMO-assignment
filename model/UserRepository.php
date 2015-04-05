@@ -146,7 +146,7 @@ class UserRepository implements UserRepositoryInterface
 	 * @param $username
 	 * @return bool
 	 */
-	public function validateUser($password, $username)
+	public function validateUser($username, $password)
 	{
 		// Define query
 		$sql = "SELECT * FROM user WHERE name =:name LIMIT 1";
