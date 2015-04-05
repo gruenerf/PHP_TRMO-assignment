@@ -6,7 +6,7 @@ class CategoryModel implements CategoryModelInterface
 	/**
 	 * Private Variables
 	 */
-	private $id, $name;
+	private $id, $name, $user_id;
 
 	/**
 	 * Getters / Setters
@@ -31,16 +31,27 @@ class CategoryModel implements CategoryModelInterface
 		$this->name = $name;
 	}
 
+	public function getUserId()
+	{
+		return $this->user_id;
+	}
+
+	public function setUserId($user_id)
+	{
+		$this->user_id = $user_id;
+	}
+
 	/**
 	 * Constructor
 	 * @param $name
 	 * @param null $id
 	 */
-	public function __construct($name, $id = null)
+	public function __construct($name, $user_id, $id = null)
 	{
-		$this->name= $name;
+		$this->name = $name;
+		$this->user_id = $user_id;
 
-		if($id !== null){
+		if ($id !== null) {
 			$this->id = $id;
 		}
 	}
@@ -52,27 +63,28 @@ class CategoryModel implements CategoryModelInterface
 	{
 		// Get all parameters of Object
 		$name = $this->getName();
+		$user_id = $this->getUserId();
 		$id = $this->getId();
 
 		// Create object in Database if id = null, else update existing object
 		if ($id === null) {
 
 			// Define query
-			$sql = "INSERT INTO category (name) VALUES (:name)";
+			$sql = "INSERT INTO category (name, user_id) VALUES (:name, :user_id)";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':name' => $name));
+			$query->execute(array(':name' => $name, ':user_id' => $user_id));
 
 			// Set Object id to id of inserted row
 			$this->setId(Database::getInstance()->lastInsertId());
 		} else {
 			// Define query
-			$sql = "UPDATE category SET name= :name WHERE id= :id";
+			$sql = "UPDATE category SET name= :name, user_id = :user_id WHERE id= :id";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':name' => $name, ':id' => $id));
+			$query->execute(array(':name' => $name, ':user_id' => $user_id, ':id' => $id));
 		}
 
 		// Return saved/updated Object

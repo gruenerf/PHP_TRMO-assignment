@@ -1,6 +1,7 @@
 <?php
 
 use CategoryModel as Category;
+use UserModel as User;
 
 /**
  * Class CategoryController
@@ -13,9 +14,9 @@ class CategoryController implements CategoryControllerInterface
 	 * @param $name
 	 * @return $this
 	 */
-	public function create($name)
+	public function create($name, User $user)
 	{
-		return CategoryRepository::getInstance()->create($name);
+		return CategoryRepository::getInstance()->create($name, $user);
 	}
 
 	/**
@@ -54,5 +55,14 @@ class CategoryController implements CategoryControllerInterface
 	public function getAll()
 	{
 		return CategoryRepository::getInstance()->getAll();
+	}
+
+	/**
+	 * Returns all categories of a certain user
+	 * @param UserModel $user
+	 * @return mixed
+	 */
+	public function getAllCategoryByUser(User $user){
+		return CategoryRepository::getInstance()->getAllCategoryByUser($user);
 	}
 } 

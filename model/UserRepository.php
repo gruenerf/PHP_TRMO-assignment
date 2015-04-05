@@ -37,15 +37,13 @@ class UserRepository implements UserRepositoryInterface
 	 * @param $password
 	 * @param $role
 	 * @return null
-	 *
-	 * TODO: check / transform password / is role necessary
 	 */
 	public function create($name, $password, $role)
 	{
 		// Check if category already exists
 		if (!$this->checkIfNameExists($name)) {
-			$category = new User($name, $password, $role);
-			return $category->save();
+			$user = new User($name, $password, $role);
+			return $user->save();
 		} else {
 			return null;
 		}

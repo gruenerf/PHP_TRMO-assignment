@@ -2,10 +2,11 @@
 
 use TopicModel as Topic;
 use CategoryModel as Category;
+use UserModel as User;
 
 interface TopicRepositoryInterface extends BaseRepositoryInterface
 {
-	public function create($name, Category $category);
+	public function create($name, Category $category, User $user);
 
 	public function update(Topic $topic);
 
@@ -14,6 +15,8 @@ interface TopicRepositoryInterface extends BaseRepositoryInterface
 	public function getByName($name);
 
 	public function getAllTopicByCategory(Category $category);
+
+	public function getAllTopicByUser(User $user);
 
 	public function searchForTopic($topic);
 

@@ -2,6 +2,7 @@
 
 use TopicModel as Topic;
 use CategoryModel as Category;
+use UserModel as User;
 
 class TopicRepository implements TopicRepositoryInterface
 {
@@ -33,13 +34,14 @@ class TopicRepository implements TopicRepositoryInterface
 	 * Creates a new Object and reference to Category
 	 * @param $name
 	 * @param CategoryModel $category
+	 * @param UserModel $user
 	 * @return $this|null
 	 */
-	public function create($name, Category $category)
+	public function create($name, Category $category, User $user)
 	{
 		// Check if topic already exists
 		if (!$this->checkIfNameExists($name)) {
-			$topic = new Topic($name, $category->getId());
+			$topic = new Topic($name, $category->getId(), $user->getId());
 
 			// Return saved entry
 			return $topic->save();
@@ -105,7 +107,7 @@ class TopicRepository implements TopicRepositoryInterface
 		$row = $query->fetch();
 
 		if (!empty($row)) {
-			return new Topic($row['name'], $row['category_id'], $row['id']);
+			return new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']);
 		} else {
 			return null;
 		}
@@ -127,7 +129,7 @@ class TopicRepository implements TopicRepositoryInterface
 		$row = $query->fetch();
 
 		if (!empty($row)) {
-			return new Topic($row['name'], $row['category_id'], $row['id']);
+			return new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']);
 		} else {
 			return null;
 		}
@@ -151,7 +153,7 @@ class TopicRepository implements TopicRepositoryInterface
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']));
 			}
 
 			return $objectArray;
@@ -179,7 +181,35 @@ class TopicRepository implements TopicRepositoryInterface
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']));
+			}
+
+			return $objectArray;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns Array of all Topics of certain User
+	 * @param UserModel $user
+	 * @return array|null
+	 */
+	public function getAllTopicByUser(User $user)
+	{
+		// Define query
+		$sql = "SELECT * FROM topic WHERE user_id= :user_id";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':user_id' => $user->getId()));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			$objectArray = array();
+
+			foreach ($rows as $row) {
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']));
 			}
 
 			return $objectArray;
@@ -207,7 +237,7 @@ class TopicRepository implements TopicRepositoryInterface
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']));
 			}
 
 			return $objectArray;
@@ -228,7 +258,7 @@ class TopicRepository implements TopicRepositoryInterface
 
 		if (!empty($rows)) {
 			foreach ($rows as $row) {
-				return new Topic($row['name'], $row['category_id'], $row['id']);
+				return new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']);
 			}
 		} else {
 			return null;
@@ -262,7 +292,7 @@ class TopicRepository implements TopicRepositoryInterface
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['id']));
+				array_push($objectArray, new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']));
 			}
 
 			return $objectArray;
@@ -298,7 +328,7 @@ class TopicRepository implements TopicRepositoryInterface
 		// Get all topics and the current posts as array
 		if (!empty($rows)) {
 			foreach ($rows as $row) {
-				$topic = new Topic($row['name'], $row['category_id'], $row['id']);
+				$topic = new Topic($row['name'], $row['category_id'], $row['user_id'], $row['id']);
 				array_push($topicArray,
 					array(
 						$topic,

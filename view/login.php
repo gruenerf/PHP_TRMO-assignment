@@ -1,14 +1,20 @@
 <?php
 if (!$loginController->isLoggedIn()) {
-// Get url patameter
+	// Get url parameter
 	$parameter = $routeController->getParameter();
 
 	if (!empty($parameter)) {
-		// Get Searchterm
 		if ($parameter[0] === "newUser") {
 			?>
 			<div class="newUser">
 				Registration successful. You're almost there :) Now login!
+			</div>
+		<?php
+		}
+		elseif ($parameter[0] === "logout") {
+			?>
+			<div class="newUser">
+				Logout successful. We hope to see you again quite soon :)
 			</div>
 		<?php
 		}
@@ -34,7 +40,7 @@ if (!$loginController->isLoggedIn()) {
 		$password = BaseController::fixString($_POST['password']);
 
 		if ($validatorController->validateUser($username, $password)) {
-			// Redirect to sttings page
+			// Redirect to settings page
 			header('Location: ' . "settings");
 		} else {
 			echo "Username and/or password are wrong. Try again!";

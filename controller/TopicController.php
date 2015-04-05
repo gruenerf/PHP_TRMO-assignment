@@ -2,6 +2,7 @@
 
 use CategoryModel as Category;
 use TopicModel as Topic;
+use UserModel as User;
 
 /**
  * Class TopicController
@@ -12,11 +13,12 @@ class TopicController implements TopicControllerInterface
 	 * Creates and returns an object
 	 * @param $name
 	 * @param CategoryModel $category
-	 * @return $this|null
+	 * @param UserModel $user
+	 * @return $this|null#
 	 */
-	public function create($name, Category $category)
+	public function create($name, Category $category, User $user)
 	{
-		return TopicRepository::getInstance()->create($name, $category);
+		return TopicRepository::getInstance()->create($name, $category, $user);
 	}
 
 	/**
@@ -46,6 +48,15 @@ class TopicController implements TopicControllerInterface
 	public function getAllTopicByCategory(Category $category)
 	{
 		return TopicRepository::getInstance()->getAllTopicByCategory($category);
+	}
+
+	/**
+	 * Returns all topics of a certain user
+	 * @param UserModel $user
+	 * @return mixed
+	 */
+	public function getAllTopicByUser(User $user){
+		return TopicRepository::getInstance()->getAllTopicByUser($user);
 	}
 
 	/**

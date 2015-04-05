@@ -61,7 +61,7 @@ class LoginController implements LoginControllerInterface{
 	 * Constructor
 	 * @param UserControllerInterface $userController
 	 */
-	public function __consrtuct(UserControllerInterface $userController)
+	public function __construct(UserControllerInterface $userController)
 	{
 		$this->userController = $userController;
 	}

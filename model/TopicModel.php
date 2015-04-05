@@ -8,7 +8,8 @@ class TopicModel implements TopicModelInterface
 	/**
 	 * Private Variables
 	 */
-	private $id, $name, $category_id;
+	private $id, $name, $category_id, $user_id;
+
 
 	/**
 	 * Getters / Setters
@@ -43,6 +44,16 @@ class TopicModel implements TopicModelInterface
 		$this->category_id = $category_id;
 	}
 
+	public function getUserId()
+	{
+		return $this->user_id;
+	}
+
+	public function setUserId($user_id)
+	{
+		$this->user_id = $user_id;
+	}
+
 
 	/**
 	 * Constructor
@@ -51,10 +62,11 @@ class TopicModel implements TopicModelInterface
 	 * @param $category_id
 	 * @param null $id
 	 */
-	public function __construct($name, $category_id, $id = null)
+	public function __construct($name, $category_id, $user_id, $id = null)
 	{
 		$this->name = $name;
 		$this->category_id = $category_id;
+		$this->user_id = $user_id;
 
 		if ($id !== null) {
 			$this->id = $id;
@@ -69,27 +81,28 @@ class TopicModel implements TopicModelInterface
 		// Get all parameters of Object
 		$name = $this->getName();
 		$category_id = $this->getCategoryId();
+		$user_id = $this->getUserId();
 		$id = $this->getId();
 
 		// Create object in Database if id = null, else update existing object
 		if ($id === null) {
 
 			// Define query
-			$sql = "INSERT INTO topic (name, category_id) VALUES (:name, :category_id)";
+			$sql = "INSERT INTO topic (name, category_id, user_id) VALUES (:name, :category_id, :user_id)";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':name' => $name, ':category_id' => $category_id));
+			$query->execute(array(':name' => $name, ':category_id' => $category_id, ':user_id' => $user_id));
 
 			// Set Object id to id of inserted row
 			$this->setId(Database::getInstance()->lastInsertId());
 		} else {
 			// Define query
-			$sql = "UPDATE topic SET name= :name, category_id= :category_id WHERE id= :id";
+			$sql = "UPDATE topic SET name= :name, category_id= :category_id, user_id => :user_id WHERE id= :id";
 
 			// Prepare database and execute Query
 			$query = Database::getInstance()->prepare($sql);
-			$query->execute(array(':name' => $name, ':category_id' => $category_id, ':id' => $id));
+			$query->execute(array(':name' => $name, ':category_id' => $category_id, ':user_id' => $user_id , ':id' => $id));
 		}
 
 		// Return saved/updated Object

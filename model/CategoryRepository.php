@@ -1,6 +1,7 @@
 <?php
 
 use CategoryModel as Category;
+use UserModel as User;
 
 /**
  * Class CategoryRepository
@@ -34,13 +35,14 @@ class CategoryRepository implements CategoryRepositoryInterface
 	/**
 	 * Creates a new Object
 	 * @param $name
-	 * @return $this
+	 * @param UserModel $user
+	 * @return $this|null
 	 */
-	public function create($name)
+	public function create($name, User $user)
 	{
 		// Check if category already exists
 		if(!$this->checkIfNameExists($name)){
-			$category = new Category($name);
+			$category = new Category($name, $user->getId());
 			return $category->save();
 		}
 		else{
@@ -104,7 +106,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 		$row = $query->fetch();
 
 		if (!empty($row)) {
-			return new Category($row['name'], $row['id']);
+			return new Category($row['name'], $row['user_id'], $row['id']);
 		} else {
 			return null;
 		}
@@ -128,7 +130,35 @@ class CategoryRepository implements CategoryRepositoryInterface
 			$objectArray = array();
 
 			foreach ($rows as $row) {
-				array_push($objectArray, new Category($row['name'], $row['id']));
+				array_push($objectArray, new Category($row['name'], $row['user_id'], $row['id']));
+			}
+
+			return $objectArray;
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Returns Array of all Category of certain User
+	 * @param UserModel $user
+	 * @return array|null
+	 */
+	public function getAllCategoryByUser(User $user)
+	{
+		// Define query
+		$sql = "SELECT * FROM category WHERE user_id= :user_id";
+
+		// Prepare database and execute Query
+		$query = Database::getInstance()->prepare($sql);
+		$query->execute(array(':user_id' => $user->getId()));
+		$rows = $query->fetchAll();
+
+		if (!empty($rows)) {
+			$objectArray = array();
+
+			foreach ($rows as $row) {
+				array_push($objectArray, new Category($row['name'], $row['user_id'], $row['id']));
 			}
 
 			return $objectArray;

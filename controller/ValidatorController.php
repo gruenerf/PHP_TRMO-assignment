@@ -22,11 +22,20 @@ class ValidatorController implements ValidatorControllerInterface
 	}
 
 	/**
+	 * Constructor
+	 * @param UserControllerInterface $userController
+	 */
+	public function __construct(UserControllerInterface $userController)
+	{
+		$this->userController = $userController;
+	}
+
+	/**
 	 * Validates a String for registration
 	 * @param $str
 	 * @return bool
 	 */
-	function validateString($str)
+	public function validateString($str)
 	{
 		return preg_match('/^[A-Za-z][A-Za-z0-9]*(?:_[A-Za-z0-9]+)*$/', $str) && (strlen($str) < 21 && strlen($str) > 5);
 	}
@@ -37,18 +46,26 @@ class ValidatorController implements ValidatorControllerInterface
 	 * @param $password
 	 * @return mixed
 	 */
-	function validateUser($username, $password)
+	public function validateUser($username, $password)
 	{
 		return $this->getUserController()->validateUser($username, $password);
 	}
 
+	/**
+	 * Validates a Entry Title
+	 * @param $title
+	 * @return bool
+	 */
+	public function validateTitle($title){
+		return strlen($title) <= 40;
+	}
 
 	/**
-	 * Constructor
-	 * @param UserControllerInterface $userController
+	 * Validates the Content
+	 * @param $content
+	 * @return bool
 	 */
-	public function __construct(UserControllerInterface $userController)
-	{
-		$this->userController = $userController;
+	public function validateContent($content){
+		return strlen($content) <= 1000;
 	}
 }

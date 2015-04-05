@@ -1,22 +1,3 @@
-Students should be able to:
-• access and manipulate MySQL databases using PHP,
-• create and use HTML forms to interact withMySQL and PHP,
-• keep track of users via cookies, sessions, and authentication,
-• take security measures against XSS and SQL injection,
-• and create a basic dynamic website.
-
-classes
-
-Class entries
-Class topics
-
-Frontend:
-main page
-    list of topics (chronological order or popularity (topics with highest number of entries in the last week) )-> save in cookie
-    latest entries for randomly selected topic
-    boolean search against topics/entries
-    login/register
-
 Register page
     Admin/writer
 

@@ -1,5 +1,5 @@
 <div>
-	Sort by
+	Sort topics by
 	<form action="">
 		<button type="submit" formmethod="post" formaction="#" name="date_asc">Date</button>
 		<button type="submit" formmethod="post" formaction="#" name="date_desc">Date</button>
