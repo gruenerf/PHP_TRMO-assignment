@@ -5,7 +5,7 @@
  *
  * Class RouteController
  */
-class RouteController extends BaseController
+class RouteController extends BaseController implements RouteControllerInterface
 {
 
 	private $page_title, $view, $parameter;
@@ -109,5 +109,13 @@ class RouteController extends BaseController
 		$this->setPageTitle($title);
 		$this->setView($template);
 		$this->setParameter($parameter);
+	}
+
+	/**
+	 *  Returns if the current template is settings
+	 * @return bool
+	 */
+	public function isSettings(){
+		return $this->getView() === "settings.php";
 	}
 } 

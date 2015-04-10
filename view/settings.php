@@ -1,4 +1,6 @@
 <?php
+
+
 if ($loginController->isLoggedIn()) {
 	// Get url patameter
 	$parameter = $routeController->getParameter();
@@ -34,17 +36,17 @@ if ($loginController->isLoggedIn()) {
 	if (isset($_POST['logout'])) {
 		$loginController->logout();
 		// Redirect to login page
-		header('Location: ' . "login/logout");
+		header('Location: ' . PROJECT_ADDRESS."login/logout");
 	}
 
 	if (isset($_POST['post'])) {
 		// Redirect to login page
-		header('Location: ' . "posts");
+		header('Location: ' . PROJECT_ADDRESS."posts");
 	}
 
 	if (isset($_POST['topic'])) {
 		// Redirect to login page
-		header('Location: ' . "create_topic");
+		header('Location: ' . PROJECT_ADDRESS."create_topic");
 	}
 
 	// Sanitize userinput
@@ -72,7 +74,7 @@ if ($loginController->isLoggedIn()) {
 				// Redirect to login page
 
 				$_SESSION["user_name"] = $username;
-				header('Location: ' . "settings/updated");
+				header('Location: ' . PROJECT_ADDRESS."settings/updated");
 			}
 		} else {
 			// Verify if username and password are valid
@@ -134,5 +136,5 @@ if ($loginController->isLoggedIn()) {
 	<?php
 	}
 } else {
-	header('Location: ' . "login");
+	header('Location: ' . PROJECT_ADDRESS."login");
 }

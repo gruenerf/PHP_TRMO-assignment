@@ -1,31 +1,45 @@
-<div>
-	Sort topics by
-	<form action="">
-		<button type="submit" formmethod="post" formaction="#" name="date_asc">Date</button>
-		<button type="submit" formmethod="post" formaction="#" name="date_desc">Date</button>
-		<button type="submit" formmethod="post" formaction="#" name="popularity_asc">Popularity</button>
-		<button type="submit" formmethod="post" formaction="#" name="popularity_desc">Popularity</button>
-	</form>
+<div class="content">
+	<h2 class="content_headline">Topics</h2>
+
+	<div class="content_sort">
+		<form>
+			<div class="sort_selection">
+				Date
+				<button class="sort_button" type="submit" formmethod="post" formaction="" name="date_asc"><img
+						src="<?php echo IMG_PATH ?>arrowup.png"></button>
+				<button class="sort_button" type="submit" formmethod="post" formaction="" name="date_desc"><img
+						src="<?php echo IMG_PATH ?>arrowdown.png"></button>
+			</div>
+			<div class="sort_selection">
+				Popularity
+				<button class="sort_button" type="submit" formmethod="post" formaction="" name="popularity_asc"><img
+						src="<?php echo IMG_PATH ?>arrowup.png"></button>
+				<button class="sort_button" type="submit" formmethod="post" formaction="" name="popularity_desc"><img
+						src="<?php echo IMG_PATH ?>arrowdown.png"></button>
+			</div>
+		</form>
+	</div>
 </div>
 
 <?php
 
+// Get post parameter
 if (isset($_POST['date_asc'])) {
 	$topicArray = $topicController->getTopicsChronological("asc");
 	// save preferences in cookie
-	setcookie('trmo_order', 'date_asc', strtotime( '+30 days' ));
+	setcookie('trmo_order', 'date_asc', strtotime('+30 days'));
 } elseif (isset($_POST['date_desc'])) {
 	$topicArray = $topicController->getTopicsChronological("desc");
 	// save preferences in cookie
-	setcookie('trmo_order', 'date_desc', strtotime( '+30 days' ));
+	setcookie('trmo_order', 'date_desc', strtotime('+30 days'));
 } elseif (isset($_POST['popularity_asc'])) {
 	$topicArray = $topicController->getTopicsPopularity("asc");
 	// save preferences in cookie
-	setcookie('trmo_order', 'popularity_asc', strtotime( '+30 days' ));
+	setcookie('trmo_order', 'popularity_asc', strtotime('+30 days'));
 } elseif (isset($_POST['popularity_desc'])) {
 	$topicArray = $topicController->getTopicsPopularity("desc");
 	// save preferences in cookie
-	setcookie('trmo_order', 'popularity_desc', strtotime( '+30 days' ));
+	setcookie('trmo_order', 'popularity_desc', strtotime('+30 days'));
 } else {
 	// Check cookie for preferred sorting
 	$order = "";
@@ -42,12 +56,11 @@ if (isset($_POST['date_asc'])) {
 		$topicArray = $topicController->getTopicsPopularity("asc");
 	} elseif ($order === 'popularity_desc') {
 		$topicArray = $topicController->getTopicsPopularity("desc");
-	}else{
+	} else {
 		$topicArray = $topicController->getTopicsChronological("desc");
 		// save preferences in cookie
-		setcookie('trmo_order', 'date_desc', strtotime( '+30 days' ));
+		setcookie('trmo_order', 'date_desc', strtotime('+30 days'));
 	}
-
 }
 
 if (!empty($topicArray)) {

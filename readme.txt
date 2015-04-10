@@ -13,7 +13,7 @@ Update the database details in model/Database.php
 / 1. Application Structure /
 /**************************/
 
-Warning: Unfinished application!!!
+Warning: Unfinished application!!! CSS file got corrupted, and didn´t make it in time to rebuild it. But functionality should be alright.
 
 Possible things you can do/see.
 
@@ -30,6 +30,7 @@ If you press the big arrow on the top right you get to you login screen.
 There you can either register or login with an existing account.
 
 Once you have created an account, you can login and see on the settings page your created posts, topics and can change your user information.
+Further you can create posts and or topics.
 
 Further you have the possibility to search for topics and entries in the search bar.
 

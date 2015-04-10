@@ -6,14 +6,13 @@ if (!$loginController->isLoggedIn()) {
 	if (!empty($parameter)) {
 		if ($parameter[0] === "newUser") {
 			?>
-			<div class="newUser">
+			<div class="notice_top">
 				Registration successful. You're almost there :) Now login!
 			</div>
 		<?php
-		}
-		elseif ($parameter[0] === "logout") {
+		} elseif ($parameter[0] === "logout") {
 			?>
-			<div class="newUser">
+			<div class="notice_top">
 				Logout successful. We hope to see you again quite soon :)
 			</div>
 		<?php
@@ -22,6 +21,8 @@ if (!$loginController->isLoggedIn()) {
 	?>
 
 	<div class="login">
+		<h2 class="content_headline">Login</h2>
+
 		<form class="login_form" action="">
 			<input class="text" type="text" name="username" placeholder="Username">
 			<input class="password" type="password" name="password" placeholder="Password">
@@ -41,17 +42,16 @@ if (!$loginController->isLoggedIn()) {
 
 		if ($validatorController->validateUser($username, $password)) {
 			// Redirect to settings page
-			header('Location: ' . "settings");
+
+			header('Location: ' . PROJECT_ADDRESS."settings");
 		} else {
-			echo "Username and/or password are wrong. Try again!";
+			echo "<div class='notice'>Username and/or password are wrong. Try again!</div>";
 		}
 
 	} else {
-		if (empty($parameter) || !$parameter[0] === "newUser") {
-			echo "Fill out both fields";
-		}
+		// echo "<div class='notice'>Fill out both fields</div>";
 	}
 } else {
 	// Redirect to settings page
-	header('Location: ' . "settings");
+	header('Location: ' . PROJECT_ADDRESS."settings");
 }

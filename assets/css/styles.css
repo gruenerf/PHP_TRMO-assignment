@@ -45,10 +45,18 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+@font-face {
+  font-family: exo;
+  src: url(../fonts/Exo2.0-Light.otf); }
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
 body {
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  background-color: #fdfdfd; }
+  background-color: #fdfdfd;
+  font-family: "exo", "Arial", sans-serif; }
   body .header_container {
     z-index: 100;
     width: 100%;
@@ -82,15 +90,21 @@ body {
           padding: 5px;
           box-shadow: none;
           border: 2px solid #fff;
-          line-height: 16px;
           background: #000;
-          color: #fff; }
+          color: #fff;
+          font-family: "exo", "Arial", sans-serif;
+          font-size: 13px;
+          line-height: 16px; }
         body .header_container .header .search .submit {
-          border: 2px solid white;
+          border: 2px solid #fff;
           width: 80px;
           height: 30px;
           background: #000;
-          color: white; }
+          color: #fff;
+          font-family: "exo", "Arial", sans-serif;
+          font-size: 13px;
+          padding: 5px;
+          line-height: 16px; }
       body .header_container .header .order {
         display: inline-block; }
       body .header_container .header #login {
@@ -109,21 +123,102 @@ body {
       width: 1000px;
       margin: 0 auto;
       position: relative; }
-      body .content_container .content_area .sidebar_left {
+      body .content_container .content_area .sidebar_left,
+      body .content_container .content_area .sidebar_right {
+        padding-top: 10px;
         position: absolute;
-        left: 0;
         top: 0;
-        width: 200px; }
-      body .content_container .content_area .content {
+        width: 200px;
+        word-wrap: break-word; }
+        body .content_container .content_area .sidebar_left .sidebar_headline,
+        body .content_container .content_area .sidebar_right .sidebar_headline {
+          font-size: 20px; }
+        body .content_container .content_area .sidebar_left .list,
+        body .content_container .content_area .sidebar_right .list {
+          padding-top: 10px; }
+          body .content_container .content_area .sidebar_left .list li,
+          body .content_container .content_area .sidebar_right .list li {
+            padding-bottom: 5px; }
+      body .content_container .content_area .sidebar_left {
+        left: 0;
+        padding-right: 10px; }
+      body .content_container .content_area .content_middle {
         border-left: 1px dashed #000;
         border-right: 1px dashed #000;
         width: 600px;
         height: 2000px;
-        margin: 0 auto; }
+        margin: 0 auto;
+        padding: 10px; }
+        body .content_container .content_area .content_middle .content_headline {
+          display: inline-block;
+          font-size: 20px; }
+        body .content_container .content_area .content_middle .content_sort {
+          float: right;
+          display: inline-block; }
+          body .content_container .content_area .content_middle .content_sort p {
+            display: block; }
+          body .content_container .content_area .content_middle .content_sort form {
+            display: inline-block; }
+            body .content_container .content_area .content_middle .content_sort form .sort_selection {
+              display: inline-block;
+              vertical-align: bottom; }
+              body .content_container .content_area .content_middle .content_sort form .sort_selection:first-child {
+                margin-right: 10px; }
+              body .content_container .content_area .content_middle .content_sort form .sort_selection .sort_button {
+                border: 0;
+                background: #000;
+                border-radius: 20px;
+                height: 16px;
+                width: 16px;
+                padding: 0;
+                line-height: 0; }
+                body .content_container .content_area .content_middle .content_sort form .sort_selection .sort_button img {
+                  width: 8px;
+                  padding: 1px; }
+        body .content_container .content_area .content_middle .login, body .content_container .content_area .content_middle .register {
+          text-align: center; }
+          body .content_container .content_area .content_middle .login .content_headline:after, body .content_container .content_area .content_middle .register .content_headline:after {
+            content: ' ';
+            display: block;
+            border: 1px dashed #464548;
+            width: 80px;
+            margin: 0 auto;
+            margin-top: 10px; }
+          body .content_container .content_area .content_middle .login .login_form, body .content_container .content_area .content_middle .login .register_form, body .content_container .content_area .content_middle .register .login_form, body .content_container .content_area .content_middle .register .register_form {
+            margin-top: 20px; }
+            body .content_container .content_area .content_middle .login .login_form .password, body .content_container .content_area .content_middle .login .login_form .text, body .content_container .content_area .content_middle .login .login_form .submit, body .content_container .content_area .content_middle .login .register_form .password, body .content_container .content_area .content_middle .login .register_form .text, body .content_container .content_area .content_middle .login .register_form .submit, body .content_container .content_area .content_middle .register .login_form .password, body .content_container .content_area .content_middle .register .login_form .text, body .content_container .content_area .content_middle .register .login_form .submit, body .content_container .content_area .content_middle .register .register_form .password, body .content_container .content_area .content_middle .register .register_form .text, body .content_container .content_area .content_middle .register .register_form .submit {
+              margin: 0 auto 5px;
+              width: 200px;
+              display: block;
+              padding: 5px;
+              box-shadow: none;
+              border: 2px solid #000;
+              background: #fff;
+              color: #000;
+              font-family: "exo", "Arial", sans-serif;
+              font-size: 13px;
+              line-height: 16px; }
+            body .content_container .content_area .content_middle .login .login_form .description, body .content_container .content_area .content_middle .login .register_form .description, body .content_container .content_area .content_middle .register .login_form .description, body .content_container .content_area .content_middle .register .register_form .description {
+              margin-bottom: 10px; }
+          body .content_container .content_area .content_middle .login .login_register, body .content_container .content_area .content_middle .register .login_register {
+            padding-top: 10px; }
+            body .content_container .content_area .content_middle .login .login_register p a, body .content_container .content_area .content_middle .register .login_register p a {
+              text-decoration: none;
+              color: #000; }
+              body .content_container .content_area .content_middle .login .login_register p a:hover, body .content_container .content_area .content_middle .register .login_register p a:hover {
+                color: #fe0400; }
+        body .content_container .content_area .content_middle .notice {
+          text-align: center;
+          border: 1px dashed #000;
+          margin: 10px auto 0;
+          padding: 5px; }
+        body .content_container .content_area .content_middle .notice_top {
+          text-align: center;
+          border: 1px dashed #000;
+          margin: 0px auto 10px;
+          padding: 5px; }
       body .content_container .content_area .sidebar_right {
-        position: absolute;
         right: 0;
-        top: 0;
-        width: 200px; }
+        padding-left: 10px; }
 
 /*# sourceMappingURL=styles.css.map */

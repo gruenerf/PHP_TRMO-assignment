@@ -45,7 +45,7 @@
 				echo "The title is already taken.";
 			} else {
 				// Redirect to login page
-				header('Location: ' . "topic/" . $topic->getId());
+				header('Location: ' . PROJECT_ADDRESS."topic/" . $topic->getId());
 			}
 		} else {
 			// Verify if username and password are valid
@@ -58,5 +58,5 @@
 	}
 } else {
 	// Redirect to main
-	header('Location: ' . "home");
+	header('Location: ' . PROJECT_ADDRESS."home");
 }

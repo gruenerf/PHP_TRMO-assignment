@@ -9,7 +9,7 @@ if (!empty($parameter)) {
 	// Sanitize post string
 	$term = BaseController::fixString($_POST["searchtext"]);
 	// Put post as parameter in url
-	header('Location: ' . "search/" . $term);
+	header('Location: ' . PROJECT_ADDRESS."search/" . $term);
 	// Make sure the code terminates
 	die();
 } else {
@@ -23,7 +23,7 @@ if (!empty($term)) {
 ?>
 
 <div class="search">
-	<h1 class="search-headline">Search Results</h1>
+	<h1 class="content_headline">Search Results</h1>
 
 	<?php if (!empty($topicArray)) { ?>
 
