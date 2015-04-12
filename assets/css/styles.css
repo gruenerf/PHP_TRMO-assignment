@@ -136,11 +136,11 @@ body {
         body .content_container .content_area .sidebar_left .sidebar_headline,
         body .content_container .content_area .sidebar_right .sidebar_headline {
           font-size: 20px; }
-        body .content_container .content_area .sidebar_left .list,
-        body .content_container .content_area .sidebar_right .list {
+        body .content_container .content_area .sidebar_left .sidebar_list,
+        body .content_container .content_area .sidebar_right .sidebar_list {
           padding-top: 10px; }
-          body .content_container .content_area .sidebar_left .list li,
-          body .content_container .content_area .sidebar_right .list li {
+          body .content_container .content_area .sidebar_left .sidebar_list .sidebar_list_element,
+          body .content_container .content_area .sidebar_right .sidebar_list .sidebar_list_element {
             padding-bottom: 5px; }
         body .content_container .content_area .sidebar_left .user_buttons,
         body .content_container .content_area .sidebar_right .user_buttons {
@@ -172,83 +172,110 @@ body {
         width: 600px;
         height: 2000px;
         margin: 0 auto;
-        padding: 20px; }
+        padding: 20px;
+        text-align: center; }
         body .content_container .content_area .content_middle .content_headline {
           display: inline-block;
           font-size: 20px; }
-        body .content_container .content_area .content_middle .content_sort {
-          float: right;
-          display: inline-block; }
-          body .content_container .content_area .content_middle .content_sort p {
-            display: block; }
-          body .content_container .content_area .content_middle .content_sort form {
-            display: inline-block; }
-            body .content_container .content_area .content_middle .content_sort form .sort_selection {
-              display: inline-block;
-              vertical-align: bottom; }
-              body .content_container .content_area .content_middle .content_sort form .sort_selection:first-child {
-                margin-right: 10px; }
-              body .content_container .content_area .content_middle .content_sort form .sort_selection .sort_button {
-                border: 0;
-                background: #000;
-                border-radius: 20px;
-                height: 16px;
-                width: 16px;
-                padding: 0;
-                line-height: 0; }
-                body .content_container .content_area .content_middle .content_sort form .sort_selection .sort_button img {
-                  width: 8px;
-                  padding: 1px; }
-        body .content_container .content_area .content_middle .login, body .content_container .content_area .content_middle .register, body .content_container .content_area .content_middle .settings {
-          text-align: center; }
-          body .content_container .content_area .content_middle .login .content_headline:after, body .content_container .content_area .content_middle .register .content_headline:after, body .content_container .content_area .content_middle .settings .content_headline:after {
+          body .content_container .content_area .content_middle .content_headline:after {
             content: ' ';
             display: block;
             border: 1px dashed #464548;
             width: 80px;
-            margin: 0 auto;
-            margin-top: 10px; }
-          body .content_container .content_area .content_middle .login h3.content_headline, body .content_container .content_area .content_middle .register h3.content_headline, body .content_container .content_area .content_middle .settings h3.content_headline {
-            padding-top: 20px;
+            margin: 10px auto 0; }
+        body .content_container .content_area .content_middle .home {
+          position: relative; }
+          body .content_container .content_area .content_middle .home .content_sort {
+            position: absolute;
+            right: 0;
+            top: 0; }
+            body .content_container .content_area .content_middle .home .content_sort p {
+              display: block; }
+            body .content_container .content_area .content_middle .home .content_sort form {
+              display: inline-block; }
+              body .content_container .content_area .content_middle .home .content_sort form .sort_selection {
+                display: inline-block;
+                vertical-align: bottom; }
+                body .content_container .content_area .content_middle .home .content_sort form .sort_selection:first-child {
+                  margin-right: 10px; }
+                body .content_container .content_area .content_middle .home .content_sort form .sort_selection .sort_button {
+                  border: 0;
+                  background: #000;
+                  border-radius: 20px;
+                  height: 16px;
+                  width: 16px;
+                  padding: 0;
+                  line-height: 0; }
+                  body .content_container .content_area .content_middle .home .content_sort form .sort_selection .sort_button img {
+                    width: 8px;
+                    padding: 1px; }
+        body .content_container .content_area .content_middle h3.content_headline {
+          padding-top: 20px;
+          display: block;
+          font-size: 16px; }
+          body .content_container .content_area .content_middle h3.content_headline:after {
+            margin-top: 0px;
+            content: ' ';
+            border: 0; }
+        body .content_container .content_area .content_middle .login_form, body .content_container .content_area .content_middle .register_form {
+          margin-top: 10px; }
+          body .content_container .content_area .content_middle .login_form .password, body .content_container .content_area .content_middle .login_form .text, body .content_container .content_area .content_middle .login_form .submit, body .content_container .content_area .content_middle .register_form .password, body .content_container .content_area .content_middle .register_form .text, body .content_container .content_area .content_middle .register_form .submit {
+            margin: 0 auto 5px;
+            width: 200px;
             display: block;
-            font-size: 16px; }
-            body .content_container .content_area .content_middle .login h3.content_headline:after, body .content_container .content_area .content_middle .register h3.content_headline:after, body .content_container .content_area .content_middle .settings h3.content_headline:after {
-              margin-top: 0px;
-              content: ' ';
-              border: 0; }
-          body .content_container .content_area .content_middle .login .login_form, body .content_container .content_area .content_middle .login .register_form, body .content_container .content_area .content_middle .register .login_form, body .content_container .content_area .content_middle .register .register_form, body .content_container .content_area .content_middle .settings .login_form, body .content_container .content_area .content_middle .settings .register_form {
-            margin-top: 20px; }
-            body .content_container .content_area .content_middle .login .login_form .password, body .content_container .content_area .content_middle .login .login_form .text, body .content_container .content_area .content_middle .login .login_form .submit, body .content_container .content_area .content_middle .login .register_form .password, body .content_container .content_area .content_middle .login .register_form .text, body .content_container .content_area .content_middle .login .register_form .submit, body .content_container .content_area .content_middle .register .login_form .password, body .content_container .content_area .content_middle .register .login_form .text, body .content_container .content_area .content_middle .register .login_form .submit, body .content_container .content_area .content_middle .register .register_form .password, body .content_container .content_area .content_middle .register .register_form .text, body .content_container .content_area .content_middle .register .register_form .submit, body .content_container .content_area .content_middle .settings .login_form .password, body .content_container .content_area .content_middle .settings .login_form .text, body .content_container .content_area .content_middle .settings .login_form .submit, body .content_container .content_area .content_middle .settings .register_form .password, body .content_container .content_area .content_middle .settings .register_form .text, body .content_container .content_area .content_middle .settings .register_form .submit {
-              margin: 0 auto 5px;
-              width: 200px;
-              display: block;
-              padding: 5px;
-              box-shadow: none;
-              border: 2px solid #000;
-              background: #fff;
-              color: #000;
-              font-family: "exo", "Arial", sans-serif;
-              font-size: 13px;
-              line-height: 16px; }
-            body .content_container .content_area .content_middle .login .login_form .description, body .content_container .content_area .content_middle .login .register_form .description, body .content_container .content_area .content_middle .register .login_form .description, body .content_container .content_area .content_middle .register .register_form .description, body .content_container .content_area .content_middle .settings .login_form .description, body .content_container .content_area .content_middle .settings .register_form .description {
-              margin-bottom: 10px; }
-          body .content_container .content_area .content_middle .login .login_register, body .content_container .content_area .content_middle .register .login_register, body .content_container .content_area .content_middle .settings .login_register {
-            padding-top: 10px; }
-            body .content_container .content_area .content_middle .login .login_register p a, body .content_container .content_area .content_middle .register .login_register p a, body .content_container .content_area .content_middle .settings .login_register p a {
-              text-decoration: none;
-              color: #000; }
-              body .content_container .content_area .content_middle .login .login_register p a:hover, body .content_container .content_area .content_middle .register .login_register p a:hover, body .content_container .content_area .content_middle .settings .login_register p a:hover {
-                color: #fe0400; }
+            padding: 5px;
+            box-shadow: none;
+            border: 2px solid #000;
+            background: #fff;
+            color: #000;
+            font-family: "exo", "Arial", sans-serif;
+            font-size: 13px;
+            line-height: 16px; }
+          body .content_container .content_area .content_middle .login_form .description, body .content_container .content_area .content_middle .register_form .description {
+            margin-bottom: 10px; }
+        body .content_container .content_area .content_middle .login_register {
+          padding-top: 10px; }
+          body .content_container .content_area .content_middle .login_register p a {
+            text-decoration: none;
+            color: #000; }
+            body .content_container .content_area .content_middle .login_register p a:hover {
+              color: #fe0400; }
+        body .content_container .content_area .content_middle .create_entry, body .content_container .content_area .content_middle .create_topics {
+          margin-top: 10px; }
+          body .content_container .content_area .content_middle .create_entry .select, body .content_container .content_area .content_middle .create_entry .text, body .content_container .content_area .content_middle .create_entry .textarea, body .content_container .content_area .content_middle .create_entry .submit, body .content_container .content_area .content_middle .create_topics .select, body .content_container .content_area .content_middle .create_topics .text, body .content_container .content_area .content_middle .create_topics .textarea, body .content_container .content_area .content_middle .create_topics .submit {
+            margin: 0 auto 5px;
+            width: 500px;
+            display: block;
+            padding: 5px;
+            box-shadow: none;
+            border: 2px solid #000;
+            border-radius: 0;
+            -webkit-appearance: none;
+            background: #fff;
+            color: #000;
+            font-family: "exo", "Arial", sans-serif;
+            font-size: 13px;
+            line-height: 16px; }
+          body .content_container .content_area .content_middle .create_entry .select, body .content_container .content_area .content_middle .create_entry .text, body .content_container .content_area .content_middle .create_topics .select, body .content_container .content_area .content_middle .create_topics .text {
+            display: inline-block;
+            width: 248px; }
+          body .content_container .content_area .content_middle .create_entry .textarea, body .content_container .content_area .content_middle .create_topics .textarea {
+            resize: none;
+            height: 100px; }
+        body .content_container .content_area .content_middle .entry, body .content_container .content_area .content_middle .topic {
+          margin-top: 10px; }
         body .content_container .content_area .content_middle .notice {
           text-align: center;
           border: 1px dashed #000;
           margin: 10px auto 0;
-          padding: 5px; }
+          padding: 5px;
+          max-width: 500px; }
         body .content_container .content_area .content_middle .notice_top {
           text-align: center;
           border: 1px dashed #000;
           margin: 0px auto 10px;
-          padding: 5px; }
+          padding: 5px;
+          max-width: 500px; }
       body .content_container .content_area .sidebar_right {
         right: 0;
         padding-left: 10px; }

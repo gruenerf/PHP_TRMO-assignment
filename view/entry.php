@@ -1,5 +1,5 @@
 <?php
-// Get url patameter
+// Get url parameter
 $parameter = $routeController->getParameter();
 
 if (!empty($parameter)) {

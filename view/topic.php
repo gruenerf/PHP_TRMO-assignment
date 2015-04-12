@@ -1,5 +1,5 @@
 <?php
-// Get url patameter
+// Get url parameter
 $parameter = $routeController->getParameter();
 
 if (!empty($parameter)) {
@@ -14,7 +14,7 @@ if (!empty($parameter)) {
  */
 if (!empty($topic_id) && is_int($topic_id)) {
 	$topic = $topicController->getById($topic_id);
-	if(!empty($topic)){
+	if (!empty($topic)) {
 		$entryArray = $entryController->getAllEntryByTopic($topic);
 	}
 }

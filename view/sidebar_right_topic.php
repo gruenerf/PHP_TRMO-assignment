@@ -12,12 +12,12 @@ if (!empty($topic)) {
 		echo "No topics so far.";
 	} ?></h2>
 
-<ul class="list">
+<ul class="sidebar_list">
 	<?php
 	if (!empty($entryArray)) {
 		foreach ($entryArray as $entry) {
 			?>
-			<li id="entry">
+			<li class="sidebar_list_element">
 				<a href="<?php echo "entry/" . $entry->getId(); ?>">
 					<?php echo $entry->getTitle(); ?>
 				</a>
@@ -25,6 +25,7 @@ if (!empty($topic)) {
 		<?php
 		}
 	} else {
-		echo "No entries so far.";
-	}?>
+		?>
+		<li class="sidebar_list_element"> No entries so far.</li>
+	<?php } ?>
 </ul>

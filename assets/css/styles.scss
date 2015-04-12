@@ -5,6 +5,7 @@
 $font: "exo", "Arial", sans-serif;
 $color_dark: #000;
 $color_bright: #fff;
+$content_max_width: 500px;
 
 ;
 
@@ -180,10 +181,10 @@ body {
 					font-size: 20px;
 				}
 
-				.list {
+				.sidebar_list {
 					padding-top: 10px;
 
-					li {
+					.sidebar_list_element {
 						padding-bottom: 5px;
 					}
 				}
@@ -227,111 +228,148 @@ body {
 				height: 2000px;
 				margin: 0 auto;
 				padding: 20px;
+				text-align: center;
 
 				.content_headline {
 					display: inline-block;
 					font-size: 20px;
-				}
 
-				.content_sort {
-					float: right;
-					display: inline-block;
-
-					p {
+					&:after {
+						content: ' ';
 						display: block;
-					}
-					form {
-						display: inline-block;
-
-						.sort_selection {
-							display: inline-block;
-							vertical-align: bottom;
-
-							&:first-child {
-								margin-right: 10px;
-							}
-
-							.sort_button {
-								border: 0;
-								background: $color_dark;
-								border-radius: 20px;
-								height: 16px;
-								width: 16px;
-								padding: 0;
-								line-height: 0;
-
-								img {
-									width: 8px;
-									padding: 1px;
-								}
-							}
-						}
-
+						border: 1px dashed #464548;
+						width: 80px;
+						margin: 10px auto 0;
 					}
 				}
 
-				.login, .register, .settings {
-					text-align: center;
+				.home {
+					position: relative;
 
-					.content_headline {
-						&:after {
-							content: ' ';
-							display: block;
-							border: 1px dashed #464548;
-							width: 80px;
-							margin: 0 auto;
-							margin-top: 10px;
-						}
-					}
-
-					h3.content_headline {
-						padding-top: 20px;
-						display: block;
-						font-size: 16px;
-
-						&:after {
-							margin-top: 0px;
-							content: ' ';
-							border: 0;
-						}
-					}
-
-					.login_form, .register_form {
-						margin-top: 20px;
-
-						.password, .text, .submit {
-							margin: 0 auto 5px;
-							width: 200px;
-							display: block;
-							padding: 5px;
-							box-shadow: none;
-							border: 2px solid $color_dark;
-							background: $color_bright;
-							color: $color_dark;
-							font-family: $font;
-							font-size: 13px;
-							line-height: 16px;
-						}
-
-						.description {
-							margin-bottom: 10px;
-						}
-					}
-
-					.login_register {
-						padding-top: 10px;
+					.content_sort {
+						position: absolute;
+						right: 0;
+						top: 0;
 
 						p {
-							a {
-								text-decoration: none;
-								color: $color_dark;
+							display: block;
+						}
+						form {
+							display: inline-block;
 
-								&:hover {
-									color: #fe0400;
+							.sort_selection {
+								display: inline-block;
+								vertical-align: bottom;
+
+								&:first-child {
+									margin-right: 10px;
 								}
+
+								.sort_button {
+									border: 0;
+									background: $color_dark;
+									border-radius: 20px;
+									height: 16px;
+									width: 16px;
+									padding: 0;
+									line-height: 0;
+
+									img {
+										width: 8px;
+										padding: 1px;
+									}
+								}
+							}
+
+						}
+					}
+				}
+
+				h3.content_headline {
+					padding-top: 20px;
+					display: block;
+					font-size: 16px;
+
+					&:after {
+						margin-top: 0px;
+						content: ' ';
+						border: 0;
+					}
+				}
+
+				.login_form, .register_form {
+					margin-top: 10px;
+
+					.password, .text, .submit {
+						margin: 0 auto 5px;
+						width: 200px;
+						display: block;
+						padding: 5px;
+						box-shadow: none;
+						border: 2px solid $color_dark;
+						background: $color_bright;
+						color: $color_dark;
+						font-family: $font;
+						font-size: 13px;
+						line-height: 16px;
+					}
+
+					.description {
+						margin-bottom: 10px;
+					}
+				}
+
+				.login_register {
+					padding-top: 10px;
+
+					p {
+						a {
+							text-decoration: none;
+							color: $color_dark;
+
+							&:hover {
+								color: #fe0400;
 							}
 						}
 					}
+				}
+
+				.create_entry, .create_topics {
+					margin-top: 10px;
+
+					.select, .text, .textarea, .submit {
+						margin: 0 auto 5px;
+						width: $content_max_width;
+						display: block;
+						padding: 5px;
+						box-shadow: none;
+						border: 2px solid $color_dark;
+						border-radius: 0;
+						-webkit-appearance: none;
+						background: $color_bright;
+						color: $color_dark;
+						font-family: $font;
+						font-size: 13px;
+						line-height: 16px;
+					}
+
+					.select, .text {
+						display: inline-block;
+						width: 248px;
+					}
+
+					.textarea {
+						resize: none;
+						height: 100px;
+					}
+
+					.submit {
+
+					}
+				}
+
+				.entry, .topic {
+					margin-top: 10px;
 				}
 
 				.notice {
@@ -339,6 +377,7 @@ body {
 					border: 1px dashed $color_dark;
 					margin: 10px auto 0;
 					padding: 5px;
+					max-width: $content_max_width;
 				}
 
 				.notice_top {
@@ -346,6 +385,7 @@ body {
 					border: 1px dashed $color_dark;
 					margin: 0px auto 10px;
 					padding: 5px;
+					max-width: $content_max_width;
 				}
 			}
 

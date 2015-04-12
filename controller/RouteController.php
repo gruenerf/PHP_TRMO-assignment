@@ -84,14 +84,15 @@ class RouteController extends BaseController implements RouteControllerInterface
 		// Possible data for routing
 		$possibleRoutes = array(
 			'category',
+			'categories',
 			'topic',
+			'topics',
 			'entry',
+			'entries',
 			'settings',
-			'posts',
 			'search',
 			'login',
 			'register',
-			'user_topic',
 			'home',
 			'test'
 		);
@@ -106,8 +107,9 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'topic' => 'topic',
 			'entry' => 'entry',
 			'settings' => 'user',
-			'posts' => 'user',
-			'user_topic' => 'user',
+			'entries' => 'user',
+			'topics' => 'user',
+			'categories' => 'user'
 		);
 
 		$sideTemplate_right = array(
@@ -120,8 +122,9 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'topic' => 'topic',
 			'entry' => 'topic',
 			'settings' => 'logout',
-			'posts' => 'logout',
-			'user_topic' => 'logout',
+			'entries' => 'logout',
+			'topics' => 'logout',
+			'categories' => 'logout'
 		);
 
 
@@ -133,16 +136,15 @@ class RouteController extends BaseController implements RouteControllerInterface
 					if (!in_array($url_parts[2], $possibleRoutes)) {
 						$title .= " | 404";
 						$template = "404.php";
-						$template_left = 'sidebar_left_'.$sideTemplate_left['category']. ".php";
-						$template_right = 'sidebar_right_'.$sideTemplate_right['category']. ".php";
+						$template_left = 'sidebar_left_' . $sideTemplate_left['category'] . ".php";
+						$template_right = 'sidebar_right_' . $sideTemplate_right['category'] . ".php";
 						break;
 					}
 					$title .= " | " . ucfirst($url_parts[2]);
 					$template .= $url_parts[2] . ".php";
-					$template_left = 'sidebar_left_'.$sideTemplate_left[$url_parts[2]]. ".php";
-					$template_right = 'sidebar_right_'.$sideTemplate_right[$url_parts[2]]. ".php";
+					$template_left = 'sidebar_left_' . $sideTemplate_left[$url_parts[2]] . ".php";
+					$template_right = 'sidebar_right_' . $sideTemplate_right[$url_parts[2]] . ".php";
 
-					var_dump($template_right);
 				}
 
 				// second part is the first parameter
@@ -159,8 +161,8 @@ class RouteController extends BaseController implements RouteControllerInterface
 			} else {
 				$title .= " | Home";
 				$template = "home.php";
-				$template_left = 'sidebar_left_'.$sideTemplate_left['home']. ".php";
-				$template_right = 'sidebar_right_'.$sideTemplate_right['home']. ".php";
+				$template_left = 'sidebar_left_' . $sideTemplate_left['home'] . ".php";
+				$template_right = 'sidebar_right_' . $sideTemplate_right['home'] . ".php";
 			}
 		}
 

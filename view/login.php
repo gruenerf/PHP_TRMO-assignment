@@ -26,32 +26,33 @@ if (!$loginController->isLoggedIn()) {
 		<form class="login_form" action="">
 			<input class="text" type="text" name="username" placeholder="Username">
 			<input class="password" type="password" name="password" placeholder="Password">
-			<input class="submit" type="submit" formmethod="post" value="Login">
+			<input class="submit" type="submit" name="submit" formmethod="post" value="Login">
 		</form>
 		<div class="login_register">
 			<p>Aren&apos;t registered yet? <a href="register">Register now!</a></p>
 		</div>
 	</div>
 
-<?php
+	<?php
+	if (isset($_POST['submit'])) {
+		// Sanitize userinput
+		if (isset($_POST['username']) && isset($_POST['password'])) {
+			$username = BaseController::fixString($_POST['username']);
+			$password = BaseController::fixString($_POST['password']);
 
-// Sanitize userinput
-	if (isset($_POST['username']) && isset($_POST['password'])) {
-		$username = BaseController::fixString($_POST['username']);
-		$password = BaseController::fixString($_POST['password']);
+			if ($validatorController->validateUser($username, $password)) {
+				// Redirect to user page
 
-		if ($validatorController->validateUser($username, $password)) {
-			// Redirect to user page
+				header('Location: ' . PROJECT_ADDRESS . "entries");
+			} else {
+				echo "<div class='notice'>Username and/or password are wrong. Try again!</div>";
+			}
 
-			header('Location: ' . PROJECT_ADDRESS."user");
 		} else {
-			echo "<div class='notice'>Username and/or password are wrong. Try again!</div>";
+			echo "<div class='notice'>Fill out both fields</div>";
 		}
-
-	} else {
-		// echo "<div class='notice'>Fill out both fields</div>";
 	}
 } else {
 	// Redirect to user page
-	header('Location: ' . PROJECT_ADDRESS."user");
+	header('Location: ' . PROJECT_ADDRESS . "entries");
 }
