@@ -1,3 +1,13 @@
+/*
+	Variables
+*/
+
+$font: "exo", "Arial", sans-serif;
+$color_dark: #000;
+$color_bright: #fff;
+
+;
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -67,13 +77,13 @@ html {
 }
 
 body {
-	background-color: #fdfdfd;
-	font-family: "exo", "Arial", sans-serif;
+	background-color: $color_bright;
+	font-family: $font;
 
 	.header_container {
 		z-index: 100;
 		width: 100%;
-		background-color: #000;
+		background-color: $color_dark;
 		text-align: center;
 		position: fixed;
 		top: 0;
@@ -109,21 +119,21 @@ body {
 					width: 400px;
 					padding: 5px;
 					box-shadow: none;
-					border: 2px solid #fff;
-					background: #000;
-					color: #fff;
-					font-family: "exo", "Arial", sans-serif;
+					border: 2px solid $color_bright;
+					background: $color_dark;
+					color: $color_bright;
+					font-family: $font;
 					font-size: 13px;
 					line-height: 16px;
 				}
 
 				.submit {
-					border: 2px solid #fff;
+					border: 2px solid $color_bright;
 					width: 80px;
 					height: 30px;
-					background: #000;
-					color: #fff;
-					font-family: "exo", "Arial", sans-serif;
+					background: $color_dark;
+					color: $color_bright;
+					font-family: $font;
 					font-size: 13px;
 					padding: 5px;
 					line-height: 16px;
@@ -160,7 +170,7 @@ body {
 
 			.sidebar_left,
 			.sidebar_right {
-				padding-top: 10px;
+				padding-top: 20px;
 				position: absolute;
 				top: 0;
 				width: 200px;
@@ -177,6 +187,32 @@ body {
 						padding-bottom: 5px;
 					}
 				}
+
+				.user_buttons {
+					width: 54px;
+					background: $color_bright;
+					border: 0;
+					padding: 0;
+					margin: 0 5px 10px;
+					text-align: center;
+
+					&:first-child {
+						margin-left: 0;
+					}
+
+					&:nth-child(3) {
+						margin-right: 0;
+					}
+
+					img {
+						width: 100%;
+					}
+
+					p {
+						margin-top: 5px;
+						font-family: $font;
+					}
+				}
 			}
 
 			.sidebar_left {
@@ -185,12 +221,12 @@ body {
 			}
 
 			.content_middle {
-				border-left: 1px dashed #000;
-				border-right: 1px dashed #000;
+				border-left: 1px dashed $color_dark;
+				border-right: 1px dashed $color_dark;
 				width: 600px;
 				height: 2000px;
 				margin: 0 auto;
-				padding: 10px;
+				padding: 20px;
 
 				.content_headline {
 					display: inline-block;
@@ -217,7 +253,7 @@ body {
 
 							.sort_button {
 								border: 0;
-								background: #000;
+								background: $color_dark;
 								border-radius: 20px;
 								height: 16px;
 								width: 16px;
@@ -234,17 +270,29 @@ body {
 					}
 				}
 
-				.login, .register {
+				.login, .register, .settings {
 					text-align: center;
 
-					.content_headline{
-						&:after{
+					.content_headline {
+						&:after {
 							content: ' ';
 							display: block;
 							border: 1px dashed #464548;
 							width: 80px;
 							margin: 0 auto;
 							margin-top: 10px;
+						}
+					}
+
+					h3.content_headline {
+						padding-top: 20px;
+						display: block;
+						font-size: 16px;
+
+						&:after {
+							margin-top: 0px;
+							content: ' ';
+							border: 0;
 						}
 					}
 
@@ -257,28 +305,28 @@ body {
 							display: block;
 							padding: 5px;
 							box-shadow: none;
-							border: 2px solid #000;
-							background: #fff;
-							color: #000;
-							font-family: "exo", "Arial", sans-serif;
+							border: 2px solid $color_dark;
+							background: $color_bright;
+							color: $color_dark;
+							font-family: $font;
 							font-size: 13px;
 							line-height: 16px;
 						}
 
-						.description{
+						.description {
 							margin-bottom: 10px;
 						}
 					}
 
-					.login_register{
+					.login_register {
 						padding-top: 10px;
 
-						p{
-							a{
+						p {
+							a {
 								text-decoration: none;
-								color: #000;
+								color: $color_dark;
 
-								&:hover{
+								&:hover {
 									color: #fe0400;
 								}
 							}
@@ -286,16 +334,16 @@ body {
 					}
 				}
 
-				.notice{
+				.notice {
 					text-align: center;
-					border: 1px dashed #000;
+					border: 1px dashed $color_dark;
 					margin: 10px auto 0;
 					padding: 5px;
 				}
 
-				.notice_top{
+				.notice_top {
 					text-align: center;
-					border: 1px dashed #000;
+					border: 1px dashed $color_dark;
 					margin: 0px auto 10px;
 					padding: 5px;
 				}

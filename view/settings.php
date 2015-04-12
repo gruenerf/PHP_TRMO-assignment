@@ -1,140 +1,58 @@
+<div class="settings">
+	<h2 class="content_headline">Settings</h2>
+
+	<h3 class="content_headline">Update Username/Password</h3>
+
+	<form class="register_form" action="">
+		<input class="text" type="text" name="username" placeholder="Username">
+		<div class="description">(min.6 and max. 20 characters, a-z, A-Z, 0-9, _)</div>
+
+		<input class="password" type="password" name="password" placeholder="Password">
+		<div class="description">(min.6 and max. 20 characters, a-z, A-Z, 0-9, _)</div>
+
+		<input class="submit" type="submit" formmethod="post" value="Update">
+	</form>
+</div>
+
 <?php
 
+// Sanitize userinput
+if (isset($_POST['username']) && isset($_POST['password'])) {
+	$username = BaseController::fixString($_POST['username']);
+	$password = BaseController::fixString($_POST['password']);
 
-if ($loginController->isLoggedIn()) {
-	// Get url patameter
-	$parameter = $routeController->getParameter();
+	if ($validatorController->validateString($username) && $validatorController->validateString($password)) {
 
-	if (!empty($parameter)) {
-		// Get Searchterm
-		if ($parameter[0] === "updated") {
-			?>
-			<div class="newUser">
-				Account updated successfully!
-			</div>
-		<?php
-		}
-	}
-	?>
+		$user = $loginController->getLoggedInUser();
 
-	<h1 class="headline">Settings</h1>
-	<form action="">
-		<button type="submit" formmethod="post" formaction="settings" name="logout">Logout</button>
-		<button type="submit" formmethod="post" formaction="posts" name="post">Create post</button>
-		<button type="submit" formmethod="post" formaction="create_topic" name="topic">Create topic</button>
-	</form>
-	<h2 class="headline_2">Update Username/Password</h2>
-	<div class="settings_update">
-		<form class="update_form" action="">
-			<input class="text" type="text" name="username" placeholder="Username">
-			<input class="password" type="password" name="password" placeholder="Password">
-			<input class="submit" type="submit" formmethod="post" value="Update">
-		</form>
-	</div>
+		//Create passwordhash
+		$pwhash = password_hash($password, PASSWORD_DEFAULT);
 
-	<?php
-	if (isset($_POST['logout'])) {
-		$loginController->logout();
-		// Redirect to login page
-		header('Location: ' . PROJECT_ADDRESS."login/logout");
-	}
+		$user->setName($username);
+		$user->setPassword($pwhash);
 
-	if (isset($_POST['post'])) {
-		// Redirect to login page
-		header('Location: ' . PROJECT_ADDRESS."posts");
-	}
+		// Save user in database
+		$userBuffer = $userController->update($user);
 
-	if (isset($_POST['topic'])) {
-		// Redirect to login page
-		header('Location: ' . PROJECT_ADDRESS."create_topic");
-	}
-
-	// Sanitize userinput
-	if (isset($_POST['username']) && isset($_POST['password'])) {
-		$username = BaseController::fixString($_POST['username']);
-		$password = BaseController::fixString($_POST['password']);
-
-		if ($validatorController->validateString($username) && $validatorController->validateString($password)) {
-
-			$user = $loginController->getLoggedInUser();
-
-			//Create passwordhash
-			$pwhash = password_hash($password, PASSWORD_DEFAULT);
-
-			$user->setName($username);
-			$user->setPassword($pwhash);
-
-			// Save user in database
-			$userBuffer = $userController->update($user);
-
-			// If no user is returned the username is already taken
-			if (empty($userBuffer)) {
-				echo "The username is already taken.";
-			} else {
-				// Redirect to login page
-
-				$_SESSION["user_name"] = $username;
-				header('Location: ' . PROJECT_ADDRESS."settings/updated");
-			}
+		// If no user is returned the username is already taken
+		if (empty($userBuffer)) {
+			echo "<div class='notice'>The username is already taken.</div>";
 		} else {
-			// Verify if username and password are valid
-			if (!$validatorController->validateString($username)) {
-				echo "The username is not valid.";
-			}
-			if (!$validatorController->validateString($password)) {
-				echo "The password is not valid.";
-			}
-		}
-	} else {
-		echo "Fill out both fields";
-	}
-	?>
-	<h2 class="headline_2">Your Posts</h2>
-	<?php
-	$entryArray = $entryController->getAllEntryByUser($loginController->getLoggedInUser());
+			// Redirect to login page
 
-	if (!empty($entryArray)) {
-		foreach ($entryArray as $entry) {
-			?>
-			<a href="entry/<?php echo $entry->getId(); ?>">
-				<div class="entry">
-					<p class="entry_name">
-						<?php echo $entry->getTitle(); ?>
-					</p>
-				</div>
-			</a>
-		<?php
+			$_SESSION["user_name"] = $username;
+			header('Location: ' . PROJECT_ADDRESS . "user/updated");
 		}
 	} else {
-		?>
-		<h2>
-			No Entries so far.
-		</h2>
-	<?php
-	}?>
-	<h2 class="headline_2">Your Topics</h2>
-	<?php
-	$topicArray = $topicController->getAllTopicByUser($loginController->getLoggedInUser());
-
-	if (!empty($topicArray)) {
-		foreach ($topicArray as $topic) {
-			?>
-			<a href="topic/<?php echo $topic->getId(); ?>">
-				<div class="topic">
-					<p class="topic_name">
-						<?php echo $topic->getName(); ?>
-					</p>
-				</div>
-			</a>
-		<?php
+		// Verify if username and password are valid
+		if (!$validatorController->validateString($username)) {
+			echo "<div class='notice'>The username is not valid.</div>";
 		}
-	} else {
-		?>
-		<h2>
-			No Topics so far.
-		</h2>
-	<?php
+		if (!$validatorController->validateString($password)) {
+			echo "<div class='notice'>The password is not valid.</div>";
+		}
 	}
 } else {
-	header('Location: ' . PROJECT_ADDRESS."login");
+	echo "<div class='notice'>Fill out both fields.</div>";
 }
+?>

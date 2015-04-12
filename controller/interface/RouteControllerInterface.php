@@ -42,5 +42,5 @@ interface RouteControllerInterface
 	/**
 	 * @return mixed
 	 */
-	public function isSettings();
+	public function isUser();
 } 

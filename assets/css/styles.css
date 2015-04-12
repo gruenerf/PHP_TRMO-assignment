@@ -1,3 +1,6 @@
+/*
+	Variables
+*/
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -55,7 +58,7 @@ html {
   box-sizing: inherit; }
 
 body {
-  background-color: #fdfdfd;
+  background-color: #fff;
   font-family: "exo", "Arial", sans-serif; }
   body .header_container {
     z-index: 100;
@@ -125,7 +128,7 @@ body {
       position: relative; }
       body .content_container .content_area .sidebar_left,
       body .content_container .content_area .sidebar_right {
-        padding-top: 10px;
+        padding-top: 20px;
         position: absolute;
         top: 0;
         width: 200px;
@@ -139,6 +142,27 @@ body {
           body .content_container .content_area .sidebar_left .list li,
           body .content_container .content_area .sidebar_right .list li {
             padding-bottom: 5px; }
+        body .content_container .content_area .sidebar_left .user_buttons,
+        body .content_container .content_area .sidebar_right .user_buttons {
+          width: 54px;
+          background: #fff;
+          border: 0;
+          padding: 0;
+          margin: 0 5px 10px;
+          text-align: center; }
+          body .content_container .content_area .sidebar_left .user_buttons:first-child,
+          body .content_container .content_area .sidebar_right .user_buttons:first-child {
+            margin-left: 0; }
+          body .content_container .content_area .sidebar_left .user_buttons:nth-child(3),
+          body .content_container .content_area .sidebar_right .user_buttons:nth-child(3) {
+            margin-right: 0; }
+          body .content_container .content_area .sidebar_left .user_buttons img,
+          body .content_container .content_area .sidebar_right .user_buttons img {
+            width: 100%; }
+          body .content_container .content_area .sidebar_left .user_buttons p,
+          body .content_container .content_area .sidebar_right .user_buttons p {
+            margin-top: 5px;
+            font-family: "exo", "Arial", sans-serif; }
       body .content_container .content_area .sidebar_left {
         left: 0;
         padding-right: 10px; }
@@ -148,7 +172,7 @@ body {
         width: 600px;
         height: 2000px;
         margin: 0 auto;
-        padding: 10px; }
+        padding: 20px; }
         body .content_container .content_area .content_middle .content_headline {
           display: inline-block;
           font-size: 20px; }
@@ -175,18 +199,26 @@ body {
                 body .content_container .content_area .content_middle .content_sort form .sort_selection .sort_button img {
                   width: 8px;
                   padding: 1px; }
-        body .content_container .content_area .content_middle .login, body .content_container .content_area .content_middle .register {
+        body .content_container .content_area .content_middle .login, body .content_container .content_area .content_middle .register, body .content_container .content_area .content_middle .settings {
           text-align: center; }
-          body .content_container .content_area .content_middle .login .content_headline:after, body .content_container .content_area .content_middle .register .content_headline:after {
+          body .content_container .content_area .content_middle .login .content_headline:after, body .content_container .content_area .content_middle .register .content_headline:after, body .content_container .content_area .content_middle .settings .content_headline:after {
             content: ' ';
             display: block;
             border: 1px dashed #464548;
             width: 80px;
             margin: 0 auto;
             margin-top: 10px; }
-          body .content_container .content_area .content_middle .login .login_form, body .content_container .content_area .content_middle .login .register_form, body .content_container .content_area .content_middle .register .login_form, body .content_container .content_area .content_middle .register .register_form {
+          body .content_container .content_area .content_middle .login h3.content_headline, body .content_container .content_area .content_middle .register h3.content_headline, body .content_container .content_area .content_middle .settings h3.content_headline {
+            padding-top: 20px;
+            display: block;
+            font-size: 16px; }
+            body .content_container .content_area .content_middle .login h3.content_headline:after, body .content_container .content_area .content_middle .register h3.content_headline:after, body .content_container .content_area .content_middle .settings h3.content_headline:after {
+              margin-top: 0px;
+              content: ' ';
+              border: 0; }
+          body .content_container .content_area .content_middle .login .login_form, body .content_container .content_area .content_middle .login .register_form, body .content_container .content_area .content_middle .register .login_form, body .content_container .content_area .content_middle .register .register_form, body .content_container .content_area .content_middle .settings .login_form, body .content_container .content_area .content_middle .settings .register_form {
             margin-top: 20px; }
-            body .content_container .content_area .content_middle .login .login_form .password, body .content_container .content_area .content_middle .login .login_form .text, body .content_container .content_area .content_middle .login .login_form .submit, body .content_container .content_area .content_middle .login .register_form .password, body .content_container .content_area .content_middle .login .register_form .text, body .content_container .content_area .content_middle .login .register_form .submit, body .content_container .content_area .content_middle .register .login_form .password, body .content_container .content_area .content_middle .register .login_form .text, body .content_container .content_area .content_middle .register .login_form .submit, body .content_container .content_area .content_middle .register .register_form .password, body .content_container .content_area .content_middle .register .register_form .text, body .content_container .content_area .content_middle .register .register_form .submit {
+            body .content_container .content_area .content_middle .login .login_form .password, body .content_container .content_area .content_middle .login .login_form .text, body .content_container .content_area .content_middle .login .login_form .submit, body .content_container .content_area .content_middle .login .register_form .password, body .content_container .content_area .content_middle .login .register_form .text, body .content_container .content_area .content_middle .login .register_form .submit, body .content_container .content_area .content_middle .register .login_form .password, body .content_container .content_area .content_middle .register .login_form .text, body .content_container .content_area .content_middle .register .login_form .submit, body .content_container .content_area .content_middle .register .register_form .password, body .content_container .content_area .content_middle .register .register_form .text, body .content_container .content_area .content_middle .register .register_form .submit, body .content_container .content_area .content_middle .settings .login_form .password, body .content_container .content_area .content_middle .settings .login_form .text, body .content_container .content_area .content_middle .settings .login_form .submit, body .content_container .content_area .content_middle .settings .register_form .password, body .content_container .content_area .content_middle .settings .register_form .text, body .content_container .content_area .content_middle .settings .register_form .submit {
               margin: 0 auto 5px;
               width: 200px;
               display: block;
@@ -198,14 +230,14 @@ body {
               font-family: "exo", "Arial", sans-serif;
               font-size: 13px;
               line-height: 16px; }
-            body .content_container .content_area .content_middle .login .login_form .description, body .content_container .content_area .content_middle .login .register_form .description, body .content_container .content_area .content_middle .register .login_form .description, body .content_container .content_area .content_middle .register .register_form .description {
+            body .content_container .content_area .content_middle .login .login_form .description, body .content_container .content_area .content_middle .login .register_form .description, body .content_container .content_area .content_middle .register .login_form .description, body .content_container .content_area .content_middle .register .register_form .description, body .content_container .content_area .content_middle .settings .login_form .description, body .content_container .content_area .content_middle .settings .register_form .description {
               margin-bottom: 10px; }
-          body .content_container .content_area .content_middle .login .login_register, body .content_container .content_area .content_middle .register .login_register {
+          body .content_container .content_area .content_middle .login .login_register, body .content_container .content_area .content_middle .register .login_register, body .content_container .content_area .content_middle .settings .login_register {
             padding-top: 10px; }
-            body .content_container .content_area .content_middle .login .login_register p a, body .content_container .content_area .content_middle .register .login_register p a {
+            body .content_container .content_area .content_middle .login .login_register p a, body .content_container .content_area .content_middle .register .login_register p a, body .content_container .content_area .content_middle .settings .login_register p a {
               text-decoration: none;
               color: #000; }
-              body .content_container .content_area .content_middle .login .login_register p a:hover, body .content_container .content_area .content_middle .register .login_register p a:hover {
+              body .content_container .content_area .content_middle .login .login_register p a:hover, body .content_container .content_area .content_middle .register .login_register p a:hover, body .content_container .content_area .content_middle .settings .login_register p a:hover {
                 color: #fe0400; }
         body .content_container .content_area .content_middle .notice {
           text-align: center;

@@ -41,9 +41,9 @@ if (!$loginController->isLoggedIn()) {
 		$password = BaseController::fixString($_POST['password']);
 
 		if ($validatorController->validateUser($username, $password)) {
-			// Redirect to settings page
+			// Redirect to user page
 
-			header('Location: ' . PROJECT_ADDRESS."settings");
+			header('Location: ' . PROJECT_ADDRESS."user");
 		} else {
 			echo "<div class='notice'>Username and/or password are wrong. Try again!</div>";
 		}
@@ -52,6 +52,6 @@ if (!$loginController->isLoggedIn()) {
 		// echo "<div class='notice'>Fill out both fields</div>";
 	}
 } else {
-	// Redirect to settings page
-	header('Location: ' . PROJECT_ADDRESS."settings");
+	// Redirect to user page
+	header('Location: ' . PROJECT_ADDRESS."user");
 }

@@ -1,4 +1,4 @@
-<div class="content">
+<div class="home">
 	<h2 class="content_headline">Topics</h2>
 
 	<div class="content_sort">

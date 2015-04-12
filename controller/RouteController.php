@@ -8,7 +8,7 @@
 class RouteController extends BaseController implements RouteControllerInterface
 {
 
-	private $page_title, $view, $parameter;
+	private $page_title, $view, $parameter, $sidebar_left, $sidebar_right;
 
 	/**
 	 * Getter/setter
@@ -44,6 +44,26 @@ class RouteController extends BaseController implements RouteControllerInterface
 		$this->parameter = $parameter;
 	}
 
+	public function getSidebarLeft()
+	{
+		return $this->sidebar_left;
+	}
+
+	public function setSidebarLeft($sidebar_left)
+	{
+		$this->sidebar_left = $sidebar_left;
+	}
+
+	public function getSidebarRight()
+	{
+		return $this->sidebar_right;
+	}
+
+	public function setSidebarRight($sidebar_right)
+	{
+		$this->sidebar_right = $sidebar_right;
+	}
+
 	public function __construct()
 	{
 		$url = $this->fixString($_SERVER['REQUEST_URI']);
@@ -52,6 +72,8 @@ class RouteController extends BaseController implements RouteControllerInterface
 
 		// Template string
 		$template = "";
+		$template_left = "";
+		$template_right = "";
 
 		// Page title string
 		$title = "The real meaning of";
@@ -69,10 +91,39 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'search',
 			'login',
 			'register',
-			'create_topic',
+			'user_topic',
 			'home',
 			'test'
 		);
+
+		$sideTemplate_left = array(
+			'category' => 'category',
+			'search' => 'category',
+			'login' => 'category',
+			'register' => 'category',
+			'home' => 'category',
+			'test' => 'category',
+			'topic' => 'topic',
+			'entry' => 'entry',
+			'settings' => 'user',
+			'posts' => 'user',
+			'user_topic' => 'user',
+		);
+
+		$sideTemplate_right = array(
+			'category' => 'topic',
+			'search' => 'topic',
+			'login' => 'topic',
+			'register' => 'topic',
+			'home' => 'topic',
+			'test' => 'topic',
+			'topic' => 'topic',
+			'entry' => 'topic',
+			'settings' => 'logout',
+			'posts' => 'logout',
+			'user_topic' => 'logout',
+		);
+
 
 		for ($i = 2; $i < sizeof($url_parts); $i++) {
 			if (!empty($url_parts[$i])) {
@@ -82,10 +133,16 @@ class RouteController extends BaseController implements RouteControllerInterface
 					if (!in_array($url_parts[2], $possibleRoutes)) {
 						$title .= " | 404";
 						$template = "404.php";
+						$template_left = 'sidebar_left_'.$sideTemplate_left['category']. ".php";
+						$template_right = 'sidebar_right_'.$sideTemplate_right['category']. ".php";
 						break;
 					}
 					$title .= " | " . ucfirst($url_parts[2]);
-					$template .= $url_parts[2].".php";
+					$template .= $url_parts[2] . ".php";
+					$template_left = 'sidebar_left_'.$sideTemplate_left[$url_parts[2]]. ".php";
+					$template_right = 'sidebar_right_'.$sideTemplate_right[$url_parts[2]]. ".php";
+
+					var_dump($template_right);
 				}
 
 				// second part is the first parameter
@@ -99,15 +156,18 @@ class RouteController extends BaseController implements RouteControllerInterface
 					$title .= " | " . $url_parts[$i];
 					array_push($parameter, $url_parts[$i]);
 				}
-			}
-			else{
+			} else {
 				$title .= " | Home";
-				$template .= "home.php";
+				$template = "home.php";
+				$template_left = 'sidebar_left_'.$sideTemplate_left['home']. ".php";
+				$template_right = 'sidebar_right_'.$sideTemplate_right['home']. ".php";
 			}
 		}
 
 		$this->setPageTitle($title);
 		$this->setView($template);
+		$this->setSidebarLeft($template_left);
+		$this->setSidebarRight($template_right);
 		$this->setParameter($parameter);
 	}
 
@@ -115,7 +175,8 @@ class RouteController extends BaseController implements RouteControllerInterface
 	 *  Returns if the current template is settings
 	 * @return bool
 	 */
-	public function isSettings(){
-		return $this->getView() === "settings.php";
+	public function isUser()
+	{
+		return $this->getView() === "user.php";
 	}
-} 
+}

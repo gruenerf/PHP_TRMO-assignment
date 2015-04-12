@@ -1,4 +1,4 @@
-<?php if (!$routeController->isSettings()) { ?>
+<?php if (!$routeController->isUser()) { ?>
 
 	<h2 class="sidebar_headline">Categories</h2>
 
@@ -23,4 +23,27 @@
 		<?php } ?>
 	</ul>
 
-<?php }
+<?php
+} else {
+	?>
+	<form action="">
+		<button class="user_buttons" id="button_post" type="submit" formmethod="post" formaction="posts" name="post">
+			<img title="Posts" src="<?php echo IMG_PATH ?>circle_post.png">
+
+			<p>Posts</p>
+		</button>
+		<button class="user_buttons" id="button_topic" type="submit" formmethod="post" formaction="create_topic"
+		        name="topic">
+			<img title="Topics" src="<?php echo IMG_PATH ?>circle_topic.png">
+
+			<p>Topics</p>
+		</button>
+		<button class="user_buttons" id="button_settings" type="submit" formmethod="post" formaction="settings"
+		        name="settings">
+			<img title="Settings" src="<?php echo IMG_PATH ?>circle_settings.png">
+
+			<p>Settings</p>
+		</button>
+	</form>
+<?php
+}
