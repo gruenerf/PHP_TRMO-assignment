@@ -11,5 +11,7 @@ interface LoginControllerInterface
 
 	public function getLoggedInUser();
 
+	public function isAdmin();
+
 	public function logOut();
 } 

@@ -42,5 +42,22 @@ interface RouteControllerInterface
 	/**
 	 * @return mixed
 	 */
-	public function isUser();
+	public function getSidebarLeft();
+
+	/**
+	 * @param $sidebar_left
+	 * @return mixed
+	 */
+	public function setSidebarLeft($sidebar_left);
+
+	/**
+	 * @return mixed
+	 */
+	public function getSidebarRight();
+
+	/**
+	 * @param $sidebar_right
+	 * @return mixed
+	 */
+	public function setSidebarRight($sidebar_right);
 } 

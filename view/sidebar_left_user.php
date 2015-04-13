@@ -5,21 +5,30 @@
 
 			<p>Entries</p>
 		</button>
+		<?php if ($loginController->isAdmin()) { ?>
+			<button class="user_buttons" id="button_category" type="submit" formmethod="post" formaction="categories"
+			        name="topic">
+				<img title="Categories" src="<?php echo IMG_PATH ?>circle_category.png">
+
+				<p>Categories</p>
+			</button>
+		<?php } ?>
 		<button class="user_buttons" id="button_topic" type="submit" formmethod="post" formaction="topics"
 		        name="topic">
 			<img title="Topics" src="<?php echo IMG_PATH ?>circle_topic.png">
 
 			<p>Topics</p>
 		</button>
-		<button class="user_buttons" id="button_settings" type="submit" formmethod="post" formaction="settings"
-		        name="settings">
-			<img title="Settings" src="<?php echo IMG_PATH ?>circle_settings.png">
+		<?php if ($loginController->isAdmin()) { ?>
+			<button class="user_buttons" id="button_users" type="submit" formmethod="post" formaction="users"
+			        name="settings">
+				<img title="Users" src="<?php echo IMG_PATH ?>circle_users.png">
 
-			<p>Settings</p>
-		</button>
+				<p>Users</p>
+			</button>
+		<?php } ?>
 	</form>
-
 <?php
-}else{
+} else {
 	include_once(ROOT_PATH . "/view/sidebar_left_category.php");
 }

@@ -16,14 +16,14 @@ if (!empty($entry_id) && is_int($entry_id)) {
 ?>
 
 <div class="entry">
-	<h1 class="entry-headline"><?php
+	<h2 class="content_headline"><?php
 		if (!empty($entry)) {
 			echo $entry->getTitle();
 		} else {
 			echo "All Entries";
 		}
 		?>
-	</h1>
+	</h2>
 
 	<?php if (!empty($entry)) { ?>
 
@@ -33,25 +33,32 @@ if (!empty($entry_id) && is_int($entry_id)) {
 
 	<?php
 	} else {
-		$entryArray = $entryController->getAll();
-		if (!empty($entryArray)) {
-			foreach ($entryArray as $entry) {
-				?>
-				<a href="entry/<?php echo $entry->getId(); ?>">
-					<div class="entry_link">
-						<p class="entry_name">
-							<?php echo $entry->getTitle(); ?>
-						</p>
-					</div>
-				</a>
+		?>
+		<div class="content_area">
 			<?php
-			}
-		} else {
-			?>
-			<h2>
-				No Entries so far.
-			</h2>
-		<?php
-		}
-	}?>
+			$entryArray = $entryController->getAll();
+			if (!empty($entryArray)) {
+				foreach ($entryArray as $entry) {
+					?>
+
+					<div class="content_element">
+						<a href="entry/<?php echo $entry->getId(); ?>">
+							<div class="title">
+								<?php echo $entry->getTitle(); ?>
+							</div>
+							<div class="cover">
+							</div>
+						</a>
+					</div>
+				<?php
+				}
+			} else {
+				?>
+				<h2>
+					No Entries so far.
+				</h2>
+			<?php
+			}?>
+		</div>
+	<?php } ?>
 </div>

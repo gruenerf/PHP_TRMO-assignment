@@ -23,7 +23,7 @@ if (!$loginController->isLoggedIn()) {
 	<div class="login">
 		<h2 class="content_headline">Login</h2>
 
-		<form class="login_form" action="">
+		<form class="content_form" action="">
 			<input class="text" type="text" name="username" placeholder="Username">
 			<input class="password" type="password" name="password" placeholder="Password">
 			<input class="submit" type="submit" name="submit" formmethod="post" value="Login">

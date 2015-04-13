@@ -21,55 +21,61 @@ if (!empty($topic_id) && is_int($topic_id)) {
 ?>
 
 <div class="topic">
-	<h1 class="topic-headline"><?php
+	<h2 class="content_headline"><?php
 		if (!empty($topic)) {
 			echo $topic->getName();
 		} else {
 			echo "All Topics";
 		}
 		?>
-	</h1>
+	</h2>
 
-	<?php if (!empty($topic)) {
-		if (!empty($entryArray)) {
-			foreach ($entryArray as $entry) {
-				?>
-				<a href="entry/<?php echo $entry->getId(); ?>">
-					<div class="entry">
-						<p class="entry_name">
-							<?php echo $entry->getTitle(); ?>
-						</p>
+	<div class="content_area">
+		<?php if (!empty($topic)) {
+			if (!empty($entryArray)) {
+				foreach ($entryArray as $entry) {
+					?>
+					<div class="content_element">
+						<a href="entry/<?php echo $entry->getId(); ?>">
+							<div class="title">
+								<?php echo $entry->getTitle(); ?>
+							</div>
+							<div class="cover">
+							</div>
+						</a>
 					</div>
-				</a>
+				<?php
+				}
+			} else {
+				?>
+				<h2>
+					No Entries so far.
+				</h2>
 			<?php
 			}
 		} else {
-			?>
-			<h2>
-				No Entries so far.
-			</h2>
-		<?php
-		}
-	} else {
-		$topicArray = $topicController->getAll();
-		if (!empty($topicArray)) {
-			foreach ($topicArray as $topic) {
-				?>
-				<a href="topic/<?php echo $topic->getId(); ?>">
-					<div class="topic">
-						<p class="topic_name">
-							<?php echo $topic->getName(); ?>
-						</p>
+			$topicArray = $topicController->getAll();
+			if (!empty($topicArray)) {
+				foreach ($topicArray as $topic) {
+					?>
+					<div class="content_element">
+						<a href="topic/<?php echo $topic->getId(); ?>">
+							<div class="title">
+								<?php echo $topic->getName(); ?>
+							</div>
+							<div class="cover">
+							</div>
+						</a>
 					</div>
-				</a>
+				<?php
+				}
+			} else {
+				?>
+				<h2>
+					No Topics so far.
+				</h2>
 			<?php
 			}
-		} else {
-			?>
-			<h2>
-				No Topics so far.
-			</h2>
-		<?php
-		}
-	}?>
+		}?>
+	</div>
 </div>

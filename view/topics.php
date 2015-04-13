@@ -19,7 +19,7 @@
 
 	<h3 class="content_headline">Create new topic</h3>
 	<div class="create_topics">
-		<form class="topics_form" action="">
+		<form class="content_form" action="">
 			<input class="text" type="text" name="title" placeholder="Topic">
 			<select class="select" name="category">
 				<option value='' disabled selected style='display:none;'>Please Choose Category</option>
@@ -34,7 +34,7 @@
 				}
 				?>
 			</select>
-			<input class="submit" type="submit" name="submit" formmethod="post" value="Post">
+			<input class="submit" type="submit" name="submit" formmethod="post" value="Create topic">
 		</form>
 	</div>
 
@@ -47,47 +47,61 @@
 
 			if ($validatorController->validateTitle($title)) {
 
-				// Save user in database
+				// Save topic in database
 				$topic = $topicController->create($title, $categoryController->getById($category), $loginController->getLoggedInUser());
 
-				// If no user is returned the username is already taken
+				// If no topic is returned the topicname is already taken
 				if (empty($topic)) {
 					echo "<div class='notice'>The title is already taken.</div>";
 				} else {
-					// Redirect to login page
+					// Redirect to topic page
 					header('Location: ' . PROJECT_ADDRESS . "topic/" . $topic->getId());
 				}
 			} else {
-				// Verify if username and password are valid
-				if (!$validatorController->validateTitle($title)) {
-					echo "<div class='notice'>The title is not valid.</div>";
-				}
+				echo "<div class='notice'>The title is not valid.</div>";
 			}
 		} else {
 			echo "<div class='notice'>Fill out all two fields.</div>";
 		}
-	}?>
+	}
 
-	<h3 class="content_headline">Your Topics</h3>
-	<?php
-	$topicArray = $topicController->getAllTopicByUser($loginController->getLoggedInUser());
+
+	// If current user is admin, show all topics
+	if (!$loginController->isAdmin()) {
+		?>
+		<h3 class="content_headline">All Topics</h3>
+		<?php
+		$topicArray = $topicController->getAll();
+
+	} else {
+		?>
+		<h3 class="content_headline">Your Topics</h3>
+		<?php
+		$topicArray = $topicController->getAllTopicByUser($loginController->getLoggedInUser());
+
+	}
 
 	if (!empty($topicArray)) {
+		?>
+		<div class="content_area">
+		<?php
 		foreach ($topicArray as $topic) {
 			?>
-			<a href="topic/<?php echo $topic->getId(); ?>">
-				<div class="topic">
-					<p class="topic_name">
+			<div class="content_element">
+				<a href="topic/<?php echo $topic->getId(); ?>">
+					<div class="title">
 						<?php echo $topic->getName(); ?>
-					</p>
-				</div>
-			</a>
+					</div>
+					<div class="cover">
+					</div>
+				</a>
+			</div>
 		<?php
 		}
 	} else {
 		?>
 		<div class="topic"">
-			No Topics so far.
+		                  No Topics so far.
 		</div>
 	<?php
 	}

@@ -64,7 +64,7 @@ if (!empty($term)) {
 	if(empty($entryArray) && empty($topicArray)){
 		?>
 		<div class="search_results-entries">
-			<h2 class="search_results-headline">No results found.</h2>
+			<div class="notice">No results found.</div>
 		</div>
 	<?php
 	}?>

@@ -19,9 +19,9 @@ if (!empty($entry_id) && is_int($entry_id)) {
 	}
 }
 
-if (!empty($entry)) {
+if (!empty($topic)) {
 	?>
-	<h2 class="sidebar_headline"><?php echo $entry->getName(); ?></h2>
+	<h2 class="sidebar_headline"><?php echo $topic->getName(); ?></h2>
 
 	<ul class="sidebar_list">
 		<?php
@@ -31,7 +31,10 @@ if (!empty($entry)) {
 				?>
 				<li class="sidebar_list_element">
 					<a href="<?php echo "entry/" . $entry->getId(); ?>">
-						<?php echo $entry->getName(); ?>
+						<div class="title">
+							<?php echo $entry->getTitle(); ?>
+						</div>
+						<div class="cover"></div>
 					</a>
 				</li>
 			<?php

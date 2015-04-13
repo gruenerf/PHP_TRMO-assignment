@@ -1,7 +1,7 @@
 <div class="register">
 	<h2 class="content_headline">Register</h2>
 
-	<form class="register_form" action="">
+	<form class="content_form" action="">
 		<input class="text" type="text" name="username" placeholder="Username">
 
 		<div class="description">(min.6 and max. 20 characters, a-z, A-Z, 0-9, _)</div>

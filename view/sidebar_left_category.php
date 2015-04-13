@@ -8,7 +8,10 @@
 			?>
 			<li class="sidebar_list_element">
 				<a href="<?php echo "category/" . $cat->getId(); ?>">
-					<?php echo $cat->getName(); ?>
+					<div class="title">
+						<?php echo $cat->getName(); ?>
+					</div>
+					<div class="cover"></div>
 				</a>
 			</li>
 		<?php

@@ -94,6 +94,7 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'login',
 			'register',
 			'home',
+			'users',
 			'test'
 		);
 
@@ -109,7 +110,8 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'settings' => 'user',
 			'entries' => 'user',
 			'topics' => 'user',
-			'categories' => 'user'
+			'categories' => 'user',
+			'users' => 'user'
 		);
 
 		$sideTemplate_right = array(
@@ -124,7 +126,8 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'settings' => 'logout',
 			'entries' => 'logout',
 			'topics' => 'logout',
-			'categories' => 'logout'
+			'categories' => 'logout',
+			'users' => 'logout'
 		);
 
 
@@ -171,14 +174,5 @@ class RouteController extends BaseController implements RouteControllerInterface
 		$this->setSidebarLeft($template_left);
 		$this->setSidebarRight($template_right);
 		$this->setParameter($parameter);
-	}
-
-	/**
-	 *  Returns if the current template is settings
-	 * @return bool
-	 */
-	public function isUser()
-	{
-		return $this->getView() === "user.php";
 	}
 }

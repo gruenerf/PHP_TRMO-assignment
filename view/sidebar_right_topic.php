@@ -19,7 +19,10 @@ if (!empty($topic)) {
 			?>
 			<li class="sidebar_list_element">
 				<a href="<?php echo "entry/" . $entry->getId(); ?>">
+					<div class="title">
 					<?php echo $entry->getTitle(); ?>
+					</div>
+					<div class="cover"></div>
 				</a>
 			</li>
 		<?php

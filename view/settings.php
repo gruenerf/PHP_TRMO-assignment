@@ -5,7 +5,7 @@
 
 		<h3 class="content_headline">Update Username/Password</h3>
 
-		<form class="register_form" action="">
+		<form class="content_form" action="">
 			<input class="text" type="text" name="username" placeholder="Username">
 
 			<div class="description">(min.6 and max. 20 characters, a-z, A-Z, 0-9, _)</div>

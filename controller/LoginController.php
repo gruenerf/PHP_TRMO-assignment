@@ -1,7 +1,8 @@
 <?php
 
 
-class LoginController implements LoginControllerInterface{
+class LoginController implements LoginControllerInterface
+{
 
 	private $userController;
 
@@ -22,15 +23,15 @@ class LoginController implements LoginControllerInterface{
 	 * Returns if user is logged in
 	 * @return bool
 	 */
-	public function isLoggedIn(){
-		if(isset($_SESSION['logged_in'])){
-			if($_SESSION['logged_in'] === true){
+	public function isLoggedIn()
+	{
+		if (isset($_SESSION['logged_in'])) {
+			if ($_SESSION['logged_in'] === true) {
 				return true;
-			}else{
+			} else {
 				return false;
 			}
-		}
-		else{
+		} else {
 			return false;
 		}
 	}
@@ -39,21 +40,40 @@ class LoginController implements LoginControllerInterface{
 	 * Returns logged in user
 	 * @return null
 	 */
-	public function getLoggedInUser(){
-		if(self::isLoggedIn()){
-			if (isset($_SESSION['user_id'])){
+	public function getLoggedInUser()
+	{
+		if (self::isLoggedIn()) {
+			if (isset($_SESSION['user_id'])) {
 				return $this->getUserController()->getById($_SESSION['user_id']);
 			}
-		}
-		else{
+		} else {
 			return null;
+		}
+	}
+
+	/**
+	 * Returns if current user is an admin
+	 * @return bool
+	 */
+	public function isAdmin()
+	{
+		$user = $this->getLoggedInUser();
+
+		if (!empty($user)) {
+			if ($user->getRole() === "admin") {
+				return true;
+			}
+			return false;
+		} else {
+			return false;
 		}
 	}
 
 	/**
 	 * Logs out a user
 	 */
-	public function logout(){
+	public function logout()
+	{
 		session_destroy();
 	}
 

@@ -11,62 +11,68 @@ if (!empty($parameter)) {
 
 if (!empty($category_id) && is_int($category_id)) {
 	$category = $categoryController->getById($category_id);
-	if(!empty($category)){
+	if (!empty($category)) {
 		$topicArray = $topicController->getAllTopicByCategory($category);
 	}
 }
 ?>
 
 <div class="category">
-	<h1 class="category-headline"><?php
+	<h2 class="content_headline"> <?php
 		if (!empty($category)) {
 			echo $category->getName();
 		} else {
 			echo "All Categories";
 		}
 		?>
-	</h1>
+	</h2>
 
-	<?php if (!empty($category)) {
-		if (!empty($topicArray)) {
-			foreach ($topicArray as $topic) {
-				?>
-				<a href="topic/<?php echo $topic->getId(); ?>">
-					<div class="topic">
-						<p class="topic_name">
-							<?php echo $topic->getName(); ?>
-						</p>
+	<div class="content_area">
+		<?php if (!empty($category)) {
+			if (!empty($topicArray)) {
+				foreach ($topicArray as $topic) {
+					?>
+					<div class="content_element">
+						<a href="topic/<?php echo $topic->getId(); ?>">
+							<div class="title">
+								<?php echo $topic->getName(); ?>
+							</div>
+							<div class="cover">
+							</div>
+						</a>
 					</div>
-				</a>
+				<?php
+				}
+			} else {
+				?>
+				<h2>
+					No topics so far.
+				</h2>
 			<?php
 			}
 		} else {
-			?>
-			<h2>
-				No topics so far.
-			</h2>
-		<?php
-		}
-	} else {
-		$categoryArray = $categoryController->getAll();
-		if (!empty($categoryArray)) {
-			foreach ($categoryArray as $category) {
-				?>
-				<a href="category/<?php echo $category->getId(); ?>">
-					<div class="category">
-						<p class="category_name">
-							<?php echo $category->getName(); ?>
-						</p>
+			$categoryArray = $categoryController->getAll();
+			if (!empty($categoryArray)) {
+				foreach ($categoryArray as $category) {
+					?>
+					<div class="content_element">
+						<a href="category/<?php echo $category->getId(); ?>">
+							<div class="title">
+								<?php echo $category->getName(); ?>
+							</div>
+							<div class="cover">
+							</div>
+						</a>
 					</div>
-				</a>
+				<?php
+				}
+			} else {
+				?>
+				<h2>
+					No categories so far.
+				</h2>
 			<?php
 			}
-		} else {
-			?>
-			<h2>
-				No categories so far.
-			</h2>
-		<?php
-		}
-	}?>
+		}?>
+	</div>
 </div>

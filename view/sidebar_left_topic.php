@@ -31,7 +31,10 @@ if (!empty($category)) {
 				?>
 				<li class="sidebar_list_element">
 					<a href="<?php echo "topic/" . $topic->getId(); ?>">
-						<?php echo $topic->getName(); ?>
+						<div class="title">
+							<?php echo $topic->getName(); ?>
+						</div>
+						<div class="cover"></div>
 					</a>
 				</li>
 			<?php
