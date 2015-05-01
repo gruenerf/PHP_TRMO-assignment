@@ -25,16 +25,42 @@ if (!empty($entry_id) && is_int($entry_id)) {
 		?>
 	</h2>
 
-	<?php if (!empty($entry)) { ?>
+	<div class="content_area">
 
-		<div class="entry_content">
-			<?php echo $entry->getContent(); ?>
-		</div>
+		<?php if (!empty($entry)) { ?>
+			<?php
+			if (!$loginController->isAdmin() &&
+				$loginController->getLoggedInUser() &&
+				$loginController->getLoggedInUser()->getId() === $entry->getUserId()
+			) {
+				?>
+				<form>
+					<button class="button_delete" id="delete_entry" type="submit" formmethod="post"
+					        name="delete"></button>
+				</form>
+			<?php
+			} elseif ($loginController->isAdmin()) {
+				?>
+				<form>
+					<button class="button_delete" id="delete_entry" type="submit" formmethod="post"
+					        name="delete"></button>
+				</form>
+			<?php
+			}
+			if (isset($_POST['delete'])) {
+				$entryController->delete($entry);
 
-	<?php
-	} else {
-		?>
-		<div class="content_area">
+				// Redirect to entries page
+				header('Location: ' . PROJECT_ADDRESS . "entries/deleted");
+			}
+			?>
+
+			<div class="entry_content">
+				<?php echo $entry->getContent(); ?>
+			</div>
+		<?php
+		} else {
+			?>
 			<?php
 			$entryArray = $entryController->getAll();
 			if (!empty($entryArray)) {
@@ -58,7 +84,7 @@ if (!empty($entry_id) && is_int($entry_id)) {
 					No Entries so far.
 				</h2>
 			<?php
-			}?>
-		</div>
-	<?php } ?>
+			}
+		} ?>
+	</div>
 </div>

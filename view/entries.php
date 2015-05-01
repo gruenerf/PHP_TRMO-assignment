@@ -3,10 +3,10 @@
 	$parameter = $routeController->getParameter();
 
 	if (!empty($parameter)) {
-		if ($parameter[0] === "newEntry") {
+		if ($parameter[0] === "deleted") {
 			?>
 			<div class="notice_top">
-				Entry was successfull!
+				Entry was deleted successfully!
 			</div>
 		<?php
 		}
@@ -74,7 +74,7 @@
 	}
 
 	// If current user is admin, show all entries
-	if (!$loginController->isAdmin()) {
+	if ($loginController->isAdmin()) {
 		?>
 		<h3 class="content_headline">All Entries</h3>
 		<?php
@@ -89,22 +89,23 @@
 	if (!empty($entryArray)) {
 		?>
 		<div class="content_area">
-		<?php foreach ($entryArray as $entry) {
-			?>
-			<div class="content_element">
-				<a href="entry/<?php echo $entry->getId(); ?>">
-					<div class="title">
-						<?php echo $entry->getTitle(); ?>
-					</div>
-					<div class="cover">
-					</div>
-				</a>
-			</div>
-		<?php
-		}
+			<?php foreach ($entryArray as $entry) {
+				?>
+				<div class="content_element">
+					<a href="entry/<?php echo $entry->getId(); ?>">
+						<div class="title">
+							<?php echo $entry->getTitle(); ?>
+						</div>
+						<div class="cover">
+						</div>
+					</a>
+				</div>
+			<?php } ?>
+		</div>
+	<?php
 	} else {
 		?>
-		<div class="entry">
+		<div class="no_content">
 			No Entries so far.
 		</div>
 	<?php

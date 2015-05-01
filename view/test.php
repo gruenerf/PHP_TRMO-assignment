@@ -5,6 +5,8 @@ $user = UserRepository::getInstance()->create('user1234567','password123','admin
 $category = CategoryRepository::getInstance()->create('category3', $user);
 $topic = TopicRepository::getInstance()->create('topic3', $category, $user);
 
+$loginController->logout();
+
 
 //$cat = CategoryRepository::getInstance()->getById(58);
 //$top = TopicRepository::getInstance()->getAllTopicByCategory($cat);

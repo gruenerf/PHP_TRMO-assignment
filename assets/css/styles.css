@@ -57,9 +57,13 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
+button:focus, input:focus {
+  outline: 0; }
+
 body {
   background-color: #fff;
-  font-family: "exo", "Arial", sans-serif; }
+  font-family: "exo", "Arial", sans-serif;
+  font-size: 16px; }
   body .header_container {
     z-index: 100;
     width: 100%;
@@ -99,6 +103,7 @@ body {
           font-size: 13px;
           line-height: 16px; }
         body .header_container .header .search .submit {
+          cursor: hand;
           border: 2px solid #fff;
           width: 80px;
           height: 30px;
@@ -137,6 +142,13 @@ body {
         body .content_container .content_wrapper .sidebar_right .sidebar_headline {
           font-size: 20px;
           text-align: center; }
+          body .content_container .content_wrapper .sidebar_left .sidebar_headline a,
+          body .content_container .content_wrapper .sidebar_right .sidebar_headline a {
+            text-decoration: none;
+            color: #000; }
+            body .content_container .content_wrapper .sidebar_left .sidebar_headline a:hover,
+            body .content_container .content_wrapper .sidebar_right .sidebar_headline a:hover {
+              color: #fe0400; }
           body .content_container .content_wrapper .sidebar_left .sidebar_headline:after,
           body .content_container .content_wrapper .sidebar_right .sidebar_headline:after {
             content: ' ';
@@ -155,19 +167,20 @@ body {
             body .content_container .content_wrapper .sidebar_right .sidebar_list .sidebar_list_element a {
               position: relative;
               display: block;
-              border: 1px solid #000;
+              border: 1px solid #fff;
               text-decoration: none;
-              overflow: hidden; }
+              overflow: hidden;
+              background: #000; }
               body .content_container .content_wrapper .sidebar_left .sidebar_list .sidebar_list_element a:hover .title,
               body .content_container .content_wrapper .sidebar_right .sidebar_list .sidebar_list_element a:hover .title {
-                color: #fff; }
+                color: #000; }
               body .content_container .content_wrapper .sidebar_left .sidebar_list .sidebar_list_element a:hover .cover,
               body .content_container .content_wrapper .sidebar_right .sidebar_list .sidebar_list_element a:hover .cover {
                 transform: translate(0px, 30px);
-                -webkit-transition-duration: 0.2s;
-                -moz-transition-duration: 0.2s;
-                -o-transition-duration: 0.2s;
-                transition-duration: 0.2s;
+                -webkit-transition-duration: 0.4s;
+                -moz-transition-duration: 0.4s;
+                -o-transition-duration: 0.4s;
+                transition-duration: 0.4s;
                 -webkit-transition-property: -webkit-transform;
                 -moz-transition-property: -moz-transform;
                 -o-transition-property: -o-transform;
@@ -177,8 +190,8 @@ body {
                 line-height: 20px;
                 padding: 4px 5px;
                 position: inherit;
-                transition: color 0.2s ease;
-                color: #000;
+                transition: color 0.3s ease;
+                color: #fff;
                 z-index: 2; }
               body .content_container .content_wrapper .sidebar_left .sidebar_list .sidebar_list_element a .cover,
               body .content_container .content_wrapper .sidebar_right .sidebar_list .sidebar_list_element a .cover {
@@ -187,9 +200,10 @@ body {
                 left: 0px;
                 width: 100%;
                 height: 30px;
-                background: #000; }
+                background: #fff; }
         body .content_container .content_wrapper .sidebar_left .user_buttons,
         body .content_container .content_wrapper .sidebar_right .user_buttons {
+          cursor: hand;
           width: 60px;
           background: #fff;
           border: 0;
@@ -201,6 +215,7 @@ body {
             width: 100%; }
           body .content_container .content_wrapper .sidebar_left .user_buttons p,
           body .content_container .content_wrapper .sidebar_right .user_buttons p {
+            font-size: 12px;
             margin-top: 5px;
             font-family: "exo", "Arial", sans-serif; }
       body .content_container .content_wrapper .sidebar_left {
@@ -212,7 +227,8 @@ body {
         width: 600px;
         margin: 0 auto;
         padding: 40px 20px;
-        text-align: center; }
+        text-align: center;
+        position: relative; }
         body .content_container .content_wrapper .content_middle .content_headline {
           display: inline-block;
           font-size: 20px; }
@@ -230,11 +246,26 @@ body {
           width: 500px;
           zoom: 1;
           /* For IE 6/7 (trigger hasLayout) */ }
+          body .content_container .content_wrapper .content_middle .content_area h2 {
+            line-height: 20px;
+            padding: 4px 5px; }
           body .content_container .content_wrapper .content_middle .content_area:after, body .content_container .content_wrapper .content_middle .content_area:before {
             content: "";
             display: table; }
           body .content_container .content_wrapper .content_middle .content_area:after {
             clear: both; }
+          body .content_container .content_wrapper .content_middle .content_area .button_delete {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            border: none;
+            width: 30px;
+            height: 30px;
+            background: none;
+            background-image: url("../img/delete.png");
+            background-size: cover; }
+            body .content_container .content_wrapper .content_middle .content_area .button_delete:hover {
+              opacity: .6; }
           body .content_container .content_wrapper .content_middle .content_area .content_element {
             display: inline-block;
             margin-right: 20px;
@@ -245,26 +276,30 @@ body {
             body .content_container .content_wrapper .content_middle .content_area .content_element a {
               position: relative;
               display: block;
-              border: 1px solid #000;
+              border: 1px solid #fff;
               width: 110px;
               height: 110px;
               text-decoration: none;
-              overflow: hidden; }
+              overflow: hidden;
+              background: #000; }
               body .content_container .content_wrapper .content_middle .content_area .content_element a .title {
+                max-width: 84px;
                 position: absolute;
                 bottom: 5px;
                 right: 5px;
                 transition: color 0.2s ease;
-                color: #000;
-                z-index: 2; }
+                color: #fff;
+                z-index: 2;
+                word-break: break-all;
+                text-align: right; }
               body .content_container .content_wrapper .content_middle .content_area .content_element a:hover .title {
-                color: #fff; }
+                color: #000; }
               body .content_container .content_wrapper .content_middle .content_area .content_element a:hover .cover {
-                transform: rotate(-90deg);
-                -webkit-transition-duration: 0.4s;
-                -moz-transition-duration: 0.4s;
-                -o-transition-duration: 0.4s;
-                transition-duration: 0.4s;
+                transform: rotate(-75deg);
+                -webkit-transition-duration: .4s;
+                -moz-transition-duration: .4s;
+                -o-transition-duration: .4s;
+                transition-duration: .4s;
                 -webkit-transition-property: -webkit-transform;
                 -moz-transition-property: -moz-transform;
                 -o-transition-property: -o-transform;
@@ -275,10 +310,12 @@ body {
                 right: 0;
                 width: 110px;
                 height: 110px;
-                background: #000;
+                background: #fff;
                 transform-origin: 0% 0%; }
         body .content_container .content_wrapper .content_middle .home {
-          position: relative; }
+          position: relative;
+          width: 500px;
+          margin: 0 auto; }
           body .content_container .content_wrapper .content_middle .home .content_sort_left, body .content_container .content_wrapper .content_middle .home .content_sort_right {
             top: 0; }
             body .content_container .content_wrapper .content_middle .home .content_sort_left p, body .content_container .content_wrapper .content_middle .home .content_sort_right p {
@@ -297,6 +334,8 @@ body {
                   width: 16px;
                   padding: 0;
                   line-height: 0; }
+                  body .content_container .content_wrapper .content_middle .home .content_sort_left form .sort_selection .sort_button:hover, body .content_container .content_wrapper .content_middle .home .content_sort_right form .sort_selection .sort_button:hover {
+                    opacity: .6; }
                   body .content_container .content_wrapper .content_middle .home .content_sort_left form .sort_selection .sort_button img, body .content_container .content_wrapper .content_middle .home .content_sort_right form .sort_selection .sort_button img {
                     width: 8px;
                     padding: 1px; }
@@ -306,11 +345,11 @@ body {
           body .content_container .content_wrapper .content_middle .home .content_sort_right {
             position: absolute;
             right: 0; }
-        body .content_container .content_wrapper .content_middle h3.content_headline {
+        body .content_container .content_wrapper .content_middle h3.content_headline, body .content_container .content_wrapper .content_middle .no_content {
           padding-top: 20px;
           display: block;
           font-size: 16px; }
-          body .content_container .content_wrapper .content_middle h3.content_headline:after {
+          body .content_container .content_wrapper .content_middle h3.content_headline:after, body .content_container .content_wrapper .content_middle .no_content:after {
             margin-top: 0px;
             content: ' ';
             border: 0; }
@@ -328,6 +367,8 @@ body {
             font-family: "exo", "Arial", sans-serif;
             font-size: 13px;
             line-height: 16px; }
+          body .content_container .content_wrapper .content_middle .content_form .submit, body .content_container .content_wrapper .content_middle .content_form .select {
+            cursor: hand; }
           body .content_container .content_wrapper .content_middle .content_form .description {
             margin-bottom: 10px; }
         body .content_container .content_wrapper .content_middle .login_register {
@@ -357,12 +398,22 @@ body {
         body .content_container .content_wrapper .content_middle .create_entry .textarea, body .content_container .content_wrapper .content_middle .create_topics .textarea, body .content_container .content_wrapper .content_middle .create_categories .textarea {
           resize: none;
           height: 100px; }
+        body .content_container .content_wrapper .content_middle .settings .button_delete_user {
+          padding: 6px 20px;
+          border: none;
+          background: none;
+          color: #fff;
+          font-family: "exo", "Arial", sans-serif;
+          font-size: 16px;
+          background: #000; }
+          body .content_container .content_wrapper .content_middle .settings .button_delete_user:hover {
+            background: #fe0400; }
         body .content_container .content_wrapper .content_middle .create_categories .submit {
           width: 248px; }
         body .content_container .content_wrapper .content_middle .notice {
           text-align: center;
           border: 1px dashed #000;
-          margin: 10px auto 0;
+          margin: 20px auto 0;
           padding: 5px;
           max-width: 500px; }
         body .content_container .content_wrapper .content_middle .notice_top {
@@ -371,6 +422,30 @@ body {
           margin: 0px auto 10px;
           padding: 5px;
           max-width: 500px; }
+        body .content_container .content_wrapper .content_middle .user_table, body .content_container .content_wrapper .content_middle .summary_table {
+          width: 100%;
+          text-align: center; }
+          body .content_container .content_wrapper .content_middle .user_table .table_head, body .content_container .content_wrapper .content_middle .summary_table .table_head {
+            line-height: 24px; }
+            body .content_container .content_wrapper .content_middle .user_table .table_head td, body .content_container .content_wrapper .content_middle .summary_table .table_head td {
+              font-size: 18px; }
+          body .content_container .content_wrapper .content_middle .user_table tr, body .content_container .content_wrapper .content_middle .summary_table tr {
+            border-bottom: 1px dashed #000;
+            line-height: 22px; }
+            body .content_container .content_wrapper .content_middle .user_table tr td, body .content_container .content_wrapper .content_middle .summary_table tr td {
+              border-right: 1px dashed #000;
+              vertical-align: middle; }
+              body .content_container .content_wrapper .content_middle .user_table tr td:last-child, body .content_container .content_wrapper .content_middle .summary_table tr td:last-child {
+                border-right: none; }
+              body .content_container .content_wrapper .content_middle .user_table tr td .table_check, body .content_container .content_wrapper .content_middle .summary_table tr td .table_check {
+                border: none;
+                width: 18px;
+                height: 18px;
+                background: none;
+                background-image: url("../img/delete.png");
+                background-size: cover; }
+                body .content_container .content_wrapper .content_middle .user_table tr td .table_check:hover, body .content_container .content_wrapper .content_middle .summary_table tr td .table_check:hover {
+                  opacity: .6; }
       body .content_container .content_wrapper .sidebar_right {
         right: 0;
         padding-left: 10px; }

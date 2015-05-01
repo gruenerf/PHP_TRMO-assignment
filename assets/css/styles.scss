@@ -79,9 +79,14 @@ html {
 	box-sizing: inherit;
 }
 
+button:focus, input:focus{
+	outline: 0;
+}
+
 body {
 	background-color: $color_bright;
 	font-family: $font;
+	font-size: 16px;
 
 	.header_container {
 		z-index: 100;
@@ -131,6 +136,7 @@ body {
 				}
 
 				.submit {
+					cursor: hand;
 					border: 2px solid $color_bright;
 					width: 80px;
 					height: 30px;
@@ -183,6 +189,15 @@ body {
 					font-size: 20px;
 					text-align: center;
 
+					a {
+						text-decoration: none;
+						color: $color_dark;
+
+						&:hover {
+							color: $color_link;
+						}
+					}
+
 					&:after {
 						content: ' ';
 						display: block;
@@ -202,20 +217,21 @@ body {
 						a {
 							position: relative;
 							display: block;
-							border: 1px solid $color_dark;
+							border: 1px solid $color_bright;
 							text-decoration: none;
 							overflow: hidden;
+							background: $color_dark;
 
 							&:hover {
 								.title {
-									color: $color_bright;
+									color: $color_dark;
 								}
 								.cover {
-									transform: translate(0px,30px);
-									-webkit-transition-duration: 0.2s;
-									-moz-transition-duration: 0.2s;
-									-o-transition-duration: 0.2s;
-									transition-duration: 0.2s;
+									transform: translate(0px, 30px);
+									-webkit-transition-duration: 0.4s;
+									-moz-transition-duration: 0.4s;
+									-o-transition-duration: 0.4s;
+									transition-duration: 0.4s;
 
 									-webkit-transition-property: -webkit-transform;
 									-moz-transition-property: -moz-transform;
@@ -228,8 +244,8 @@ body {
 								line-height: 20px;
 								padding: 4px 5px;
 								position: inherit;
-								transition: color 0.2s ease;
-								color: $color_dark;
+								transition: color 0.3s ease;
+								color: $color_bright;
 								z-index: 2;
 							}
 
@@ -239,13 +255,14 @@ body {
 								left: 0px;
 								width: 100%;
 								height: 30px;
-								background: $color_dark;
+								background: $color_bright;
 							}
 						}
 					}
 				}
 
 				.user_buttons {
+					cursor: hand;
 					width: 60px;
 					background: $color_bright;
 					border: 0;
@@ -258,6 +275,7 @@ body {
 					}
 
 					p {
+						font-size: 12px;
 						margin-top: 5px;
 						font-family: $font;
 					}
@@ -276,6 +294,7 @@ body {
 				margin: 0 auto;
 				padding: $distance_top 20px;
 				text-align: center;
+				position: relative;
 
 				.content_headline {
 					display: inline-block;
@@ -290,7 +309,7 @@ body {
 					}
 				}
 
-				.entry_content{
+				.entry_content {
 					margin: 20px auto 0;
 					width: $content_max_width;
 				}
@@ -300,6 +319,11 @@ body {
 					width: $content_max_width;
 					zoom: 1; /* For IE 6/7 (trigger hasLayout) */
 
+					h2 {
+						line-height: 20px;
+						padding: 4px 5px;
+					}
+
 					&:after,
 					&:before {
 						content: "";
@@ -308,6 +332,22 @@ body {
 
 					&:after {
 						clear: both;
+					}
+
+					.button_delete {
+						position: absolute;
+						top: 20px;
+						right: 20px;
+						border: none;
+						width: 30px;
+						height: 30px;
+						background: none;
+						background-image: url("../img/delete.png");
+						background-size: cover;
+
+						&:hover {
+							opacity: .6;
+						}
 					}
 
 					.content_element {
@@ -323,31 +363,35 @@ body {
 						a {
 							position: relative;
 							display: block;
-							border: 1px solid $color_dark;
+							border: 1px solid $color_bright;
 							width: 110px;
 							height: 110px;
 							text-decoration: none;
 							overflow: hidden;
+							background: $color_dark;
 
 							.title {
+								max-width: 84px;
 								position: absolute;
 								bottom: 5px;
 								right: 5px;
 								transition: color 0.2s ease;
-								color: $color_dark;
+								color: $color_bright;
 								z-index: 2;
+								word-break: break-all;
+								text-align: right;
 							}
 
 							&:hover {
 								.title {
-									color: $color_bright;
+									color: $color_dark;
 								}
 								.cover {
-									transform: rotate(-90deg);
-									-webkit-transition-duration: 0.4s;
-									-moz-transition-duration: 0.4s;
-									-o-transition-duration: 0.4s;
-									transition-duration: 0.4s;
+									transform: rotate(-75deg);
+									-webkit-transition-duration: .4s;
+									-moz-transition-duration: .4s;
+									-o-transition-duration: .4s;
+									transition-duration: .4s;
 
 									-webkit-transition-property: -webkit-transform;
 									-moz-transition-property: -moz-transform;
@@ -362,7 +406,7 @@ body {
 								right: 0;
 								width: 110px;
 								height: 110px;
-								background: $color_dark;
+								background: $color_bright;
 								transform-origin: 0% 0%;
 							}
 						}
@@ -372,6 +416,8 @@ body {
 
 				.home {
 					position: relative;
+					width: $content_max_width;
+					margin: 0 auto;
 
 					.content_sort_left, .content_sort_right {
 						top: 0;
@@ -396,10 +442,15 @@ body {
 									padding: 0;
 									line-height: 0;
 
+									&:hover {
+										opacity: .6;
+									}
+
 									img {
 										width: 8px;
 										padding: 1px;
 									}
+
 								}
 							}
 
@@ -418,7 +469,7 @@ body {
 
 				}
 
-				h3.content_headline {
+				h3.content_headline, .no_content {
 					padding-top: 20px;
 					display: block;
 					font-size: 16px;
@@ -445,6 +496,10 @@ body {
 						font-family: $font;
 						font-size: 13px;
 						line-height: 16px;
+					}
+
+					.submit, .select {
+						cursor: hand;
 					}
 
 					.description {
@@ -500,6 +555,22 @@ body {
 					}
 				}
 
+				.settings{
+					.button_delete_user{
+						padding: 6px 20px;
+						border: none;
+						background: none;
+						color: $color_bright;
+						font-family: $font;
+						font-size: 16px;
+						background: $color_dark;
+
+						&:hover{
+							background: $color_link;
+						}
+					}
+				}
+
 				.create_categories {
 					.submit {
 						width: 248px;
@@ -509,7 +580,7 @@ body {
 				.notice {
 					text-align: center;
 					border: 1px dashed $color_dark;
-					margin: 10px auto 0;
+					margin: 20px auto 0;
 					padding: 5px;
 					max-width: $content_max_width;
 				}
@@ -520,6 +591,45 @@ body {
 					margin: 0px auto 10px;
 					padding: 5px;
 					max-width: $content_max_width;
+				}
+
+				.user_table, .summary_table {
+					width: 100%;
+					text-align: center;
+
+					.table_head {
+						line-height: 24px;
+						td {
+							font-size: 18px;
+						}
+					}
+
+					tr {
+						border-bottom: 1px dashed $color_dark;
+						line-height: 22px;
+						td {
+							border-right: 1px dashed $color_dark;
+							vertical-align: middle;
+
+							&:last-child {
+								border-right: none;
+							}
+
+							.table_check{
+								border: none;
+								width: 18px;
+								height: 18px;
+								background: none;
+								background-image: url("../img/delete.png");
+								background-size: cover;
+
+								&:hover {
+									opacity: .6;
+								}
+							}
+						}
+
+					}
 				}
 			}
 

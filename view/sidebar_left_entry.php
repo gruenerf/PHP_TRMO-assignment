@@ -21,7 +21,11 @@ if (!empty($entry_id) && is_int($entry_id)) {
 
 if (!empty($topic)) {
 	?>
-	<h2 class="sidebar_headline"><?php echo $topic->getName(); ?></h2>
+	<h2 class="sidebar_headline">
+		<a href="topic/<?php echo $topic->getId(); ?>">
+			<?php echo $topic->getName(); ?>
+		</a>
+	</h2>
 
 	<ul class="sidebar_list">
 		<?php

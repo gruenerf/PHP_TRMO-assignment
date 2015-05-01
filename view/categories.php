@@ -3,10 +3,10 @@
 	$parameter = $routeController->getParameter();
 
 	if (!empty($parameter)) {
-		if ($parameter[0] === "newCategory") {
+		if ($parameter[0] === "deleted") {
 			?>
-			<div class="newCategory">
-				Topic was successfully created!
+			<div class="notice_top">
+				Category was deleted successfully!
 			</div>
 		<?php
 		}
@@ -59,23 +59,24 @@
 		?>
 
 		<div class="content_area">
-		<?php foreach ($categoryArray as $category) {
-			?>
-			<div class="content_element">
-				<a href="category/<?php echo $category->getId(); ?>">
-					<div class="title">
-						<?php echo $category->getName(); ?>
-					</div>
-					<div class="cover">
-					</div>
-				</a>
-			</div>
-		<?php
-		}
+			<?php foreach ($categoryArray as $category) {
+				?>
+				<div class="content_element">
+					<a href="category/<?php echo $category->getId(); ?>">
+						<div class="title">
+							<?php echo $category->getName(); ?>
+						</div>
+						<div class="cover">
+						</div>
+					</a>
+				</div>
+			<?php } ?>
+		</div>
+	<?php
 	} else {
 		?>
-		<div class="category"">
-		                     No Categories so far.
+		<div class="no_content">
+			No Categories so far.
 		</div>
 	<?php
 	}

@@ -16,6 +16,12 @@ if (!$loginController->isLoggedIn()) {
 				Logout successful. We hope to see you again quite soon :)
 			</div>
 		<?php
+		} elseif ($parameter[0] === "delete") {
+			?>
+			<div class="notice_top">
+				Account was deleted successfully!
+			</div>
+		<?php
 		}
 	}
 	?>

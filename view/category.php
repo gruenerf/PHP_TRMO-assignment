@@ -29,6 +29,22 @@ if (!empty($category_id) && is_int($category_id)) {
 
 	<div class="content_area">
 		<?php if (!empty($category)) {
+
+			if ($loginController->isAdmin()) {
+				?>
+				<form>
+					<button id="delete_category" class="button_delete" type="submit" formmethod="post" name="delete"></button>
+				</form>
+			<?php
+			}
+
+			if (isset($_POST['delete'])) {
+				$categoryController->delete($category);
+
+				// Redirect to entries page
+				header('Location: ' . PROJECT_ADDRESS . "categories/deleted");
+			}
+
 			if (!empty($topicArray)) {
 				foreach ($topicArray as $topic) {
 					?>

@@ -159,7 +159,7 @@ class UserRepository implements UserRepositoryInterface
 			$row = $rows[0];
 			$user = new User($row['name'], $row['password'], $row['role'], $row['id']);
 
-			if(password_verify($password,$user->getPassword())){
+			if (password_verify($password, $user->getPassword())) {
 
 				// Store user in session
 				$_SESSION['logged_in'] = true;
@@ -168,11 +168,42 @@ class UserRepository implements UserRepositoryInterface
 				$_SESSION['user_id'] = $user->getId();
 
 				return true;
-			}
-			else{
+			} else {
 				return false;
 			}
 
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Makes a user to an admin
+	 * @param UserModel $user
+	 * @return bool
+	 */
+	public function makeAdmin(User $user)
+	{
+		if ($user->getRole() !== 'admin') {
+			$user->setRole('admin');
+			$user->save();
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Makes a user to an admin
+	 * @param UserModel $user
+	 * @return bool
+	 */
+	public function makeWriter(User $user)
+	{
+		if ($user->getRole() !== 'writer') {
+			$user->setRole('writer');
+			$user->save();
+			return true;
 		} else {
 			return false;
 		}

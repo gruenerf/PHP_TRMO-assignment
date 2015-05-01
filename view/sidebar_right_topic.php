@@ -7,7 +7,7 @@ if (!empty($topic)) {
 
 <h2 class="sidebar_headline">
 	<?php if (!empty($topic)) {
-		echo $topic->getName();
+		echo "<a href='topic/".$topic->getId()."'>".$topic->getName()."</a>";
 	} else {
 		echo "No topics so far.";
 	} ?></h2>

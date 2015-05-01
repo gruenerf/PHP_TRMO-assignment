@@ -9,59 +9,72 @@ if (!empty($parameter)) {
 	// Sanitize post string
 	$term = BaseController::fixString($_POST["searchtext"]);
 	// Put post as parameter in url
-	header('Location: ' . PROJECT_ADDRESS."search/" . $term);
+	header('Location: ' . PROJECT_ADDRESS . "search/" . $term);
 	// Make sure the code terminates
 	die();
 } else {
 	$term = null;
 }
 
-if (!empty($term)) {
-	$topicArray = $topicController->searchForTopic($term);
-	$entryArray = $entryController->searchForEntry($term);
-}
+
 ?>
 
 <div class="search">
-	<h1 class="content_headline">Search Results</h1>
+	<h2 class="content_headline">Search Results</h2>
+
+	<?php if (strlen($term) < 3) { ?>
+		<div class="search_results-entries">
+			<div class="notice">The searchterm has to be at least 3 characters.</div>
+		</div>
+		<?php die();
+	}
+
+	if (!empty($term)) {
+		$topicArray = $topicController->searchForTopic($term);
+		$entryArray = $entryController->searchForEntry($term);
+	}
+	?>
 
 	<?php if (!empty($topicArray)) { ?>
-
-		<div class="search_results-topics">
-			<h2 class="search_results-headline">Topics</h2>
+		<h3 class="content_headline">Topics</h3>
+		<div class="content_area">
 			<?php foreach ($topicArray as $topic) { ?>
-				<a href="topic/<?php echo $topic->getId(); ?>">
-					<div class="topic">
-						<p class="topic_name">
+				<div class="content_element">
+					<a href="topic/<?php echo $topic->getId(); ?>">
+						<div class="title">
 							<?php echo $topic->getName(); ?>
-						</p>
-					</div>
-				</a>
+						</div>
+						<div class="cover">
+						</div>
+					</a>
+				</div>
 			<?php
 			}?>
-
 		</div>
-	<?php }
+	<?php
+	}
 
-	if (!empty($entryArray)) { ?>
-
-		<div class="search_results-entries">
-			<h2 class="search_results-headline">Entries</h2>
+	if (!empty($entryArray)) {
+		?>
+		<h3 class="content_headline">Entries</h3>
+		<div class="content_area">
 			<?php foreach ($entryArray as $entry) { ?>
-				<a href="entry/<?php echo $entry->getId(); ?>">
-					<div class="entry">
-						<p class="entry_name">
+				<div class="content_element">
+					<a href="entry/<?php echo $entry->getId(); ?>">
+						<div class="title">
 							<?php echo $entry->getTitle(); ?>
-						</p>
-					</div>
-				</a>
+						</div>
+						<div class="cover">
+						</div>
+					</a>
+				</div>
 			<?php
 			}?>
-
 		</div>
-	<?php }
+	<?php
+	}
 
-	if(empty($entryArray) && empty($topicArray)){
+	if (empty($entryArray) && empty($topicArray)) {
 		?>
 		<div class="search_results-entries">
 			<div class="notice">No results found.</div>

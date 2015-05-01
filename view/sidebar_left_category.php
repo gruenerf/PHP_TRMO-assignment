@@ -1,4 +1,4 @@
-<h2 class="sidebar_headline">Categories</h2>
+<h2 class="sidebar_headline"><a href="category">Categories</a></h2>
 
 <ul class="sidebar_list">
 	<?php

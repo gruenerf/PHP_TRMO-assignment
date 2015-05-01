@@ -11,4 +11,8 @@ interface UserControllerInterface extends BaseControllerInterface
 	public function delete(User $user);
 
 	public function validateUser($username, $password);
-} 
+
+	public function makeAdmin(User $user);
+
+	public function makeWriter(User $user);
+}

@@ -91,6 +91,7 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'entries',
 			'settings',
 			'search',
+			'summary',
 			'login',
 			'register',
 			'home',
@@ -104,10 +105,10 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'login' => 'category',
 			'register' => 'category',
 			'home' => 'category',
-			'test' => 'category',
 			'topic' => 'topic',
 			'entry' => 'entry',
 			'settings' => 'user',
+			'summary' => 'user',
 			'entries' => 'user',
 			'topics' => 'user',
 			'categories' => 'user',
@@ -120,10 +121,10 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'login' => 'topic',
 			'register' => 'topic',
 			'home' => 'topic',
-			'test' => 'topic',
 			'topic' => 'topic',
 			'entry' => 'topic',
 			'settings' => 'logout',
+			'summary' => 'logout',
 			'entries' => 'logout',
 			'topics' => 'logout',
 			'categories' => 'logout',
@@ -162,10 +163,12 @@ class RouteController extends BaseController implements RouteControllerInterface
 					array_push($parameter, $url_parts[$i]);
 				}
 			} else {
-				$title .= " | Home";
-				$template = "home.php";
-				$template_left = 'sidebar_left_' . $sideTemplate_left['home'] . ".php";
-				$template_right = 'sidebar_right_' . $sideTemplate_right['home'] . ".php";
+				if($i < 3){
+					$title .= " | Home";
+					$template = "home.php";
+					$template_left = 'sidebar_left_' . $sideTemplate_left['home'] . ".php";
+					$template_right = 'sidebar_right_' . $sideTemplate_right['home'] . ".php";
+				}
 			}
 		}
 

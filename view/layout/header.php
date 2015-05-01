@@ -15,7 +15,6 @@
 			<?php } else { ?>
 				<img id="login_img" title="User" src="<?php echo IMG_PATH; ?>login.png">
 			<?php } ?>
-
 		</a>
 	</div>
 </div>

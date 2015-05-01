@@ -32,6 +32,29 @@ if (!empty($topic_id) && is_int($topic_id)) {
 
 	<div class="content_area">
 		<?php if (!empty($topic)) {
+
+			if (!$loginController->isAdmin() &&
+				$loginController->getLoggedInUser() &&
+				$loginController->getLoggedInUser()->getId() === $topic->getUserId()) {
+				?>
+				<form>
+					<button class="button_delete" id="delete_topic" type="submit" formmethod="post" name="delete"></button>
+				</form>
+			<?php
+			} elseif ($loginController->isAdmin()) {
+				?>
+				<form>
+					<button class="button_delete" id="delete_topic" type="submit" formmethod="post" name="delete"></button>
+				</form>
+			<?php
+			}
+			if (isset($_POST['delete'])) {
+				$topicController->delete($topic);
+
+				// Redirect to entries page
+				header('Location: ' . PROJECT_ADDRESS . "topics/deleted");
+			}
+
 			if (!empty($entryArray)) {
 				foreach ($entryArray as $entry) {
 					?>

@@ -1,4 +1,18 @@
-<?php if ($loginController->isLoggedIn()) { ?>
+<?php if ($loginController->isLoggedIn()) {
+
+	// Get url parameter
+	$parameter = $routeController->getParameter();
+
+	if (!empty($parameter)) {
+		if ($parameter[0] === "updated") {
+			?>
+			<div class="notice_top">
+				User account updated successfully!
+			</div>
+		<?php
+		}
+	}
+	?>
 
 	<div class="settings">
 		<h2 class="content_headline">Settings</h2>
@@ -15,6 +29,14 @@
 			<div class="description">(min.6 and max. 20 characters, a-z, A-Z, 0-9, _)</div>
 
 			<input class="submit" type="submit" name="submit" formmethod="post" value="Update">
+		</form>
+
+		<h3 class="content_headline">Danger Zone</h3>
+
+		<form class="content_form" action="">
+			<form>
+				<button id="delete_account" class="button_delete_user" type="submit" formmethod="post" name="delete">Delete Account</button>
+			</form>
 		</form>
 	</div>
 
@@ -45,7 +67,7 @@
 					// Redirect to login page
 
 					$_SESSION["user_name"] = $username;
-					header('Location: ' . PROJECT_ADDRESS . "user/updated");
+					header('Location: ' . PROJECT_ADDRESS . "settings/updated");
 				}
 			} else {
 				// Verify if username and password are valid
@@ -59,6 +81,11 @@
 		} else {
 			echo "<div class='notice'>Fill out both fields.</div>";
 		}
+	}elseif(isset($_POST['delete'])){
+		$user = $loginController->getLoggedInUser();
+		$loginController->logout();
+		$userController->delete($user);
+		header('Location: ' . PROJECT_ADDRESS . "login/delete");
 	}
 } else {
 	// Redirect to main

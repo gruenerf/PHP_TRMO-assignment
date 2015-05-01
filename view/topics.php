@@ -3,10 +3,10 @@
 	$parameter = $routeController->getParameter();
 
 	if (!empty($parameter)) {
-		if ($parameter[0] === "newTopic") {
+		if ($parameter[0] === "deleted") {
 			?>
-			<div class="newTopic">
-				Topic was successfully created!
+			<div class="notice_top">
+				Topic was deleted successfully!
 			</div>
 		<?php
 		}
@@ -28,7 +28,7 @@
 				if (!empty($categoryArray)) {
 					foreach ($categoryArray as $category) {
 						?>
-						<option value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>s
+						<option value="<?php echo $category->getId(); ?>"><?php echo $category->getName(); ?></option>
 					<?php
 					}
 				}
@@ -67,7 +67,7 @@
 
 
 	// If current user is admin, show all topics
-	if (!$loginController->isAdmin()) {
+	if ($loginController->isAdmin()) {
 		?>
 		<h3 class="content_headline">All Topics</h3>
 		<?php
@@ -96,12 +96,13 @@
 					</div>
 				</a>
 			</div>
-		<?php
-		}
+		<?php } ?>
+		</div>
+	<?php
 	} else {
 		?>
-		<div class="topic"">
-		                  No Topics so far.
+		<div class="no_content">
+			No Topics so far.
 		</div>
 	<?php
 	}
