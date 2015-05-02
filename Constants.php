@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * CHANGE
+ */
+
 // Define Database connection
 define('SERVERNAME', 'localhost');
 define('USERNAME', 'root');
