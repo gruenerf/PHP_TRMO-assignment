@@ -25,10 +25,10 @@ try {
 			--
 
 			INSERT INTO `category` (`id`, `timestamp`, `name`, `user_id`) VALUES
-			(7, '2015-04-30 21:57:36', 'Animals', 103),
-			(8, '2015-04-30 21:57:45', 'Food', 103),
-			(9, '2015-04-30 21:57:55', 'Technology', 103),
-			(11, '2015-04-30 21:58:33', 'Music', 103);
+			(7, '2015-04-30 19:57:36', 'Animals', 104),
+			(8, '2015-04-30 19:57:45', 'Food', 104),
+			(9, '2015-04-30 19:57:55', 'Technology', 104),
+			(11, '2015-04-30 19:58:33', 'Music', 104);
 
 			-- --------------------------------------------------------
 
@@ -50,15 +50,15 @@ try {
 			--
 
 			INSERT INTO `entry` (`id`, `timestamp`, `title`, `content`, `user_id`, `topic_id`) VALUES
-			(1, '2015-04-30 22:02:15', 'Guitars', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 12),
-			(2, '2015-04-30 22:06:34', 'Sssssssss', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 6),
-			(3, '2015-04-30 22:06:43', 'Panda', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 7),
-			(4, '2015-04-30 22:06:57', 'Nomnomnom', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 9),
-			(5, '2015-04-30 22:07:09', 'Moooooh!', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 10),
-			(6, '2015-04-30 22:07:19', 'Programming', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 103, 11),
-			(7, '2015-05-01 17:11:53', 'Drums', 'ba-dum-tss', 104, 12),
-			(8, '2015-05-02 19:19:59', 'Grizzly', 'Roaaaarrrrr', 104, 7),
-			(9, '2015-05-02 19:20:19', 'Icebear', 'Roaaaar, but cold.', 104, 7);
+			(1, '2015-04-30 20:02:15', 'Guitars', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 12),
+			(2, '2015-04-30 20:06:34', 'Sssssssss', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 6),
+			(3, '2015-04-30 20:06:43', 'Panda', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 7),
+			(4, '2015-04-30 20:06:57', 'Nomnomnom', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 9),
+			(5, '2015-04-30 20:07:09', 'Moooooh!', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 10),
+			(6, '2015-04-30 20:07:19', 'Programming', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.', 104, 11),
+			(7, '2015-05-01 15:11:53', 'Drums', 'ba-dum-tss', 104, 12),
+			(8, '2015-05-02 17:19:59', 'Grizzly', 'Roaaaarrrrr', 104, 7),
+			(9, '2015-05-02 17:20:19', 'Icebear', 'Roaaaar, but cold.', 104, 7);
 
 			-- --------------------------------------------------------
 
@@ -70,7 +70,7 @@ try {
 			`id` int(11) NOT NULL,
 			  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			  `errormessage` varchar(400) NOT NULL
-			) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+			) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 			-- --------------------------------------------------------
 
@@ -91,12 +91,12 @@ try {
 			--
 
 			INSERT INTO `topic` (`id`, `timestamp`, `name`, `category_id`, `user_id`) VALUES
-			(6, '2015-04-30 21:58:59', 'Snakes', 7, 103),
-			(7, '2015-04-30 21:59:18', 'Bears', 7, 103),
-			(9, '2015-04-30 21:59:54', 'Vegetables', 8, 103),
-			(10, '2015-04-30 22:00:22', 'Meat', 8, 103),
-			(11, '2015-04-30 22:00:37', 'IT', 9, 103),
-			(12, '2015-04-30 22:01:09', 'Rock', 11, 103);
+			(6, '2015-04-30 19:58:59', 'Snakes', 7, 104),
+			(7, '2015-04-30 19:59:18', 'Bears', 7, 104),
+			(9, '2015-04-30 19:59:54', 'Vegetables', 8, 104),
+			(10, '2015-04-30 20:00:22', 'Meat', 8, 104),
+			(11, '2015-04-30 20:00:37', 'IT', 9, 104),
+			(12, '2015-04-30 20:01:09', 'Rock', 11, 104);
 
 			-- --------------------------------------------------------
 
@@ -117,8 +117,7 @@ try {
 			--
 
 			INSERT INTO `user` (`id`, `timestamp`, `name`, `password`, `role`) VALUES
-			(103, '2015-04-30 21:40:37', 'Ferdinand', '$2y$10$1R4qU67lFBs8v32QdUIqNeCilt5r5qp.dMmAPB6eBjEzXW33.Qfr.', 'admin'),
-			(104, '2015-05-01 16:59:29', 'admin1', '$2y$10\$r0ujFYDkoQ.2E8Hr6RQaeuoUbaVOe0MeWH7fKpjL4Cxkh6/QupT9i', 'admin');
+			(104, '2015-05-01 14:59:29', 'admin1', '$2y$10\$r0ujFYDkoQ.2E8Hr6RQaeuoUbaVOe0MeWH7fKpjL4Cxkh6/QupT9i', 'admin');
 
 			--
 			-- Indexes for dumped tables
@@ -172,7 +171,7 @@ try {
 			-- AUTO_INCREMENT for table `error`
 			--
 			ALTER TABLE `error`
-			MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
+			MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 			--
 			-- AUTO_INCREMENT for table `topic`
 			--
