@@ -1,4 +1,31 @@
-<?php if ($loginController->isLoggedIn()) {
+<?php
+if (isset($_POST['submit']) && $loginController->isLoggedIn()) {
+	// Sanitize userinput
+	if (isset($_POST['title']) && isset($_POST['category'])) {
+		$category = BaseController::fixString($_POST['category']);
+		$title = BaseController::fixString($_POST['title']);
+
+		if ($validatorController->validateTitle($title)) {
+
+			// Save topic in database
+			$topic = $topicController->create($title, $categoryController->getById($category), $loginController->getLoggedInUser());
+
+			// If no topic is returned the topicname is already taken
+			if (empty($topic)) {
+				echo "<div class='notice'>The title is already taken.</div>";
+			} else {
+				// Redirect to topic page
+				header('Location: ' . PROJECT_ADDRESS . "topic/" . $topic->getId());
+			}
+		} else {
+			echo "<div class='notice'>The title is not valid.</div>";
+		}
+	} else {
+		echo "<div class='notice'>Fill out all two fields.</div>";
+	}
+}
+
+if ($loginController->isLoggedIn()) {
 	// Get url parameter
 	$parameter = $routeController->getParameter();
 
@@ -39,32 +66,6 @@
 	</div>
 
 	<?php
-	if (isset($_POST['submit'])) {
-		// Sanitize userinput
-		if (isset($_POST['title']) && isset($_POST['category'])) {
-			$category = BaseController::fixString($_POST['category']);
-			$title = BaseController::fixString($_POST['title']);
-
-			if ($validatorController->validateTitle($title)) {
-
-				// Save topic in database
-				$topic = $topicController->create($title, $categoryController->getById($category), $loginController->getLoggedInUser());
-
-				// If no topic is returned the topicname is already taken
-				if (empty($topic)) {
-					echo "<div class='notice'>The title is already taken.</div>";
-				} else {
-					// Redirect to topic page
-					header('Location: ' . PROJECT_ADDRESS . "topic/" . $topic->getId());
-				}
-			} else {
-				echo "<div class='notice'>The title is not valid.</div>";
-			}
-		} else {
-			echo "<div class='notice'>Fill out all two fields.</div>";
-		}
-	}
-
 
 	// If current user is admin, show all topics
 	if ($loginController->isAdmin()) {

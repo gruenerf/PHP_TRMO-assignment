@@ -1,5 +1,8 @@
 <?php
 
+//  Turn of error reporting
+error_reporting(0);
+
 include_once("constants.php");
 
 // Start session

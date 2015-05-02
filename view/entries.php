@@ -1,4 +1,12 @@
-<?php if ($loginController->isLoggedIn()) {
+<?php
+
+if (isset($_POST['logout'])) {
+	$loginController->logout();
+	// Redirect to login page
+	header('Location: ' . PROJECT_ADDRESS . "login/logout");
+}
+
+if ($loginController->isLoggedIn()) {
 	// Get url parameter
 	$parameter = $routeController->getParameter();
 

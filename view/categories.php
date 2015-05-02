@@ -1,4 +1,30 @@
-<?php if ($loginController->isAdmin()) {
+<?php
+if (isset($_POST['submit']) && $loginController->isAdmin()) {
+	// Sanitize userinput
+	if (isset($_POST['title'])) {
+		$title = BaseController::fixString($_POST['title']);
+
+		if ($validatorController->validateTitle($title)) {
+
+			// Save category in database
+			$category = $categoryController->create($title, $loginController->getLoggedInUser());
+
+			// If no user is returned the username is already taken
+			if (empty($category)) {
+				echo "<div class='notice'>The title is already taken.</div>";
+			} else {
+				// Redirect to category
+				header('Location: ' . PROJECT_ADDRESS . "category/" . $category->getId());
+			}
+		} else {
+			echo "<div class='notice'>The title is not valid.</div>";
+		}
+	} else {
+		echo "<div class='notice'>Fill out the field.</div>";
+	}
+}
+
+if ($loginController->isAdmin()) {
 	// Get url parameter
 	$parameter = $routeController->getParameter();
 
@@ -24,32 +50,6 @@
 			<input class="submit" type="submit" name="submit" formmethod="post" value="Create category">
 		</form>
 	</div>
-
-	<?php
-	if (isset($_POST['submit'])) {
-		// Sanitize userinput
-		if (isset($_POST['title'])) {
-			$title = BaseController::fixString($_POST['title']);
-
-			if ($validatorController->validateTitle($title)) {
-
-				// Save category in database
-				$category = $categoryController->create($title, $loginController->getLoggedInUser());
-
-				// If no user is returned the username is already taken
-				if (empty($category)) {
-					echo "<div class='notice'>The title is already taken.</div>";
-				} else {
-					// Redirect to category
-					header('Location: ' . PROJECT_ADDRESS . "category/" . $category->getId());
-				}
-			} else {
-				echo "<div class='notice'>The title is not valid.</div>";
-			}
-		} else {
-			echo "<div class='notice'>Fill out the field.</div>";
-		}
-	}?>
 
 	<h3 class="content_headline">All Categories</h3>
 	<?php
