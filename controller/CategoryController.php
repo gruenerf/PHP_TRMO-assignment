@@ -32,6 +32,7 @@ class CategoryController implements CategoryControllerInterface
 	/**
 	 * Deletes an object
 	 * @param CategoryModel $category
+	 * @return mixed|void
 	 */
 	public function delete(Category $category)
 	{

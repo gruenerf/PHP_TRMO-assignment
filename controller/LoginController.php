@@ -1,9 +1,14 @@
 <?php
 
-
+/**
+ * Class LoginController
+ */
 class LoginController implements LoginControllerInterface
 {
 
+	/**
+	 * @var UserControllerInterface
+	 */
 	private $userController;
 
 	/**
@@ -14,6 +19,10 @@ class LoginController implements LoginControllerInterface
 		return $this->userController;
 	}
 
+	/**
+	 * @param $userController
+	 * @return mixed|void
+	 */
 	public function setUserController($userController)
 	{
 		$this->userController = $userController;

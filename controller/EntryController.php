@@ -35,6 +35,7 @@ class EntryController implements EntryControllerInterface
 	/**
 	 * Deletes an object
 	 * @param EntryModel $entry
+	 * @return mixed|void
 	 */
 	public function delete(Entry $entry)
 	{

@@ -64,6 +64,7 @@ class EntryRepository implements EntryRepositoryInterface
 	/**
 	 * Deletes an Object
 	 * @param EntryModel $entry
+	 * @return mixed|void
 	 */
 	public function delete(Entry $entry)
 	{
@@ -233,7 +234,7 @@ class EntryRepository implements EntryRepositoryInterface
 	public function countEntriesByTopicLastMonth(Topic $topic)
 	{
 		// Define query
-		$sql = "SELECT COUNT('title') FROM entry WHERE topic_id= :topic_id AND timestamp BETWEEN (CURRENT_DATE() - INTERVAL 1 MONTH) AND CURRENT_DATE();";
+		$sql = "SELECT COUNT('title') FROM entry WHERE topic_id= :topic_id AND timestamp BETWEEN (NOW() - INTERVAL 1 MONTH) AND NOW();";
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);

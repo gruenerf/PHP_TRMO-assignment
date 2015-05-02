@@ -63,6 +63,7 @@ class CategoryRepository implements CategoryRepositoryInterface
 	/**
 	 * Deletes an Object
 	 * @param CategoryModel $category
+	 * @return mixed|void
 	 */
 	public function delete(Category $category)
 	{

@@ -95,8 +95,7 @@ class RouteController extends BaseController implements RouteControllerInterface
 			'login',
 			'register',
 			'home',
-			'users',
-			'test'
+			'users'
 		);
 
 		$sideTemplate_left = array(

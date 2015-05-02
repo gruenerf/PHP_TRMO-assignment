@@ -1,4 +1,11 @@
-<?php if ($loginController->isLoggedIn()) { ?>
+<?php
+if (isset($_POST['logout'])) {
+	$loginController->logout();
+	// Redirect to login page
+	header('Location: ' . PROJECT_ADDRESS . "login/logout");
+}
+
+if ($loginController->isLoggedIn()) { ?>
 	<form>
 		<?php if($loginController->isAdmin()){?>
 			<button class="user_buttons" id="button_summary" type="submit" formmethod="post" formaction="summary"
@@ -21,11 +28,7 @@
 		</button>
 	</form>
 	<?php
-	if (isset($_POST['logout'])) {
-		$loginController->logout();
-		// Redirect to login page
-		header('Location: ' . PROJECT_ADDRESS . "login/logout");
-	}
 } else {
 	include_once(ROOT_PATH . "/view/sidebar_right_topic.php");
 }
+

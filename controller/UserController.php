@@ -32,6 +32,7 @@ class UserController implements UserControllerInterface
 	/**
 	 * Deletes an object
 	 * @param UserModel $user
+	 * @return mixed|void
 	 */
 	public function delete(User $user)
 	{
@@ -68,11 +69,21 @@ class UserController implements UserControllerInterface
 		return UserRepository::getInstance()->validateUser($password, $username);
 	}
 
+	/**
+	 * Makes user admin
+	 * @param UserModel $user
+	 * @return bool
+	 */
 	public function makeAdmin(User $user)
 	{
 		return UserRepository::getInstance()->makeAdmin($user);
 	}
 
+	/**
+	 * Makes user writer
+	 * @param UserModel $user
+	 * @return bool
+	 */
 	public function makeWriter(User $user)
 	{
 		return UserRepository::getInstance()->makeWriter($user);

@@ -1,17 +1,11 @@
 <?php
 
+include_once("constants.php");
+
 // Start session
 if (session_status() == PHP_SESSION_NONE) {
 	session_start();
 }
-
-// Define Root Path
-define('ROOT_PATH', realpath(__DIR__));
-define('PROJECT_ADDRESS', '/assignment2/');
-define('IMG_PATH', 'assets/img/');
-define('CSS_PATH', 'assets/css/');
-define('JS_PATH', 'assets/js/');
-define('FONTS_PATH', 'assets/fonts/');
 
 // Autoloader function
 function autoload($interface)

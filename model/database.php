@@ -2,35 +2,6 @@
 
 class Database
 {
-	private $servername = "localhost";
-	private $username = "root";
-	private $password = "";
-	private $database = "urban_dictionary";
-
-	/**
-	 * Getters
-	 */
-	public function getPassword()
-	{
-		return $this->password;
-	}
-
-	public function getServername()
-	{
-		return $this->servername;
-	}
-
-	public function getUsername()
-	{
-		return $this->username;
-	}
-
-	public function getDatabase()
-	{
-		return $this->database;
-	}
-
-
 	/**
 	 * static instance
 	 */
@@ -42,7 +13,7 @@ class Database
 	public function __construct()
 	{
 		try {
-			$conn = new PDO("mysql:host=" . $this->getServername() . ";dbname=" . $this->getDatabase(), $this->getUsername(), $this->getPassword());
+			$conn = new PDO("mysql:host=" . SERVERNAME . ";dbname=" . DATABASE, USERNAME, PASSWORD);
 			// set the PDO error mode to exception
 			$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			$conn->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
@@ -52,7 +23,6 @@ class Database
 		(PDOException $e) {
 			echo "Connection to database failed: " . $e->getMessage();
 		}
-
 	}
 
 	/**

@@ -6,6 +6,9 @@
  */
 class ValidatorController implements ValidatorControllerInterface
 {
+	/**
+	 * @var UserControllerInterface
+	 */
 	private $userController;
 
 	/**
@@ -16,6 +19,10 @@ class ValidatorController implements ValidatorControllerInterface
 		return $this->userController;
 	}
 
+	/**
+	 * @param $userController
+	 * @return mixed|void
+	 */
 	public function setUserController($userController)
 	{
 		$this->userController = $userController;

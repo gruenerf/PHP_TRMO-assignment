@@ -34,6 +34,7 @@ class TopicController implements TopicControllerInterface
 	/**
 	 * Deletes an object
 	 * @param TopicModel $topic
+	 * @return mixed|void
 	 */
 	public function delete(Topic $topic)
 	{

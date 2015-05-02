@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+	/**
+	 *  Sets alerts for a couple of tasks to ask user to confirm the action
+	 */
+
 	$("#delete_category").click(function(e){
 		var r = confirm("Do you really want to delete the selected category?");
 		if (r !== true) {
