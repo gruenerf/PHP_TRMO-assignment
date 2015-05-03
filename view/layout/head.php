@@ -5,5 +5,6 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo CSS_PATH ?>styles.css">
 	<script type="text/javascript" src="<?php echo JS_PATH?>jquery.min.js"></script>
 	<script type="text/javascript" src="<?php echo JS_PATH?>scripts.js"></script>
+	<link rel="icon" href="assets/img/trmo.ico" type="image/x-icon" />
 </head>
 <body>
