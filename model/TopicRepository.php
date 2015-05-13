@@ -226,11 +226,23 @@ class TopicRepository implements TopicRepositoryInterface
 	public function searchForTopic($topic)
 	{
 		// Define query
-		$sql = "SELECT * FROM topic WHERE name LIKE :name";
+		$sql = "SELECT * FROM topic WHERE MATCH (name) AGAINST (:name IN BOOLEAN MODE)";
+
+		// Explode the searchstring for single words
+		$topic = str_replace('%20', ' ', $topic);
+		$topicParts = explode(' ', $topic);
+		$topicBuffer = '';
+
+		// Make search string which has to include one out of all searchwords
+		foreach ($topicParts as $part) {
+			if($part !== " " && $part !== null && $part !== ""){
+				$topicBuffer .= '' . $part . ' ';
+			}
+		}
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':name' => '%' . $topic . '%'));
+		$query->execute(array(':name' => $topicBuffer));
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {

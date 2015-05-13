@@ -3,7 +3,19 @@
 /*************************************************/
 
 /*********************/
-/ 0. Setup Project    /
+/ Contents            /
+/*********************/
+
+1. Setup Project
+2. Application
+    2.1 Dictionary
+    2.2 When logged in
+        2.2.1 Writer + Admin
+        2.2.2 Only Admin
+3. Login Data
+
+/*********************/
+/ 1. Setup Project    /
 /*********************/
 
 1. In the constants.php:
@@ -14,7 +26,7 @@
 
 
 /*********************/
-/ 1. Application      /
+/ 2. Application      /
 /*********************/
 
 "The real meaning of" is a urban-dictionary-ish application, which has a user management
@@ -23,7 +35,7 @@ those again are grouped under categories.
 
 
 /*********************/
-/ 1.1 Dictionary      /
+/ 2.1 Dictionary      /
 /*********************/
 
 Menu Bar:
@@ -48,7 +60,7 @@ Sidebars:
 
 
 /*********************/
-/ 1.2 When Logged in  /
+/ 2.2 When Logged in  /
 /*********************/
 
 When logged in the login icon gets changed to the profile icon in the menu bar.
@@ -56,7 +68,7 @@ Once clicked you will be transferred to the profile page.
 
 
 /**********************/
-/ 1.2.1 Writer & Admin /
+/ 2.2.1 Writer & Admin /
 /**********************/
 
 Sidebars:
@@ -70,7 +82,7 @@ Sidebars:
 
 
 /**********************/
-/ 1.2.1 Only Admin     /
+/ 2.2.1 Only Admin     /
 /**********************/
 
 Sidebars:
@@ -82,3 +94,12 @@ Sidebars:
 
     Right:
         Summary:    - Gives an overview about topics and categories
+
+/**********************/
+/ 3. Login Data        /
+/**********************/
+
+To login as an admin the first time use the following login data:
+
+User: admin1
+Password: password1

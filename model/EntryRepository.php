@@ -206,11 +206,24 @@ class EntryRepository implements EntryRepositoryInterface
 	public function searchForEntry($string)
 	{
 		// Define query
-		$sql = "SELECT * FROM entry WHERE title LIKE :string OR content LIKE :string2";
+		$sql = "SELECT * FROM entry WHERE MATCH (title, content) AGAINST (:string IN BOOLEAN MODE)";
+
+		// Explode the searchstring for single words
+		$string = str_replace('%20', ' ', $string);
+		$stringParts = explode(' ', $string);
+		$stringBuffer = '';
+
+		// Make search string which has to include all searchwords
+		foreach ($stringParts as $part) {
+			if ($part !== " " && $part !== null && $part !== "") {
+				$stringBuffer .= '+' . $part . ' ';
+			}
+		}
 
 		// Prepare database and execute Query
 		$query = Database::getInstance()->prepare($sql);
-		$query->execute(array(':string' => '%' . $string . '%', ':string2' => '%' . $string . '%'));
+		$query->execute(array(':string' => $stringBuffer));
+
 		$rows = $query->fetchAll();
 
 		if (!empty($rows)) {
